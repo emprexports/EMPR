@@ -1,0 +1,1188 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>EMPR EXPORTS PRIVATE LIMITED | International Commodity Trader</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700;900&family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,600&family=Montserrat:wght@300;400;500;600&family=Playfair+Display:ital,wght@0,600;0,700;1,400&display=swap" rel="stylesheet">
+  
+  <style>
+    :root {
+      --canvas: #f6f3eb;
+      --canvas-card: #fdfbf7;
+      --canvas-dark: #1b1714;
+      --charcoal: #1f1d1a;
+      --body-text: #2f2b27;
+      --muted: #6e675f;
+      --gold: #b38728;
+      --gold-bright: #d4af37;
+      --gold-dark: #8c6218;
+      --gold-gradient: linear-gradient(135deg, #b38728 0%, #fbf5b7 50%, #b38728 100%);
+      --border-ornate: #d8cebe;
+      --border-gold: #c5a059;
+      --shadow-soft: 0 10px 30px rgba(27, 23, 20, 0.07);
+      --font-display: 'Cinzel', serif;
+      --font-florentine: 'Playfair Display', serif;
+      --font-serif: 'Cormorant Garamond', Georgia, serif;
+      --font-sans: 'Montserrat', sans-serif;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      background-color: var(--canvas);
+      color: var(--body-text);
+      font-family: var(--font-serif);
+      font-size: 19px;
+      line-height: 1.68;
+      background-image: 
+        radial-gradient(circle at 50% 0%, rgba(212, 175, 55, 0.05) 0%, transparent 70%),
+        repeating-linear-gradient(0deg, transparent, transparent 40px, rgba(179, 135, 40, 0.02) 40px, rgba(179, 135, 40, 0.02) 41px);
+    }
+
+    /* Live Ticker */
+    .ticker-band {
+      background-color: var(--canvas-dark);
+      color: #e5ded2;
+      font-family: var(--font-sans);
+      font-size: 11px;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      padding: 9px 0;
+      border-bottom: 1px solid var(--gold-dark);
+      overflow: hidden;
+      white-space: nowrap;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+
+    .ticker-inner {
+      display: inline-block;
+      white-space: nowrap;
+      animation: tickerRun 45s linear infinite;
+    }
+
+    .ticker-item {
+      display: inline-block;
+      margin: 0 24px;
+    }
+
+    .ticker-item span.green {
+      color: #7ab87a;
+      font-weight: 600;
+    }
+
+    .ticker-item span.gold {
+      color: var(--gold-bright);
+      font-weight: 600;
+    }
+
+    @keyframes tickerRun {
+      0% { transform: translateX(0); }
+      100% { transform: translateX(-50%); }
+    }
+
+    /* Header & Navigation */
+    header {
+      background: rgba(246, 243, 235, 0.95);
+      backdrop-filter: blur(8px);
+      border-bottom: 2px double var(--border-gold);
+      position: sticky;
+      top: 35px;
+      z-index: 90;
+      box-shadow: var(--shadow-soft);
+    }
+
+    .nav-container {
+      max-width: 1300px;
+      margin: 0 auto;
+      padding: 16px 28px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .brand-mark {
+      text-decoration: none;
+      display: flex;
+      align-items: center;
+      gap: 16px;
+    }
+
+    .brand-seal {
+      width: 52px;
+      height: 52px;
+      border-radius: 50%;
+      border: 2px solid var(--gold);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: radial-gradient(circle, #2b241e 0%, #151210 100%);
+      box-shadow: 0 0 10px rgba(179, 135, 40, 0.35);
+    }
+
+    .brand-seal span {
+      font-family: var(--font-display);
+      font-weight: 700;
+      font-size: 16px;
+      color: var(--gold-bright);
+      letter-spacing: 1px;
+    }
+
+    .brand-titles h1 {
+      font-family: var(--font-display);
+      font-size: 21px;
+      letter-spacing: 2px;
+      color: var(--charcoal);
+      font-weight: 700;
+      text-transform: uppercase;
+      line-height: 1.1;
+    }
+
+    .brand-titles p {
+      font-family: var(--font-sans);
+      font-size: 9.5px;
+      letter-spacing: 2.8px;
+      color: var(--gold-dark);
+      text-transform: uppercase;
+      font-weight: 600;
+      margin-top: 3px;
+    }
+
+    nav {
+      display: flex;
+      align-items: center;
+      gap: 24px;
+    }
+
+    nav a {
+      font-family: var(--font-sans);
+      font-size: 11.5px;
+      letter-spacing: 1.8px;
+      color: var(--charcoal);
+      text-decoration: none;
+      text-transform: uppercase;
+      font-weight: 500;
+      transition: color 0.3s;
+      position: relative;
+    }
+
+    nav a:hover, nav a.active {
+      color: var(--gold-dark);
+    }
+
+    .btn-gold {
+      background: var(--gold-dark);
+      color: #fff !important;
+      padding: 10px 22px;
+      border: 1px solid var(--gold-bright);
+      font-family: var(--font-sans);
+      font-size: 11px !important;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      text-decoration: none;
+      transition: all 0.3s;
+      cursor: pointer;
+      display: inline-block;
+      box-shadow: 0 4px 12px rgba(140, 98, 24, 0.2);
+    }
+
+    .btn-gold:hover {
+      background: #6a4911;
+      border-color: #fff;
+      transform: translateY(-1px);
+    }
+
+    /* Architectural Hero */
+    .hero {
+      position: relative;
+      padding: 100px 24px 80px;
+      text-align: center;
+      border-bottom: 1px solid var(--border-ornate);
+      background: radial-gradient(ellipse at center, rgba(255,255,255,0.7) 0%, rgba(246,243,235,0) 80%);
+    }
+
+    .crest-divider {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 20px;
+      margin-bottom: 24px;
+    }
+
+    .crest-divider .line {
+      width: 90px;
+      height: 1px;
+      background: var(--gold);
+    }
+
+    .crest-symbol {
+      font-family: var(--font-display);
+      color: var(--gold);
+      font-size: 16px;
+      letter-spacing: 4px;
+    }
+
+    .hero-pretitle {
+      font-family: var(--font-sans);
+      font-size: 12px;
+      letter-spacing: 4px;
+      text-transform: uppercase;
+      color: var(--gold-dark);
+      font-weight: 600;
+      margin-bottom: 14px;
+    }
+
+    .hero-title {
+      font-family: var(--font-display);
+      font-size: 50px;
+      font-weight: 700;
+      line-height: 1.15;
+      color: var(--charcoal);
+      max-width: 1050px;
+      margin: 0 auto 24px;
+      letter-spacing: 1px;
+    }
+
+    .hero-subtitle {
+      font-family: var(--font-florentine);
+      font-style: italic;
+      font-size: 26px;
+      color: #554e45;
+      max-width: 860px;
+      margin: 0 auto 36px;
+    }
+
+    .legal-strip {
+      max-width: 920px;
+      margin: 0 auto;
+      padding: 16px 24px;
+      border: 1px double var(--border-gold);
+      background: rgba(255,255,255,0.6);
+      font-size: 16px;
+      color: #433e38;
+      border-radius: 2px;
+    }
+
+    /* Florentine Page Frame */
+    .container {
+      max-width: 1280px;
+      margin: 0 auto;
+      padding: 70px 24px;
+    }
+
+    .section-head {
+      text-align: center;
+      margin-bottom: 50px;
+    }
+
+    .section-badge {
+      font-family: var(--font-sans);
+      font-size: 11px;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      color: var(--gold-dark);
+      font-weight: 600;
+      margin-bottom: 8px;
+    }
+
+    .section-title {
+      font-family: var(--font-display);
+      font-size: 38px;
+      color: var(--charcoal);
+      letter-spacing: 1px;
+      margin-bottom: 14px;
+    }
+
+    .section-desc {
+      font-family: var(--font-florentine);
+      font-style: italic;
+      font-size: 21px;
+      color: var(--muted);
+      max-width: 720px;
+      margin: 0 auto;
+    }
+
+    /* Commodities Section */
+    .commodity-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(360px, 1fr));
+      gap: 32px;
+    }
+
+    .commodity-card {
+      background: var(--canvas-card);
+      border: 1px solid var(--border-ornate);
+      padding: 38px 30px;
+      position: relative;
+      transition: all 0.3s ease;
+      box-shadow: var(--shadow-soft);
+    }
+
+    .commodity-card::before {
+      content: '';
+      position: absolute;
+      top: 6px;
+      left: 6px;
+      right: 6px;
+      bottom: 6px;
+      border: 1px solid rgba(197, 160, 89, 0.35);
+      pointer-events: none;
+    }
+
+    .commodity-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 15px 35px rgba(27, 23, 20, 0.12);
+      border-color: var(--gold);
+    }
+
+    .commodity-tag {
+      font-family: var(--font-sans);
+      font-size: 10px;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      background: #1b1714;
+      color: var(--gold-bright);
+      padding: 4px 10px;
+      display: inline-block;
+      margin-bottom: 16px;
+    }
+
+    .commodity-card h3 {
+      font-family: var(--font-display);
+      font-size: 23px;
+      letter-spacing: 1px;
+      color: var(--charcoal);
+      margin-bottom: 12px;
+    }
+
+    .commodity-spec-list {
+      list-style: none;
+      margin: 18px 0;
+      padding-top: 14px;
+      border-top: 1px dashed var(--border-ornate);
+    }
+
+    .commodity-spec-list li {
+      font-size: 16px;
+      padding: 6px 0;
+      display: flex;
+      justify-content: space-between;
+      border-bottom: 1px solid rgba(0,0,0,0.03);
+    }
+
+    .commodity-spec-list span.label {
+      font-family: var(--font-sans);
+      font-size: 11.5px;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      color: var(--muted);
+    }
+
+    .commodity-spec-list span.val {
+      font-weight: 600;
+      color: #1a1714;
+    }
+
+    .term-badge {
+      display: inline-block;
+      background: #f1ebd9;
+      border: 1px solid var(--gold);
+      color: var(--gold-dark);
+      font-family: var(--font-sans);
+      font-size: 10.5px;
+      font-weight: 700;
+      padding: 5px 12px;
+      letter-spacing: 1.5px;
+      margin-top: 8px;
+    }
+
+    /* Trade Procedures Section */
+    .procedure-frame {
+      background: #fff;
+      border: 2px double var(--border-gold);
+      padding: 46px 36px;
+      box-shadow: var(--shadow-soft);
+      margin-bottom: 40px;
+    }
+
+    .track-badge {
+      font-family: var(--font-sans);
+      font-size: 11px;
+      background: var(--canvas-dark);
+      color: var(--gold-bright);
+      display: inline-block;
+      padding: 5px 14px;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      margin-bottom: 14px;
+    }
+
+    .pipeline-steps {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
+      gap: 16px;
+      margin-top: 26px;
+    }
+
+    .pipe-step {
+      background: var(--canvas);
+      border: 1px solid var(--border-ornate);
+      padding: 18px 16px;
+      position: relative;
+    }
+
+    .pipe-step-num {
+      font-family: var(--font-display);
+      color: var(--gold);
+      font-size: 18px;
+      font-weight: 700;
+      margin-bottom: 6px;
+    }
+
+    .pipe-step-title {
+      font-family: var(--font-sans);
+      font-size: 12px;
+      font-weight: 600;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      color: var(--charcoal);
+      margin-bottom: 4px;
+    }
+
+    .pipe-step-desc {
+      font-size: 14px;
+      color: var(--muted);
+      line-height: 1.4;
+    }
+
+    /* Executive Leadership Dossier */
+    .leadership-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 40px;
+      align-items: center;
+      background: var(--canvas-card);
+      border: 2px double var(--border-gold);
+      padding: 44px;
+      box-shadow: var(--shadow-soft);
+    }
+
+    .leader-frame {
+      position: relative;
+      padding: 12px;
+      background: #fff;
+      border: 1px solid var(--border-gold);
+      box-shadow: 0 10px 25px rgba(0,0,0,0.08);
+    }
+
+    .leader-frame img {
+      width: 100%;
+      height: 520px;
+      object-fit: cover;
+      object-position: center 20%;
+      display: block;
+      filter: saturate(1.05) contrast(1.05);
+    }
+
+    .leader-info h3 {
+      font-family: var(--font-display);
+      font-size: 32px;
+      color: var(--charcoal);
+      margin-bottom: 6px;
+      letter-spacing: 1px;
+    }
+
+    .leader-role {
+      font-family: var(--font-sans);
+      font-size: 13px;
+      letter-spacing: 3px;
+      color: var(--gold-dark);
+      text-transform: uppercase;
+      font-weight: 600;
+      margin-bottom: 18px;
+    }
+
+    .leader-quote {
+      font-family: var(--font-florentine);
+      font-style: italic;
+      font-size: 24px;
+      color: #3b352e;
+      border-left: 3px solid var(--gold);
+      padding-left: 20px;
+      margin: 20px 0;
+      line-height: 1.45;
+    }
+
+    /* Business Card Exhibition */
+    .card-exhibition {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 28px;
+      margin-top: 36px;
+    }
+
+    .card-box {
+      border: 1px solid var(--border-ornate);
+      background: #0f0d0c;
+      padding: 10px;
+      border-radius: 4px;
+      box-shadow: 0 12px 30px rgba(0,0,0,0.25);
+    }
+
+    .card-box img {
+      width: 100%;
+      display: block;
+      border-radius: 2px;
+    }
+
+    /* Verification & Credentials Table */
+    .cred-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 20px;
+      background: #fff;
+      border: 1px solid var(--border-ornate);
+    }
+
+    .cred-table th, .cred-table td {
+      padding: 14px 20px;
+      border-bottom: 1px solid var(--border-ornate);
+      text-align: left;
+    }
+
+    .cred-table th {
+      font-family: var(--font-sans);
+      font-size: 11px;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      background: #f7f4ec;
+      color: var(--charcoal);
+    }
+
+    .cred-table td {
+      font-size: 16px;
+      color: #3e3831;
+    }
+
+    /* RFQ Modal */
+    .modal-overlay {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: rgba(18, 15, 13, 0.82);
+      backdrop-filter: blur(6px);
+      z-index: 1000;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+    }
+
+    .modal-box {
+      background: var(--canvas-card);
+      border: 2px double var(--border-gold);
+      max-width: 720px;
+      width: 100%;
+      padding: 40px;
+      position: relative;
+      box-shadow: 0 25px 60px rgba(0,0,0,0.4);
+      max-height: 90vh;
+      overflow-y: auto;
+    }
+
+    .modal-close {
+      position: absolute;
+      top: 18px;
+      right: 22px;
+      font-size: 28px;
+      cursor: pointer;
+      color: var(--charcoal);
+      border: none;
+      background: none;
+    }
+
+    .form-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+      margin-top: 20px;
+    }
+
+    .form-group {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .form-group.full {
+      grid-column: span 2;
+    }
+
+    .form-group label {
+      font-family: var(--font-sans);
+      font-size: 11px;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      margin-bottom: 6px;
+      color: var(--charcoal);
+      font-weight: 600;
+    }
+
+    .form-group input, .form-group select, .form-group textarea {
+      padding: 11px 14px;
+      border: 1px solid var(--border-ornate);
+      background: #fff;
+      font-family: var(--font-serif);
+      font-size: 16px;
+      color: #2b2723;
+      border-radius: 1px;
+    }
+
+    .form-group input:focus, .form-group select:focus, .form-group textarea:focus {
+      outline: none;
+      border-color: var(--gold-dark);
+      background: #fdfbf7;
+    }
+
+    /* Footer */
+    footer {
+      background: var(--canvas-dark);
+      color: #e5ded2;
+      padding: 70px 24px 30px;
+      border-top: 3px double var(--border-gold);
+    }
+
+    .footer-container {
+      max-width: 1280px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: 2fr 1fr 1fr;
+      gap: 40px;
+      padding-bottom: 40px;
+      border-bottom: 1px solid rgba(197, 160, 89, 0.25);
+    }
+
+    .footer-col h4 {
+      font-family: var(--font-display);
+      font-size: 17px;
+      letter-spacing: 2px;
+      color: var(--gold-bright);
+      margin-bottom: 18px;
+      text-transform: uppercase;
+    }
+
+    .footer-col p {
+      font-size: 15px;
+      color: #aba195;
+      line-height: 1.6;
+      margin-bottom: 10px;
+    }
+
+    .footer-col a {
+      color: var(--gold);
+      text-decoration: none;
+      font-family: var(--font-sans);
+      font-size: 12.5px;
+      letter-spacing: 1px;
+    }
+
+    .footer-bottom {
+      text-align: center;
+      padding-top: 24px;
+      font-family: var(--font-sans);
+      font-size: 11px;
+      letter-spacing: 2px;
+      color: #8b8073;
+      text-transform: uppercase;
+    }
+
+    /* Responsive */
+    @media (max-width: 900px) {
+      .hero-title { font-size: 36px; }
+      .leadership-grid { grid-template-columns: 1fr; }
+      .card-exhibition { grid-template-columns: 1fr; }
+      .footer-container { grid-template-columns: 1fr; }
+      .form-grid { grid-template-columns: 1fr; }
+      .form-group.full { grid-column: span 1; }
+      nav { display: none; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Live Trade Ticker -->
+  <div class="ticker-band">
+    <div class="ticker-inner">
+      <div class="ticker-item">SULFUR (GRANULAR) FOB SOHAR / SULTANATE OF OMAN: <span class="gold">ALLOCATED</span></div>
+      <div class="ticker-item">UREA N46% (BULK) FOB OMAN: <span class="gold">ACTIVE</span></div>
+      <div class="ticker-item">EN590 10 PPM DIESEL: <span class="green">STRICTLY CIF</span></div>
+      <div class="ticker-item">COPPER CATHODES 99.99%: <span class="gold">DIRECT DRC MINES</span></div>
+      <div class="ticker-item">BITUMEN ALL GRADES (60/70 & 80/100): <span class="gold">CFR BANDAR ABBAS / BASRA</span></div>
+      <div class="ticker-item">GEORGIA SULFUR: <span class="green">CIF POTI & MAJOR PORTS</span></div>
+      <div class="ticker-item">INSPECTIONS: <span class="gold">SGS / SAYBOLT / INTERTEK STRICT VERIFICATION</span></div>
+    </div>
+  </div>
+
+  <!-- Header -->
+  <header>
+    <div class="nav-container">
+      <a href="#home" class="brand-mark">
+        <div class="brand-seal">
+          <span>E</span>
+        </div>
+        <div class="brand-titles">
+          <h1>EMPR EXPORTS</h1>
+          <p>Private Limited &bull; Est. 2024</p>
+        </div>
+      </a>
+      <nav>
+        <a href="#home">Home</a>
+        <a href="#commodities">Commodities</a>
+        <a href="#procedures">Procedures</a>
+        <a href="#governance">Governance</a>
+        <a href="#credentials">Compliance</a>
+        <button class="btn-gold" onclick="openRFQ()">Request Offer (RFQ)</button>
+      </nav>
+    </div>
+  </header>
+
+  <!-- Hero Section -->
+  <section id="home" class="hero">
+    <div class="crest-divider">
+      <div class="line"></div>
+      <div class="crest-symbol">&#9878; &bull; PACTA SUNT SERVANDA &bull; &#9878;</div>
+      <div class="line"></div>
+    </div>
+    <div class="hero-pretitle">Florentine Standard Commodity Trading House</div>
+    <h2 class="hero-title">Disciplined Execution in Global Energy & Metals</h2>
+    <p class="hero-subtitle">"Business is all about People & Trust" — Facilitating verified sovereign refinery and mining allocations across vital trade corridors.</p>
+    
+    <div class="legal-strip">
+      <strong>EMPR EXPORTS PRIVATE LIMITED</strong>, in exclusive alliance with our distinguished global refinery partners, proudly extends this platform under full corporate and legal responsibility. Headquartered in India and active across major world ports, we serve verified, financially solvent principals with uncompromising SGS certification.
+    </div>
+  </section>
+
+  <!-- Commodities Dossier -->
+  <section id="commodities" class="container">
+    <div class="section-head">
+      <div class="section-badge">Catalogo Merci</div>
+      <h2 class="section-title">Strategic Commodity Portfolios</h2>
+      <p class="section-desc">Direct origin contracts, guaranteed commercial purity, and transparent incoterms verified by SGS/Intertek inspection.</p>
+    </div>
+
+    <div class="commodity-grid">
+      <!-- Urea N46 -->
+      <div class="commodity-card">
+        <span class="commodity-tag">Agricultural Nitrogen</span>
+        <h3>Granular Urea N46</h3>
+        <p>Direct supply from high-capacity Gulf petrochemical complexes. Low biuret, treated granular formulation for global industrial and agricultural demands.</p>
+        <ul class="commodity-spec-list">
+          <li><span class="label">Nitrogen</span><span class="val">46.0% min</span></li>
+          <li><span class="label">Moisture</span><span class="val">0.5% max</span></li>
+          <li><span class="label">Biuret</span><span class="val">1.0% max</span></li>
+          <li><span class="label">Granulation</span><span class="val">2.00 – 4.75 mm (90% min)</span></li>
+          <li><span class="label">Origin</span><span class="val">Sultanate of Oman</span></li>
+        </ul>
+        <span class="term-badge">SUPPLIED IN FOB TERMS FROM OMAN</span>
+      </div>
+
+      <!-- Granular Sulfur -->
+      <div class="commodity-card">
+        <span class="commodity-tag">Industrial Petrochemical</span>
+        <h3>Granular Sulfur</h3>
+        <p>Bright yellow industrial sulfur produced via hydro-desulfurization. Uniform granular structure suitable for sulfuric acid production and fertilizer synthesis.</p>
+        <ul class="commodity-spec-list">
+          <li><span class="label">Purity</span><span class="val">99.50% – 99.80% dry basis</span></li>
+          <li><span class="label">Ash Content</span><span class="val">0.05% max</span></li>
+          <li><span class="label">Moisture</span><span class="val">0.50% max</span></li>
+          <li><span class="label">Color</span><span class="val">Commercial Bright Yellow</span></li>
+          <li><span class="label">Origins</span><span class="val">Oman (FOB) | Georgia (CIF)</span></li>
+        </ul>
+        <span class="term-badge">FOB OMAN & CIF FROM GEORGIA</span>
+      </div>
+
+      <!-- Diesel EN590 -->
+      <div class="commodity-card">
+        <span class="commodity-tag">Ultra-Low Sulfur Fuel</span>
+        <h3>Diesel EN590 10 PPM</h3>
+        <p>Premium European Standard 10 PPM automotive gasoil. Supplied directly via bonded storage allocations with SGS inspection at designated discharge ports.</p>
+        <ul class="commodity-spec-list">
+          <li><span class="label">Sulfur Content</span><span class="val">10 mg/kg (ppm) max</span></li>
+          <li><span class="label">Density @ 15°C</span><span class="val">0.820 – 0.845 kg/m³</span></li>
+          <li><span class="label">Flash Point</span><span class="val">> 55°C</span></li>
+          <li><span class="label">Cetane Index</span><span class="val">51.0 min</span></li>
+          <li><span class="label">Term</span><span class="val">Strictly CIF to Safe World Ports</span></li>
+        </ul>
+        <span class="term-badge">STRICTLY CIF DELIVERY</span>
+      </div>
+
+      <!-- Bitumen -->
+      <div class="commodity-card">
+        <span class="commodity-tag">Paving & Infrastructure</span>
+        <h3>Bitumen (All Grades)</h3>
+        <p>Comprehensive penetration and viscosity grades including 60/70, 80/100, and VG-30/40. Available in heavy-gauge new steel drums and bulk bitutainers.</p>
+        <ul class="commodity-spec-list">
+          <li><span class="label">Standard Grades</span><span class="val">60/70, 80/100, VG-30, VG-40</span></li>
+          <li><span class="label">Penetration @ 25°C</span><span class="val">ASTM D5 Compliant</span></li>
+          <li><span class="label">Softening Point</span><span class="val">49°C to 56°C</span></li>
+          <li><span class="label">Ductility</span><span class="val">> 100 cm</span></li>
+          <li><span class="label">Origin</span><span class="val">Iran & Iraq</span></li>
+        </ul>
+        <span class="term-badge">CFR FROM IRAN & IRAQ</span>
+      </div>
+
+      <!-- Copper Cathode -->
+      <div class="commodity-card">
+        <span class="commodity-tag">Strategic Non-Ferrous</span>
+        <h3>Copper Cathodes Grade A</h3>
+        <p>Non-registered and registered Grade A high-purity electrolytic copper cathodes sourced directly from primary mining and refining operations in the DRC.</p>
+        <ul class="commodity-spec-list">
+          <li><span class="label">Cu Purity</span><span class="val">99.99% min (Rejection < 99.96%)</span></li>
+          <li><span class="label">Dimensions</span><span class="val">914 mm × 914 mm × 12 mm</span></li>
+          <li><span class="label">Weight / Sheet</span><span class="val">125 kg (± 1%)</span></li>
+          <li><span class="label">Packaging</span><span class="val">Bundled & steel-strapped</span></li>
+          <li><span class="label">Sourcing</span><span class="val">Directly DRC Mining Concessions</span></li>
+        </ul>
+        <span class="term-badge">DIRECT DRC CONCESSIONS</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- Trade Execution Protocols -->
+  <section id="procedures" class="container" style="padding-top: 0;">
+    <div class="section-head">
+      <div class="section-badge">Protocolli Operativi</div>
+      <h2 class="section-title">Institutional Transaction Procedures</h2>
+      <p class="section-desc">Strict adherence to standard commercial banking mechanics. Transparent verification sequences protecting both principals.</p>
+    </div>
+
+    <!-- Oman FOB Track -->
+    <div class="procedure-frame">
+      <span class="track-badge">Special Procedure: Sulfur & Urea (FOB Oman)</span>
+      <h3 style="font-family: var(--font-display); font-size: 24px; color: var(--charcoal); margin-bottom: 6px;">Oman FOB 8-Stage Execution Workflow</h3>
+      <p style="font-size: 17px; color: var(--muted);">Prescribed pipeline strictly governing bulk Urea N46 and Granular Sulfur allocations out of Oman export terminals.</p>
+
+      <div class="pipeline-steps">
+        <div class="pipe-step">
+          <div class="pipe-step-num">01</div>
+          <div class="pipe-step-title">ICPO Issue</div>
+          <div class="pipe-step-desc">Buyer issues Irrevocable Corporate Purchase Order with full corporate and banking credentials.</div>
+        </div>
+        <div class="pipe-step">
+          <div class="pipe-step-num">02</div>
+          <div class="pipe-step-title">SPA Contract</div>
+          <div class="pipe-step-desc">Seller issues Sales & Purchase Agreement (SPA). Both parties sign and seal legally binding covenants.</div>
+        </div>
+        <div class="pipe-step">
+          <div class="pipe-step-num">03</div>
+          <div class="pipe-step-title">POF Submission</div>
+          <div class="pipe-step-desc">Buyer provides Proof of Funds (POF) via certified bank confirmation letter or MT799/MT199 format.</div>
+        </div>
+        <div class="pipe-step">
+          <div class="pipe-step-num">04</div>
+          <div class="pipe-step-title">PPOP & Terminal Visit</div>
+          <div class="pipe-step-desc">Seller provides Partial POP; buyer is cleared for terminal/cargo visual inspection and tank farm verification.</div>
+        </div>
+        <div class="pipe-step">
+          <div class="pipe-step-num">05</div>
+          <div class="pipe-step-title">DLC / TT Instrument</div>
+          <div class="pipe-step-desc">Buyer issues Documentary Letter of Credit (DLC MT700) or approved TT financial instrument.</div>
+        </div>
+        <div class="pipe-step">
+          <div class="pipe-step-num">06</div>
+          <div class="pipe-step-title">SGS Inspection</div>
+          <div class="pipe-step-desc">Independent SGS or Saybolt inspection board conducts comprehensive quality, weight, and grade tally.</div>
+        </div>
+        <div class="pipe-step">
+          <div class="pipe-step-num">07</div>
+          <div class="pipe-step-title">Vessel Loading</div>
+          <div class="pipe-step-desc">Cargo loading onto buyer's chartered or nominated vessel in accordance with maritime laytime agreement.</div>
+        </div>
+        <div class="pipe-step">
+          <div class="pipe-step-num">08</div>
+          <div class="pipe-step-title">B/L Payment</div>
+          <div class="pipe-step-desc">Final MT103 wire settlement executed against presentation of Clean On-Board Bill of Lading & SGS reports.</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Standard ICC CIF/CFR Frame -->
+    <div class="procedure-frame">
+      <span class="track-badge">Global Delivery: CIF & CFR Framework</span>
+      <h3 style="font-family: var(--font-display); font-size: 24px; color: var(--charcoal); margin-bottom: 6px;">Standard ICC CIF Procedures (EN590, Sulfur Georgia, DRC Copper)</h3>
+      <p style="font-size: 17px; color: var(--muted); margin-bottom: 18px;">Conducted under standard ICC Uniform Customs and Practice for Documentary Credits (UCP 600).</p>
+      
+      <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px;">
+        <div style="border-left: 2px solid var(--gold); padding-left: 16px;">
+          <h4 style="font-family: var(--font-display); font-size: 17px; margin-bottom: 4px;">1. Verification & SPA</h4>
+          <p style="font-size: 15px; color: var(--muted);">Buyer submits ICPO + CP. Seller provides official Full Corporate Offer (FCO) followed by mutually endorsed SPA.</p>
+        </div>
+        <div style="border-left: 2px solid var(--gold); padding-left: 16px;">
+          <h4 style="font-family: var(--font-display); font-size: 17px; margin-bottom: 4px;">2. Documentary Credit</h4>
+          <p style="font-size: 15px; color: var(--muted);">Buyer's tier-one bank issues irrevocable DLC MT700 or standby SBLC MT760 to seller's fiduciary bank.</p>
+        </div>
+        <div style="border-left: 2px solid var(--gold); padding-left: 16px;">
+          <h4 style="font-family: var(--font-display); font-size: 17px; margin-bottom: 4px;">3. Marine Transport & POP</h4>
+          <p style="font-size: 15px; color: var(--muted);">Vessel chartered with 110% maritime cargo insurance. Complete Proof of Product (POP) transmitted via SWIFT.</p>
+        </div>
+        <div style="border-left: 2px solid var(--gold); padding-left: 16px;">
+          <h4 style="font-family: var(--font-display); font-size: 17px; margin-bottom: 4px;">4. Discharge & Settlement</h4>
+          <p style="font-size: 15px; color: var(--muted);">SGS verification at safe discharge port. Settlement released via bank-to-bank MT103 upon certificate validation.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Governance & Executive Leadership -->
+  <section id="governance" class="container" style="padding-top: 0;">
+    <div class="section-head">
+      <div class="section-badge">Leadership Esecutiva</div>
+      <h2 class="section-title">Governance & Direction</h2>
+      <p class="section-desc">Directed by decisive transaction professionals managing physical trade flow and verified energy allocations.</p>
+    </div>
+
+    <div class="leadership-grid">
+      <div class="leader-frame">
+        <img src="bangkok__iconsiam__energytrading__oilandgas__glob (1).jpg.jpeg" alt="Mr. Abinash Samantaray (Rion) - CEO & Managing Director">
+      </div>
+      <div class="leader-info">
+        <div class="leader-role">Chief Executive Officer &amp; Managing Director</div>
+        <h3>Mr. Abinash Samantaray (Rion)</h3>
+        
+        <div class="leader-quote">
+          "We operate with the precision of a private equity desk and the grit of a war-room negotiator. In sovereign commodity trade, credibility is not claimed—it is verified through every lift."
+        </div>
+
+        <p style="font-size: 17px; color: #4e473e; margin-bottom: 14px;">
+          Headquartered in Bhubaneswar, Odisha, and operating across premier trade corridors from the Persian Gulf to Rotterdam and Southeast Asia, Mr. Samantaray directs global desk facilitators with zero tolerance for unverified transactional mechanics.
+        </p>
+
+        <ul style="list-style: none; padding-top: 10px; border-top: 1px solid var(--border-ornate);">
+          <li style="font-size: 15px; margin-bottom: 6px;"><strong>Direct Communication:</strong> info@emprexports.world</li>
+          <li style="font-size: 15px; margin-bottom: 6px;"><strong>Encrypted Desk:</strong> RefineryHQ@protonmail.com</li>
+          <li style="font-size: 15px;"><strong>Official WhatsApp Desk:</strong> +91 7978932107</li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- Official Business Card Presentation -->
+    <div style="margin-top: 50px;">
+      <h3 style="font-family: var(--font-display); font-size: 22px; text-align: center; margin-bottom: 8px; color: var(--charcoal); letter-spacing: 1px;">Official Executive Identity &amp; Corporate Insignia</h3>
+      <p style="font-family: var(--font-florentine); font-style: italic; text-align: center; color: var(--muted); margin-bottom: 24px;">Authentic trade credentials of EMPR Exports Private Limited.</p>
+      
+      <div class="card-exhibition">
+        <div class="card-box">
+          <img src="EMPR EXPORTS PRIVATE LIMITED_20261010_003944_0001.jpg" alt="EMPR Executive Identity Card - Front">
+        </div>
+        <div class="card-box">
+          <img src="EMPR EXPORTS PRIVATE LIMITED_20261010_003943_0000.jpg" alt="EMPR Trade of Trust Corporate Card - Crest">
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Corporate Information Sheet (CIS) & Credentials -->
+  <section id="credentials" class="container" style="padding-top: 0;">
+    <div class="section-head">
+      <div class="section-badge">Certificazione Legale</div>
+      <h2 class="section-title">Corporate Information Sheet (CIS)</h2>
+      <p class="section-desc">Full legal accountability, statutory registration, and international banking transparency.</p>
+    </div>
+
+    <table class="cred-table">
+      <tbody>
+        <tr>
+          <th style="width: 35%;">Corporate Entity Name</th>
+          <td><strong>EMPR EXPORTS PRIVATE LIMITED</strong></td>
+        </tr>
+        <tr>
+          <th>Corporate Identification Number (CIN)</th>
+          <td><code>U46303OD2024PTC045525</code> (Ministry of Corporate Affairs, India)</td>
+        </tr>
+        <tr>
+          <th>Date of Incorporation</th>
+          <td>9th April, 2024</td>
+        </tr>
+        <tr>
+          <th>Company Class &amp; Status</th>
+          <td>Private Company Limited by Shares &bull; Active &bull; RoC-Cuttack</td>
+        </tr>
+        <tr>
+          <th>Registered Head Office</th>
+          <td>DLF Cyber City, Infosys, Khordha, Bhubaneswar, Odisha – 751024, India</td>
+        </tr>
+        <tr>
+          <th>International Representative Desk</th>
+          <td>Dubai International Representation Desk (Global Correspondence)</td>
+        </tr>
+        <tr>
+          <th>Independent Verification Authorities</th>
+          <td>SGS Geneva, Saybolt, Intertek Group, Bureau Veritas</td>
+        </tr>
+        <tr>
+          <th>Accepted Payment Instruments</th>
+          <td>Documentary Letter of Credit (DLC MT700), Standby Letter of Credit (SBLC MT760), MT103 Wire</td>
+        </tr>
+      </tbody>
+    </table>
+  </section>
+
+  <!-- Footer -->
+  <footer>
+    <div class="footer-container">
+      <div class="footer-col">
+        <h4>EMPR EXPORTS PRIVATE LIMITED</h4>
+        <p>"Trade of Trust" — Direct international facilitators of bulk Urea N46, Granular Sulfur, Diesel EN590 10 PPM, Bitumen, and Copper Cathodes.</p>
+        <p style="font-size: 13.5px; color: #8e8376;">All supplies subject to strict due diligence, verified allocation confirmations, and standard ICC banking protocols.</p>
+      </div>
+
+      <div class="footer-col">
+        <h4>Commodity Ports</h4>
+        <p>&bull; Granular Urea: FOB Oman Ports</p>
+        <p>&bull; Granular Sulfur: FOB Oman / CIF Poti</p>
+        <p>&bull; Diesel EN590: Strictly CIF World Ports</p>
+        <p>&bull; Bitumen: CFR Bandar Abbas / Basra</p>
+        <p>&bull; Copper Cathodes: Direct DRC Concessions</p>
+      </div>
+
+      <div class="footer-col">
+        <h4>Trade Desk Contact</h4>
+        <p><strong>Desk WhatsApp:</strong> +91 7978932107</p>
+        <p><strong>Official Email:</strong> info@emprexports.world</p>
+        <p><strong>Encrypted Desk:</strong> RefineryHQ@protonmail.com</p>
+        <p><strong>Web Portal:</strong> www.emprexports.world</p>
+      </div>
+    </div>
+
+    <div class="footer-bottom">
+      &copy; 2024–2026 EMPR EXPORTS PRIVATE LIMITED. All rights reserved. CIN: U46303OD2024PTC045525.
+    </div>
+  </footer>
+
+  <!-- Request for Quotation (RFQ) Modal -->
+  <div id="rfqModal" class="modal-overlay">
+    <div class="modal-box">
+      <button class="modal-close" onclick="closeRFQ()">&times;</button>
+      <div style="text-align: center; margin-bottom: 20px;">
+        <div style="font-family: var(--font-sans); font-size: 11px; letter-spacing: 2px; text-transform: uppercase; color: var(--gold-dark); font-weight: 600;">Formal Tender Inquiry</div>
+        <h3 style="font-family: var(--font-display); font-size: 26px; color: var(--charcoal); margin-top: 4px;">Request for Quotation (RFQ)</h3>
+        <p style="font-family: var(--font-florentine); font-style: italic; font-size: 16px; color: var(--muted);">Direct transmission to the EMPR Commercial Trade Desk.</p>
+      </div>
+
+      <form id="rfqForm" onsubmit="submitRFQ(event)">
+        <div class="form-grid">
+          <div class="form-group">
+            <label>Buyer Company Name</label>
+            <input type="text" id="buyerCompany" placeholder="e.g. PetroGlobal Trading LLC" required>
+          </div>
+          <div class="form-group">
+            <label>Country of Incorporation</label>
+            <input type="text" id="buyerCountry" placeholder="e.g. UAE / Singapore" required>
+          </div>
+          <div class="form-group">
+            <label>Commodity Required</label>
+            <select id="buyerCommodity" required>
+              <option value="Granular Urea N46 (FOB Oman)">Granular Urea N46 (FOB Oman)</option>
+              <option value="Granular Sulfur (FOB Oman)">Granular Sulfur (FOB Oman)</option>
+              <option value="Granular Sulfur (CIF Georgia)">Granular Sulfur (CIF Georgia)</option>
+              <option value="Diesel EN590 10 PPM (Strictly CIF)">Diesel EN590 10 PPM (Strictly CIF)</option>
+              <option value="Bitumen (All Grades - CFR Iran/Iraq)">Bitumen (All Grades - CFR Iran/Iraq)</option>
+              <option value="Copper Cathode 99.99% (DRC Concession)">Copper Cathode 99.99% (DRC Concession)</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label>Volume Required (Metric Tons / BBL)</label>
+            <input type="text" id="buyerVolume" placeholder="e.g. 50,000 MT Spot / 12 Months" required>
+          </div>
+          <div class="form-group">
+            <label>Destination Port / CIF Discharge Port</label>
+            <input type="text" id="buyerPort" placeholder="e.g. Jurong, Singapore / Rotterdam" required>
+          </div>
+          <div class="form-group">
+            <label>Preferred Payment Instrument</label>
+            <select id="buyerPayment" required>
+              <option value="DLC MT700 (Irrevocable, Transferable/Non-Transferable)">DLC MT700</option>
+              <option value="SBLC MT760 (Standby Letter of Credit)">SBLC MT760</option>
+              <option value="TT Wire Settlement against SGS/BL">TT Wire against SGS &amp; B/L</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label>Principal Representative Name</label>
+            <input type="text" id="buyerRep" placeholder="Full Name of Signatory" required>
+          </div>
+          <div class="form-group">
+            <label>Corporate Email / WhatsApp</label>
+            <input type="text" id="buyerContact" placeholder="email@company.com / +1..." required>
+          </div>
+          <div class="form-group full">
+            <label>Specific Target Pricing / Technical Remarks</label>
+            <textarea id="buyerNotes" rows="3" placeholder="State your target price formula, packing specifics, or vessel discharge terms..."></textarea>
+          </div>
+        </div>
+
+        <div style="margin-top: 24px; text-align: center;">
+          <button type="submit" class="btn-gold" style="width: 100%; padding: 14px; font-size: 13px !important;">Generate &amp; Transmit RFQ to Trade Desk</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <script>
+    function openRFQ() {
+      document.getElementById('rfqModal').style.display = 'flex';
+    }
+
+    function closeRFQ() {
+      document.getElementById('rfqModal').style.display = 'none';
+    }
+
+    window.onclick = function(event) {
+      const modal = document.getElementById('rfqModal');
+      if (event.target === modal) {
+        closeRFQ();
+      }
+    };
+
+    function submitRFQ(e) {
+      e.preventDefault();
+      
+      const company = document.getElementById('buyerCompany').value;
+      const country = document.getElementById('buyerCountry').value;
+      const commodity = document.getElementById('buyerCommodity').value;
+      const volume = document.getElementById('buyerVolume').value;
+      const port = document.getElementById('buyerPort').value;
+      const payment = document.getElementById('buyerPayment').value;
+      const rep = document.getElementById('buyerRep').value;
+      const contact = document.getElementById('buyerContact').value;
+      const notes = document.getElementById('buyerNotes').value;
+
+      const message = `*FORMAL TRADE INQUIRY (RFQ) - EMPR EXPORTS PRIVATE LIMITED*%0A%0A` +
+        `*Entity:* ${encodeURIComponent(company)} (${encodeURIComponent(country)})%0A` +
+        `*Commodity:* ${encodeURIComponent(commodity)}%0A` +
+        `*Quantity:* ${encodeURIComponent(volume)}%0A` +
+        `*Discharge Port:* ${encodeURIComponent(port)}%0A` +
+        `*Instrument:* ${encodeURIComponent(payment)}%0A` +
+        `*Signatory:* ${encodeURIComponent(rep)}%0A` +
+        `*Contact:* ${encodeURIComponent(contact)}%0A` +
+        `*Remarks:* ${encodeURIComponent(notes || 'None')}`;
+
+      // Opens direct WhatsApp channel to official desk
+      window.open(`https://wa.me/917978932107?text=${message}`, '_blank');
+      closeRFQ();
+    }
+  </script>
+</body>
+</html>
