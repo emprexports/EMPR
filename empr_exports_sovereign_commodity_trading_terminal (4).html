@@ -1,0 +1,2950 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth dark">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>EMPR EXPORTS PRIVATE LIMITED | Sovereign Commodity Trading Terminal</title>
+
+  <!-- Google Fonts: Cinzel (Sovereign Display), Space Grotesk (Modern UI), JetBrains Mono (Telemetry) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;600;700;800&family=JetBrains+Mono:wght@400;500;600&family=Space+Grotesk:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          colors: {
+            obsidian: '#050507',
+            obsidianLight: '#0A0B0E',
+            obsidianCard: '#0E1015',
+            gold: {
+              DEFAULT: '#D4AF37',
+              light: '#F5D78E',
+              dark: '#996515',
+              muted: 'rgba(212, 175, 55, 0.22)'
+            }
+          },
+          fontFamily: {
+            display: ['Cinzel', 'serif'],
+            sans: ['Space Grotesk', 'sans-serif'],
+            mono: ['JetBrains Mono', 'monospace']
+          }
+        }
+      }
+    };
+  </script>
+
+  <!-- Three.js r128 CDN for 3D Global Trade Corridor Globe -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+
+  <style>
+    :root {
+      --gold: #D4AF37;
+      --gold-light: #F5D78E;
+      --gold-dark: #996515;
+      --obsidian: #050507;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html, body {
+      background-color: #050507;
+      color: #F3F4F6;
+      font-family: 'Space Grotesk', sans-serif;
+      overflow-x: hidden;
+    }
+
+    /* Custom Gold Scrollbar */
+    ::-webkit-scrollbar {
+      width: 6px;
+      height: 6px;
+    }
+    ::-webkit-scrollbar-track {
+      background: #050507;
+    }
+    ::-webkit-scrollbar-thumb {
+      background: linear-gradient(180deg, #996515, #D4AF37, #996515);
+      border-radius: 3px;
+    }
+
+    /* Subtle Telemetry Grid Overlay */
+    .telemetry-grid {
+      background-image:
+        linear-gradient(to right, rgba(212, 175, 55, 0.04) 1px, transparent 1px),
+        linear-gradient(to bottom, rgba(212, 175, 55, 0.04) 1px, transparent 1px);
+      background-size: 48px 48px;
+    }
+
+    /* Metallic Gold Text Gradient */
+    .text-gold-gradient {
+      background: linear-gradient(135deg, #F5D78E 0%, #D4AF37 45%, #996515 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    /* Glassmorphic HUD Panel */
+    .hud-panel {
+      background: linear-gradient(145deg, rgba(16, 18, 24, 0.84), rgba(8, 9, 13, 0.92));
+      backdrop-filter: blur(14px);
+      -webkit-backdrop-filter: blur(14px);
+      border: 1px solid rgba(212, 175, 55, 0.2);
+      box-shadow: 0 20px 50px rgba(0, 0, 0, 0.65), inset 0 1px 0 rgba(245, 215, 142, 0.12);
+    }
+
+    .hud-panel-hover {
+      transition: transform 0.35s cubic-bezier(0.22, 1, 0.36, 1), border-color 0.35s ease, box-shadow 0.35s ease;
+    }
+    .hud-panel-hover:hover {
+      border-color: rgba(212, 175, 55, 0.58);
+      box-shadow: 0 24px 60px rgba(0, 0, 0, 0.8), 0 0 28px rgba(212, 175, 55, 0.12);
+      transform: translateY(-4px);
+    }
+
+    /* Primary Sovereign Gold Button */
+    .btn-gold {
+      background: linear-gradient(135deg, #F5D78E 0%, #D4AF37 50%, #996515 100%);
+      color: #050507;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      transition: box-shadow 0.3s ease, filter 0.3s ease, transform 0.2s ease;
+    }
+    .btn-gold:hover {
+      box-shadow: 0 0 30px rgba(212, 175, 55, 0.45);
+      filter: brightness(1.06);
+    }
+
+    /* Secondary Obsidian Button */
+    .btn-obsidian {
+      background: rgba(14, 16, 21, 0.85);
+      border: 1px solid rgba(212, 175, 55, 0.45);
+      color: #F5D78E;
+      letter-spacing: 0.08em;
+      transition: all 0.3s ease;
+    }
+    .btn-obsidian:hover {
+      background: rgba(212, 175, 55, 0.14);
+      border-color: #F5D78E;
+      box-shadow: 0 0 22px rgba(212, 175, 55, 0.2);
+    }
+
+    /* Continuous Bloomberg-Style Ticker */
+    .ticker-wrap {
+      overflow: hidden;
+      white-space: nowrap;
+      position: relative;
+    }
+    .ticker-track {
+      display: inline-flex;
+      align-items: center;
+      gap: 2.5rem;
+      padding-left: 100%;
+      animation: ticker-scroll 46s linear infinite;
+    }
+    .ticker-wrap:hover .ticker-track {
+      animation-play-state: paused;
+    }
+    @keyframes ticker-scroll {
+      0% { transform: translateX(0); }
+      100% { transform: translateX(-100%); }
+    }
+
+    /* Scroll Reveal */
+    .reveal {
+      opacity: 0;
+      transform: translateY(24px);
+      transition: opacity 0.8s cubic-bezier(0.22, 1, 0.36, 1), transform 0.8s cubic-bezier(0.22, 1, 0.36, 1);
+    }
+    .reveal.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* 3D Metallic Business Card Container */
+    .card-3d-scene {
+      perspective: 1100px;
+    }
+    .card-3d-inner {
+      transform-style: preserve-3d;
+      transition: transform 0.12s ease-out;
+      position: relative;
+      overflow: hidden;
+    }
+    .card-glare {
+      position: absolute;
+      inset: 0;
+      pointer-events: none;
+      background: radial-gradient(circle at 50% 50%, rgba(245, 215, 142, 0.38), rgba(212, 175, 55, 0.08) 38%, transparent 68%);
+      opacity: 0;
+      transition: opacity 0.25s ease;
+      mix-blend-mode: screen;
+    }
+
+    /* Pulsing Gold Ring for WhatsApp FAB */
+    @keyframes pulse-gold {
+      0% { box-shadow: 0 0 0 0 rgba(212, 175, 55, 0.55); }
+      70% { box-shadow: 0 0 0 16px rgba(212, 175, 55, 0); }
+      100% { box-shadow: 0 0 0 0 rgba(212, 175, 55, 0); }
+    }
+    .pulse-gold {
+      animation: pulse-gold 2.4s infinite;
+    }
+
+    /* Three.js Globe Container */
+    #globe-container canvas {
+      display: block;
+      width: 100% !important;
+      height: 100% !important;
+      cursor: grab;
+    }
+    #globe-container canvas:active {
+      cursor: grabbing;
+    }
+
+    /* Range Slider Styling */
+    input[type="range"] {
+      -webkit-appearance: none;
+      appearance: none;
+      background: rgba(212, 175, 55, 0.2);
+      height: 5px;
+      border-radius: 999px;
+    }
+    input[type="range"]::-webkit-slider-thumb {
+      -webkit-appearance: none;
+      appearance: none;
+      width: 18px;
+      height: 18px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, #F5D78E, #D4AF37);
+      border: 2px solid #050507;
+      cursor: pointer;
+      box-shadow: 0 0 10px rgba(212, 175, 55, 0.7);
+    }
+  </style>
+</head>
+<body class="bg-obsidian text-gray-100 antialiased selection:bg-gold selection:text-obsidian">
+
+  <!-- Full-Viewport Liquid Obsidian & Gold Reactive Canvas -->
+  <canvas id="bg-canvas" class="fixed inset-0 w-full h-full pointer-events-none z-0"></canvas>
+  <div class="fixed inset-0 telemetry-grid pointer-events-none z-0"></div>
+
+  <!-- Toast Notification Stack -->
+  <div id="toast-container" class="fixed top-20 right-4 z-[100] flex flex-col gap-2 max-w-sm w-full pointer-events-none"></div>
+
+  <!-- ===================================================================== -->
+  <!-- 1. TOP LIVE ALLOCATION TELEMETRY TICKER                               -->
+  <!-- ===================================================================== -->
+  <div class="fixed top-0 left-0 right-0 z-50 bg-[#07080B]/95 border-b border-gold/25 backdrop-blur-md">
+    <div class="flex items-center h-9">
+      <div class="flex items-center gap-2 px-3 sm:px-4 h-full bg-gold/15 border-r border-gold/30 shrink-0">
+        <span class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
+        <span class="font-mono text-[10px] sm:text-xs font-semibold tracking-widest text-gold-light uppercase">LIVE DESK</span>
+      </div>
+      <div class="ticker-wrap flex-1 h-full flex items-center">
+        <div id="live-ticker-track" class="ticker-track font-mono text-xs tracking-wider text-gray-200">
+          <!-- Populated dynamically via JS / Firestore -->
+        </div>
+      </div>
+    </div>
+
+    <!-- =================================================================== -->
+    <!-- 2. SOVEREIGN COMMAND NAVBAR                                         -->
+    <!-- =================================================================== -->
+    <nav class="border-t border-gold/15 bg-[#050507]/90 backdrop-blur-xl">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between gap-4">
+        <!-- Brand Emblem & Wordmark -->
+        <a href="#corridors" class="flex items-center gap-3 group shrink-0">
+          <div class="w-10 h-10 rounded-xl overflow-hidden border border-gold/50 bg-obsidianCard flex items-center justify-center shadow-lg group-hover:border-gold transition-colors">
+            <img src="Logo.jpg" alt="EMPR Exports Logo" class="w-full h-full object-cover"
+                 onerror="this.style.display='none'; this.nextElementSibling.classList.remove('hidden');" />
+            <span class="hidden font-display font-bold text-lg text-gold-gradient">E</span>
+          </div>
+          <div>
+            <div class="font-display text-sm sm:text-base font-bold tracking-[0.2em] text-gold-gradient leading-none">EMPR EXPORTS</div>
+            <div class="font-mono text-[9px] tracking-[0.28em] text-gray-400 mt-1 uppercase">TRADE OF TRUST</div>
+          </div>
+        </a>
+
+        <!-- Desktop Navigation Links -->
+        <div class="hidden lg:flex items-center gap-6 font-mono text-[11px] tracking-[0.18em] text-gray-300 uppercase">
+          <a href="#corridors" class="hover:text-gold-light transition-colors">Corridors</a>
+          <a href="#commodities" class="hover:text-gold-light transition-colors">Commodity Desk</a>
+          <a href="#procedures" class="hover:text-gold-light transition-colors">Protocols</a>
+          <a href="#executive" class="hover:text-gold-light transition-colors">Executive</a>
+          <a href="#contact" class="hover:text-gold-light transition-colors">Registry</a>
+          <a href="#vault" class="hover:text-gold-light transition-colors">Associates Vault</a>
+        </div>
+
+        <!-- Right Controls: Audio Toggle, Admin Desk, Mobile Hamburger -->
+        <div class="flex items-center gap-2 sm:gap-3">
+          <button id="sound-toggle-btn" type="button"
+                  class="px-2.5 sm:px-3 py-2 rounded-lg border border-gold/25 bg-obsidianCard text-gray-300 hover:border-gold/60 hover:text-gold-light font-mono text-[10px] tracking-widest uppercase inline-flex items-center gap-1.5 transition-all">
+            <svg id="sound-icon-on" class="hidden w-3.5 h-3.5 text-gold-light" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon>
+              <path d="M15.54 8.46a5 5 0 0 1 0 7.07"></path>
+              <path d="M19.07 4.93a10 10 0 0 1 0 14.14"></path>
+            </svg>
+            <svg id="sound-icon-off" class="w-3.5 h-3.5 text-gray-400" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon>
+              <line x1="23" y1="9" x2="17" y2="15"></line>
+              <line x1="17" y1="9" x2="23" y2="15"></line>
+            </svg>
+            <span id="sound-label" class="hidden sm:inline">SFX OFF</span>
+          </button>
+
+          <button id="open-admin-btn" type="button" data-sound="click"
+                  class="px-3 sm:px-4 py-2 rounded-lg border border-gold/45 bg-gold/10 hover:bg-gold/20 text-gold-light font-mono text-[10px] sm:text-[11px] font-semibold tracking-widest uppercase transition-all">
+            ADMIN DESK
+          </button>
+
+          <button id="mobile-menu-btn" type="button" aria-label="Toggle Menu"
+                  class="lg:hidden p-2 rounded-lg border border-gold/30 text-gold-light hover:bg-gold/10">
+            <svg class="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <line x1="3" y1="6" x2="21" y2="6"></line>
+              <line x1="3" y1="12" x2="21" y2="12"></line>
+              <line x1="3" y1="18" x2="21" y2="18"></line>
+            </svg>
+          </button>
+        </div>
+      </div>
+
+      <!-- Mobile Dropdown Menu -->
+      <div id="mobile-menu" class="hidden lg:hidden border-t border-gold/15 bg-[#07080B]/95 px-4 py-4 space-y-2 font-mono text-xs uppercase tracking-widest">
+        <a href="#corridors" class="mobile-nav-link block py-2 text-gray-200 hover:text-gold-light">01 // Trade Corridors</a>
+        <a href="#commodities" class="mobile-nav-link block py-2 text-gray-200 hover:text-gold-light">02 // Commodity Desk</a>
+        <a href="#procedures" class="mobile-nav-link block py-2 text-gray-200 hover:text-gold-light">03 // Transaction Protocols</a>
+        <a href="#executive" class="mobile-nav-link block py-2 text-gray-200 hover:text-gold-light">04 // Executive Dossier</a>
+        <a href="#contact" class="mobile-nav-link block py-2 text-gray-200 hover:text-gold-light">05 // Corporate Registry</a>
+        <a href="#vault" class="mobile-nav-link block py-2 text-gold-light">06 // Associates Vault</a>
+      </div>
+    </nav>
+  </div>
+
+  <!-- ===================================================================== -->
+  <!-- MAIN SOVEREIGN TERMINAL CONTENT                                       -->
+  <!-- ===================================================================== -->
+  <main class="relative z-10 pt-24 sm:pt-28">
+
+    <!-- =================================================================== -->
+    <!-- 3. HERO COMMAND CENTER + PHOTOREALISTIC 3D EARTH GLOBE              -->
+    <!-- =================================================================== -->
+    <section id="corridors" class="relative py-12 sm:py-16 lg:py-20 overflow-hidden">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-8 items-center">
+          <!-- Left: Command Copy & Sovereign KPIs -->
+          <div class="lg:col-span-6 space-y-6">
+            <div class="inline-flex items-center gap-2.5 px-3.5 py-1.5 rounded-full bg-gold/10 border border-gold/35">
+              <span class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
+              <span class="font-mono text-[10px] sm:text-[11px] tracking-[0.22em] text-gold-light uppercase">
+                SOVEREIGN PHYSICAL COMMODITY DESK // EST. 2024
+              </span>
+            </div>
+
+            <h1 class="font-display text-4xl sm:text-5xl lg:text-6xl font-bold tracking-tight text-white leading-[1.08]">
+              GLOBAL ENERGY, <span class="text-gold-gradient">SULFUR</span> &amp; BULLION CORRIDORS
+            </h1>
+
+            <p class="text-sm sm:text-base text-gray-300 leading-relaxed max-w-xl">
+              <strong class="text-gold-light">EMPR Exports Private Limited</strong> bridges direct refinery allocations and African bullion corridors with financially vetted end-buyers worldwide — anchored by SGS, Intertek, and Bureau Veritas verification.
+            </p>
+
+            <div class="flex flex-wrap gap-3 pt-2">
+              <a href="#commodities" data-sound="click"
+                 class="magnetic-btn btn-gold px-6 py-3.5 rounded-xl text-xs uppercase tracking-widest inline-flex items-center gap-2">
+                <span>Explore Commodity Desk</span>
+                <svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2">
+                  <line x1="5" y1="12" x2="19" y2="12"></line>
+                  <polyline points="12 5 19 12 12 19"></polyline>
+                </svg>
+              </a>
+              <button type="button" onclick="openRfqDrawer('sulfur')" data-sound="click"
+                      class="magnetic-btn btn-obsidian px-6 py-3.5 rounded-xl text-xs font-mono uppercase tracking-widest">
+                Request Allocation (RFQ)
+              </button>
+            </div>
+
+            <!-- Institutional Telemetry KPIs -->
+            <div class="grid grid-cols-3 gap-3 pt-4 border-t border-gold/15">
+              <div class="p-3.5 rounded-xl bg-obsidianCard/80 border border-gold/20">
+                <div class="font-display text-xl sm:text-2xl font-bold text-gold-light">09</div>
+                <div class="font-mono text-[10px] text-gray-400 uppercase tracking-wider mt-0.5">Active Commodities</div>
+              </div>
+              <div class="p-3.5 rounded-xl bg-obsidianCard/80 border border-gold/20">
+                <div class="font-display text-xl sm:text-2xl font-bold text-gold-light">08</div>
+                <div class="font-mono text-[10px] text-gray-400 uppercase tracking-wider mt-0.5">Global Port Hubs</div>
+              </div>
+              <div class="p-3.5 rounded-xl bg-obsidianCard/80 border border-gold/20">
+                <div class="font-display text-xl sm:text-2xl font-bold text-emerald-400">100%</div>
+                <div class="font-mono text-[10px] text-gray-400 uppercase tracking-wider mt-0.5">SGS / Intertek Q&amp;Q</div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Right: Interactive Photorealistic 3D Earth Globe HUD -->
+          <div class="lg:col-span-6">
+            <div class="hud-panel rounded-2xl p-4 sm:p-5 relative overflow-hidden">
+              <div class="flex items-center justify-between gap-2 pb-3 border-b border-gold/15">
+                <div class="flex items-center gap-2">
+                  <span class="w-2 h-2 rounded-full bg-gold animate-pulse"></span>
+                  <span class="font-mono text-[10px] tracking-[0.22em] text-gold-light uppercase">3D GLOBAL TRADE CORRIDOR TELEMETRY</span>
+                </div>
+                <span class="font-mono text-[10px] text-gray-400">DRAG TO ROTATE</span>
+              </div>
+
+              <!-- Three.js Canvas Mount -->
+              <div id="globe-container" class="w-full h-[320px] sm:h-[390px] relative"></div>
+
+              <!-- Interactive Hub Selector Pills -->
+              <div id="hub-pills" class="flex flex-wrap gap-1.5 pt-3 border-t border-gold/15">
+                <!-- Populated by JS -->
+              </div>
+
+              <!-- Active Hub Telemetry Readout -->
+              <div class="mt-3 p-3.5 rounded-xl bg-obsidian/90 border border-gold/25 font-mono text-xs space-y-1.5">
+                <div class="flex items-center justify-between gap-2">
+                  <span id="hub-name" class="text-white font-semibold tracking-wider">KAZAKHSTAN / POTI (GEORGIA)</span>
+                  <span id="hub-status" class="text-[10px] px-2 py-0.5 rounded bg-gold/15 border border-gold/40 text-gold-light uppercase">FLAGSHIP</span>
+                </div>
+                <div id="hub-incoterms" class="text-[11px] text-gold-light">INCOTERMS: FOB POTI / SOHAR &bull; CIF WORLDWIDE</div>
+                <div id="hub-focus" class="text-[11px] text-gray-400">CARGO: GRANULAR SULFUR (PRIMARY), EN590, JET A1, D6</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- =================================================================== -->
+    <!-- 4. LIVE GLOBAL TRADING DESK CLOCKS                                  -->
+    <!-- =================================================================== -->
+    <section class="border-y border-gold/15 bg-[#07080C]/85 py-4">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-3 font-mono">
+          <div class="px-3.5 py-2.5 rounded-xl bg-obsidianCard/80 border border-gold/15 flex items-center justify-between">
+            <div>
+              <div class="text-[10px] text-gray-400 uppercase">DUBAI (GST)</div>
+              <div id="clock-dubai" class="text-sm font-semibold text-gold-light">--:--:--</div>
+            </div>
+            <span class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
+          </div>
+          <div class="px-3.5 py-2.5 rounded-xl bg-obsidianCard/80 border border-gold/15 flex items-center justify-between">
+            <div>
+              <div class="text-[10px] text-gray-400 uppercase">ROTTERDAM (CET)</div>
+              <div id="clock-rotterdam" class="text-sm font-semibold text-gold-light">--:--:--</div>
+            </div>
+            <span class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
+          </div>
+          <div class="px-3.5 py-2.5 rounded-xl bg-obsidianCard/80 border border-gold/15 flex items-center justify-between">
+            <div>
+              <div class="text-[10px] text-gray-400 uppercase">SINGAPORE (SGT)</div>
+              <div id="clock-singapore" class="text-sm font-semibold text-gold-light">--:--:--</div>
+            </div>
+            <span class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
+          </div>
+          <div class="px-3.5 py-2.5 rounded-xl bg-obsidianCard/80 border border-gold/15 flex items-center justify-between">
+            <div>
+              <div class="text-[10px] text-gray-400 uppercase">HOUSTON (CST)</div>
+              <div id="clock-houston" class="text-sm font-semibold text-gold-light">--:--:--</div>
+            </div>
+            <span class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
+          </div>
+          <div class="col-span-2 sm:col-span-1 px-3.5 py-2.5 rounded-xl bg-obsidianCard/80 border border-gold/30 flex items-center justify-between">
+            <div>
+              <div class="text-[10px] text-gold uppercase">INDIA HQ (IST)</div>
+              <div id="clock-india" class="text-sm font-semibold text-white">--:--:--</div>
+            </div>
+            <span class="w-2 h-2 rounded-full bg-gold animate-pulse"></span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- =================================================================== -->
+    <!-- 5. 9-COMMODITY INTERACTIVE DESK (FIREBASE-SYNCED)                   -->
+    <!-- =================================================================== -->
+    <section id="commodities" class="py-20 lg:py-28">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="flex flex-col lg:flex-row lg:items-end justify-between gap-6 mb-10 reveal">
+          <div>
+            <p class="font-mono text-xs tracking-[0.3em] text-gold uppercase mb-2">01 // VERIFIED PHYSICAL ALLOCATIONS</p>
+            <h2 class="scramble-text font-display text-3xl sm:text-4xl font-bold text-white tracking-wide"
+                data-text="COMMODITY DESK">
+              COMMODITY DESK
+            </h2>
+            <p class="text-sm sm:text-base text-gray-400 mt-3 max-w-2xl">
+              Direct refinery and mine-gate allocations across Energy, Petrochemicals, and African Bullion. Click any commodity to inspect technical specifications and initiate a verified RFQ.
+            </p>
+          </div>
+
+          <!-- Category Filter Controls -->
+          <div class="flex flex-wrap gap-2">
+            <button type="button" data-filter="ALL" data-sound="click"
+                    class="filter-btn active px-4 py-2 rounded-xl font-mono text-xs tracking-wider uppercase border border-gold bg-gold text-obsidian font-bold transition-all">
+              ALL (09)
+            </button>
+            <button type="button" data-filter="PETROCHEMICALS & FERTILIZERS" data-sound="click"
+                    class="filter-btn px-4 py-2 rounded-xl font-mono text-xs tracking-wider uppercase border border-gold/25 bg-obsidianCard text-gray-300 hover:border-gold/60 transition-all">
+              PETROCHEM &amp; SULFUR
+            </button>
+            <button type="button" data-filter="ENERGY & FUELS" data-sound="click"
+                    class="filter-btn px-4 py-2 rounded-xl font-mono text-xs tracking-wider uppercase border border-gold/25 bg-obsidianCard text-gray-300 hover:border-gold/60 transition-all">
+              ENERGY &amp; FUELS
+            </button>
+            <button type="button" data-filter="METALS & BULLION" data-sound="click"
+                    class="filter-btn px-4 py-2 rounded-xl font-mono text-xs tracking-wider uppercase border border-gold/25 bg-obsidianCard text-gray-300 hover:border-gold/60 transition-all">
+              METALS &amp; BULLION
+            </button>
+          </div>
+        </div>
+
+        <!-- 9-Commodity Responsive Grid -->
+        <div id="commodity-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+          <!-- Populated dynamically via JS / Firestore -->
+        </div>
+      </div>
+    </section>
+
+    <!-- =================================================================== -->
+    <!-- 6. INTERACTIVE CIF TRANSACTION PROTOCOLS                            -->
+    <!-- =================================================================== -->
+    <section id="procedures" class="py-20 lg:py-28 border-t border-gold/15 bg-[#07080C]/75">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="flex flex-col lg:flex-row lg:items-end justify-between gap-6 mb-12 reveal">
+          <div>
+            <p class="font-mono text-xs tracking-[0.3em] text-gold uppercase mb-2">02 // INSTITUTIONAL EXECUTION PROTOCOL</p>
+            <h2 class="scramble-text font-display text-3xl sm:text-4xl font-bold text-white tracking-wide"
+                data-text="TRANSACTION PROTOCOLS">
+              TRANSACTION PROTOCOLS
+            </h2>
+            <p class="text-sm sm:text-base text-gray-400 mt-3 max-w-2xl">
+              Non-negotiable, bank-verified CIF execution workflow designed to protect both refinery titleholders and financially capable end-buyers.
+            </p>
+          </div>
+
+          <!-- CIF 9-Step Protocol Indicator -->
+          <div class="inline-flex items-center gap-2.5 px-5 py-2.5 rounded-xl bg-gold/15 border border-gold/45 self-start">
+            <span class="w-2 h-2 rounded-full bg-gold animate-pulse"></span>
+            <span class="font-mono text-xs font-bold tracking-wider uppercase text-gold-light">
+              CIF // 9-STEP PROTOCOL
+            </span>
+          </div>
+        </div>
+
+        <!-- Illuminated Timeline Nodes -->
+        <div class="grid grid-cols-2 sm:grid-cols-3 gap-3 mb-8" id="procedure-steps-nav">
+          <!-- Populated by JS -->
+        </div>
+
+        <!-- Active Step Detailed Telemetry Card -->
+        <div class="hud-panel rounded-2xl p-6 sm:p-8 reveal">
+          <div class="grid grid-cols-1 lg:grid-cols-12 gap-6 items-center">
+            <div class="lg:col-span-8 space-y-3">
+              <div class="flex items-center gap-3">
+                <span id="proc-step-badge" class="font-mono text-xs px-3 py-1 rounded-full bg-gold/15 border border-gold/40 text-gold-light uppercase tracking-widest">
+                  STEP 01 // CIF PROTOCOL
+                </span>
+                <span class="font-mono text-xs text-emerald-400 uppercase tracking-wider">VERIFIED STANDARD</span>
+              </div>
+              <h3 id="proc-step-title" class="font-display text-2xl sm:text-3xl font-bold text-white"></h3>
+              <p id="proc-step-desc" class="text-sm sm:text-base text-gray-300 leading-relaxed"></p>
+            </div>
+            <div class="lg:col-span-4 border-t lg:border-t-0 lg:border-l border-gold/20 pt-4 lg:pt-0 lg:pl-6 space-y-3">
+              <div class="font-mono text-[11px] tracking-widest text-gold uppercase">REQUIRED INSTRUMENTS / DOCS</div>
+              <ul id="proc-step-docs" class="space-y-2 font-mono text-xs text-gray-300">
+                <!-- Populated by JS -->
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- =================================================================== -->
+    <!-- 7. EXECUTIVE DOSSIER, LEADERSHIP & MEDIA COVERAGE                   -->
+    <!-- =================================================================== -->
+    <section id="executive" class="py-20 lg:py-28 border-t border-gold/15">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="mb-12 reveal">
+          <p class="font-mono text-xs tracking-[0.3em] text-gold uppercase mb-2">03 // COMMAND LEADERSHIP &amp; PRESS</p>
+          <h2 class="scramble-text font-display text-3xl sm:text-4xl font-bold text-white tracking-wide"
+              data-text="EXECUTIVE DOSSIER">
+            EXECUTIVE DOSSIER
+          </h2>
+        </div>
+
+        <!-- Featured Managing Director Dossier -->
+        <div class="hud-panel rounded-2xl p-6 sm:p-8 lg:p-10 mb-8 reveal">
+          <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
+            <!-- Portrait (md.jpg) -->
+            <div class="lg:col-span-5">
+              <div class="relative rounded-2xl overflow-hidden border border-gold/40 bg-obsidianCard aspect-[4/4.4] shadow-2xl group">
+                <img src="md.jpg" alt="Mr. Abinash Samantaray (Rion) - CEO & Managing Director"
+                     class="w-full h-full object-cover object-top transition-transform duration-700 group-hover:scale-105"
+                     onerror="this.style.display='none'; this.nextElementSibling.classList.remove('hidden');" />
+                <!-- Graceful Luxury Fallback if md.jpg is not placed yet -->
+                <div class="hidden w-full h-full flex flex-col items-center justify-center p-8 text-center bg-gradient-to-b from-[#17130a] via-[#0a0b0e] to-[#050507]">
+                  <div class="w-24 h-24 rounded-full border-2 border-gold/60 flex items-center justify-center mb-4 bg-gold/10">
+                    <span class="font-display text-3xl font-bold text-gold-light">AS</span>
+                  </div>
+                  <div class="font-display text-lg text-gold-light tracking-widest">ABINASH SAMANTARAY</div>
+                  <div class="font-mono text-xs text-gray-400 mt-1">PLACE md.jpg IN ROOT FOLDER</div>
+                </div>
+                <div class="absolute inset-x-0 bottom-0 bg-gradient-to-t from-obsidian via-obsidian/80 to-transparent p-5">
+                  <div class="font-mono text-[10px] tracking-[0.25em] text-gold uppercase">AUTHORIZED SIGNATORY</div>
+                  <div class="font-display text-xl font-bold text-white mt-0.5">Mr. Abinash Samantaray (Rion)</div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Bio, Vision & Direct Executive Channels -->
+            <div class="lg:col-span-7 space-y-6">
+              <div>
+                <span class="inline-block font-mono text-[11px] px-3 py-1 rounded-full bg-gold/15 border border-gold/40 text-gold-light uppercase tracking-widest mb-3">
+                  CHIEF EXECUTIVE OFFICER &amp; MANAGING DIRECTOR
+                </span>
+                <h3 class="font-display text-2xl sm:text-3xl font-bold text-white">Mr. Abinash Samantaray (Rion)</h3>
+                <p class="font-mono text-xs text-gray-400 mt-1">NATIONALITY: INDIAN &bull; HEADQUARTERS: BHUBANESWAR &amp; DUBAI CORRESPONDENCE</p>
+              </div>
+
+              <blockquote class="border-l-2 border-gold pl-5 py-1 italic text-gray-200 text-base sm:text-lg leading-relaxed">
+                "At EMPR Exports Private Limited, we do not merely broker physical barrels and metals—we engineer sovereign trust, bridge direct refinery allocations with vetted global buyers, and execute with institutional precision."
+              </blockquote>
+
+              <p class="text-sm text-gray-400 leading-relaxed">
+                Founder of EMPR Exports Private Limited (Est. April 2024), leading international refined petroleum, petrochemical, and bullion corridors spanning Kazakhstan, Dubai, Rotterdam, Fujairah, Singapore, and Houston.
+              </p>
+
+              <!-- Direct Executive Contact Grid -->
+              <div class="grid grid-cols-1 sm:grid-cols-3 gap-3 pt-2">
+                <a href="tel:+917978932107" data-sound="click"
+                   class="p-3.5 rounded-xl bg-obsidianCard border border-gold/25 hover:border-gold/60 transition-all">
+                  <div class="font-mono text-[10px] text-gold uppercase tracking-widest">DIRECT DESK / WA</div>
+                  <div class="font-mono text-xs sm:text-sm text-white mt-1">+91 79789 32107</div>
+                </a>
+                <a href="mailto:info@emprexports.world" data-sound="click"
+                   class="p-3.5 rounded-xl bg-obsidianCard border border-gold/25 hover:border-gold/60 transition-all">
+                  <div class="font-mono text-[10px] text-gold uppercase tracking-widest">CORPORATE EMAIL</div>
+                  <div class="font-mono text-xs text-white mt-1 truncate">info@emprexports.world</div>
+                </a>
+                <a href="https://in.linkedin.com/in/rionemperor" target="_blank" rel="noopener noreferrer" data-sound="click"
+                   class="p-3.5 rounded-xl bg-gold/10 border border-gold/40 hover:bg-gold/20 transition-all flex items-center justify-between">
+                  <div>
+                    <div class="font-mono text-[10px] text-gold-light uppercase tracking-widest">LINKEDIN</div>
+                    <div class="font-mono text-xs text-white mt-1">/in/rionemperor</div>
+                  </div>
+                  <svg class="w-4 h-4 text-gold-light shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path>
+                    <polyline points="15 3 21 3 21 9"></polyline>
+                    <line x1="10" y1="14" x2="21" y2="3"></line>
+                  </svg>
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Key Officials Strip -->
+        <div class="grid grid-cols-1 gap-6 mb-12 reveal">
+          <div class="hud-panel rounded-2xl p-6 flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+            <div>
+              <div class="font-mono text-[10px] tracking-[0.25em] text-gold uppercase">DIRECTOR (ACTING)</div>
+              <h4 class="font-display text-xl font-bold text-white mt-1">Mr. Tapaswi Sekhar Panda</h4>
+              <p class="font-mono text-xs text-gray-400 mt-1">Corporate Operations &amp; Strategic Trade Compliance</p>
+            </div>
+            <div class="font-mono text-xs sm:text-right">
+              <span class="px-3 py-1 rounded-full bg-gold/10 border border-gold/30 text-gold-light">BOARD OFFICIAL</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Global Media & Press Recognition -->
+        <div class="reveal">
+          <div class="flex items-center gap-3 mb-6">
+            <span class="font-mono text-xs tracking-[0.25em] text-gold uppercase">GLOBAL MEDIA &amp; PRESS RECOGNITION</span>
+            <span class="h-[1px] flex-1 bg-gold/20"></span>
+          </div>
+
+          <div class="grid grid-cols-1 lg:grid-cols-12 gap-6">
+            <!-- Interview Times Feature -->
+            <div class="lg:col-span-5 hud-panel hud-panel-hover rounded-2xl p-6 sm:p-7 flex flex-col justify-between">
+              <div class="space-y-4">
+                <div class="flex items-center justify-between">
+                  <span class="font-mono text-[10px] px-2.5 py-1 rounded bg-gold/15 border border-gold/35 text-gold-light uppercase tracking-widest">
+                    EXCLUSIVE PRESS FEATURE
+                  </span>
+                  <span class="font-mono text-[11px] text-gray-400">AUG 22, 2025</span>
+                </div>
+                <div class="font-display text-xl sm:text-2xl font-bold text-white leading-snug">
+                  Global Leadership in Business Spheres: Mr. Abinash Samantray (Rion)
+                </div>
+                <p class="text-sm text-gray-400 leading-relaxed">
+                  Published by <span class="text-gold-light">Interview Times</span> — chronicling the rise of EMPR Exports Private Limited from Bhubaneswar into international oil, petroleum, and energy trade corridors spanning Dubai, Qatar, and Bangkok.
+                </p>
+              </div>
+              <div class="pt-6 mt-6 border-t border-gold/15">
+                <a href="https://interviewtimes.net/global-leadership-in-business-spheres-mr-abinash-samantray-rion/"
+                   target="_blank" rel="noopener noreferrer" data-sound="click"
+                   class="btn-obsidian w-full py-3 rounded-xl text-xs font-mono uppercase inline-flex items-center justify-center gap-2">
+                  <span>Read Full Interview Times Article</span>
+                  <svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path>
+                    <polyline points="15 3 21 3 21 9"></polyline>
+                    <line x1="10" y1="14" x2="21" y2="3"></line>
+                  </svg>
+                </a>
+              </div>
+            </div>
+
+            <!-- KDSushma Podcast Video Embed -->
+            <div class="lg:col-span-7 hud-panel rounded-2xl p-6 sm:p-7">
+              <div class="flex flex-wrap items-center justify-between gap-2 mb-4">
+                <div>
+                  <span class="font-mono text-[10px] text-gold uppercase tracking-widest">VIDEO PODCAST INTERVIEW</span>
+                  <h4 class="font-display text-lg sm:text-xl font-bold text-white">
+                    KDSushma: Meet 22 Year Old Export Agent | Crude Oil Trading
+                  </h4>
+                </div>
+                <a href="https://www.youtube.com/watch?v=JG9CqlIoceo" target="_blank" rel="noopener noreferrer"
+                   class="font-mono text-[11px] text-gold-light hover:underline inline-flex items-center gap-1">
+                  <span>Watch on YouTube</span>
+                  <svg class="w-3.5 h-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path>
+                    <polyline points="15 3 21 3 21 9"></polyline>
+                    <line x1="10" y1="14" x2="21" y2="3"></line>
+                  </svg>
+                </a>
+              </div>
+              <div class="relative w-full aspect-video rounded-xl overflow-hidden border border-gold/30 bg-black">
+                <iframe class="w-full h-full"
+                        src="https://www.youtube.com/embed/JG9CqlIoceo"
+                        title="KDSushma Podcast - Abinash Samantaray EMPR Exports"
+                        frameborder="0"
+                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                        allowfullscreen></iframe>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- =================================================================== -->
+    <!-- 8. 3D METALLIC BUSINESS CARD & CORPORATE REGISTRY (CIS)             -->
+    <!-- =================================================================== -->
+    <section id="contact" class="py-20 lg:py-28 border-t border-gold/15 bg-[#07080C]/75">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="mb-12 reveal">
+          <p class="font-mono text-xs tracking-[0.3em] text-gold uppercase mb-2">04 // CORPORATE CREDENTIALS &amp; DIRECT DESK</p>
+          <h2 class="scramble-text font-display text-3xl sm:text-4xl font-bold text-white tracking-wide"
+              data-text="CORPORATE REGISTRY & EXECUTIVE CARD">
+            CORPORATE REGISTRY &amp; EXECUTIVE CARD
+          </h2>
+        </div>
+
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
+          <!-- Left: 3D Interactive Metallic Business Card + vCard Export -->
+          <div class="lg:col-span-5 space-y-6 reveal">
+            <div class="hud-panel rounded-2xl p-6">
+              <div class="flex items-center justify-between mb-4">
+                <span class="font-mono text-[10px] tracking-[0.22em] text-gold uppercase">INTERACTIVE 3D CREDENTIAL</span>
+                <span class="font-mono text-[10px] text-gray-400">HOVER TO TILT</span>
+              </div>
+
+              <!-- 3D Tilt Scene -->
+              <div class="card-3d-scene w-full">
+                <div id="business-card-3d" class="card-3d-inner w-full aspect-[1.75/1] rounded-xl border border-gold/50 shadow-2xl bg-gradient-to-br from-[#14120c] via-[#08090d] to-[#050507]">
+                  <img src="BC.jpg" alt="EMPR Exports Official Business Card"
+                       class="w-full h-full object-cover rounded-xl"
+                       onerror="this.style.display='none'; this.nextElementSibling.classList.remove('hidden');" />
+                  <!-- Luxury Fallback Card if BC.jpg is not yet placed locally -->
+                  <div class="hidden w-full h-full p-5 sm:p-6 flex flex-col justify-between relative">
+                    <div class="flex items-start justify-between">
+                      <div>
+                        <div class="font-display text-base sm:text-lg font-bold text-gold-gradient tracking-[0.2em]">EMPR EXPORTS</div>
+                        <div class="font-mono text-[9px] tracking-[0.25em] text-gray-400">PRIVATE LIMITED // TRADE OF TRUST</div>
+                      </div>
+                      <div class="w-8 h-8 rounded-full border border-gold/50 flex items-center justify-center font-display text-xs text-gold">E</div>
+                    </div>
+                    <div class="space-y-1">
+                      <div class="font-display text-sm sm:text-base font-bold text-white">ABINASH SAMANTARAY (RION)</div>
+                      <div class="font-mono text-[10px] text-gold-light uppercase">CEO &amp; Managing Director</div>
+                    </div>
+                    <div class="flex items-end justify-between font-mono text-[9px] sm:text-[10px] text-gray-300 border-t border-gold/25 pt-2.5">
+                      <div>+91 79789 32107 &bull; info@emprexports.world</div>
+                      <div class="text-gold">www.emprexports.world</div>
+                    </div>
+                  </div>
+                  <!-- Dynamic Cursor Glare Overlay -->
+                  <div id="business-card-glare" class="card-glare"></div>
+                </div>
+              </div>
+
+              <!-- One-Click Save Contact (.VCF) -->
+              <button type="button" onclick="downloadVCard()" data-sound="click"
+                      class="magnetic-btn btn-gold w-full mt-5 py-3.5 rounded-xl text-xs uppercase inline-flex items-center justify-center gap-2.5">
+                <svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2">
+                  <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+                  <polyline points="7 10 12 15 17 10"></polyline>
+                  <line x1="12" y1="15" x2="12" y2="3"></line>
+                </svg>
+                <span>Save Executive Contact (.VCF)</span>
+              </button>
+            </div>
+
+            <!-- Inspection & Membership Badges -->
+            <div class="hud-panel rounded-2xl p-5 space-y-3">
+              <div class="font-mono text-[10px] tracking-[0.22em] text-gold uppercase">VERIFIED ACCREDITATIONS &amp; Q&amp;Q</div>
+              <div class="flex flex-wrap gap-2">
+                <span class="px-3 py-1.5 rounded-lg bg-gold/15 border border-gold/40 font-mono text-[11px] text-gold-light">Go4WorldBusiness GOLD MEMBER</span>
+                <span class="px-3 py-1.5 rounded-lg bg-obsidianCard border border-white/10 font-mono text-[11px] text-gray-200">SGS INSPECTED</span>
+                <span class="px-3 py-1.5 rounded-lg bg-obsidianCard border border-white/10 font-mono text-[11px] text-gray-200">INTERTEK</span>
+                <span class="px-3 py-1.5 rounded-lg bg-obsidianCard border border-white/10 font-mono text-[11px] text-gray-200">BUREAU VERITAS</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Right: Verified Corporate Registry Table & Compliance -->
+          <div class="lg:col-span-7 space-y-6 reveal">
+            <div class="hud-panel rounded-2xl overflow-hidden">
+              <div class="px-6 py-4 border-b border-gold/20 bg-gold/5 flex items-center justify-between">
+                <span class="font-mono text-xs tracking-[0.2em] text-gold-light uppercase">CORPORATE REGISTRY RECORD (CIS)</span>
+                <span class="font-mono text-[10px] px-2.5 py-0.5 rounded bg-emerald-500/20 text-emerald-300 border border-emerald-500/40">STATUS: ACTIVE</span>
+              </div>
+              <div class="divide-y divide-gold/10 text-xs sm:text-sm">
+                <div class="grid grid-cols-1 sm:grid-cols-12 px-6 py-3.5 gap-1">
+                  <div class="sm:col-span-5 font-mono text-gray-400 uppercase text-xs">Legal Entity Name</div>
+                  <div class="sm:col-span-7 font-semibold text-white">EMPR EXPORTS PRIVATE LIMITED</div>
+                </div>
+                <div class="grid grid-cols-1 sm:grid-cols-12 px-6 py-3.5 gap-1">
+                  <div class="sm:col-span-5 font-mono text-gray-400 uppercase text-xs">Corporate ID (CIN)</div>
+                  <div class="sm:col-span-7 font-mono text-gold-light">U46303OD2024PTC045525</div>
+                </div>
+                <div class="grid grid-cols-1 sm:grid-cols-12 px-6 py-3.5 gap-1">
+                  <div class="sm:col-span-5 font-mono text-gray-400 uppercase text-xs">Date of Incorporation</div>
+                  <div class="sm:col-span-7 text-gray-200">9th April 2024 &bull; RoC – Cuttack (Republic of India)</div>
+                </div>
+                <div class="grid grid-cols-1 sm:grid-cols-12 px-6 py-3.5 gap-1">
+                  <div class="sm:col-span-5 font-mono text-gray-400 uppercase text-xs">Registered Office</div>
+                  <div class="sm:col-span-7 text-gray-200">DLF Cyber City, Infocity, Bhubaneswar, Odisha – 751024, India</div>
+                </div>
+                <div class="grid grid-cols-1 sm:grid-cols-12 px-6 py-3.5 gap-1">
+                  <div class="sm:col-span-5 font-mono text-gray-400 uppercase text-xs">Operational Desk</div>
+                  <div class="sm:col-span-7 text-gray-200">Dubai Representation Office (Address Provided Upon Vetting)</div>
+                </div>
+                <div class="grid grid-cols-1 sm:grid-cols-12 px-6 py-3.5 gap-1">
+                  <div class="sm:col-span-5 font-mono text-gray-400 uppercase text-xs">Official Channels</div>
+                  <div class="sm:col-span-7 font-mono text-xs text-gold-light space-y-1">
+                    <div>www.emprexports.world &bull; info@emprexports.world</div>
+                    <div class="text-gray-300">RefineryHQ@protonmail.com &bull; WA: +91 7978932107</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Non-Sanctioned Compliance Declaration -->
+            <div class="hud-panel rounded-2xl p-6 border-l-4 border-l-gold">
+              <div class="flex items-center gap-2 mb-2">
+                <svg class="w-4 h-4 text-gold" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path>
+                </svg>
+                <span class="font-mono text-xs tracking-[0.2em] text-gold-light uppercase">NON-SANCTIONED COMPLIANCE DECLARATION</span>
+              </div>
+              <p class="text-xs sm:text-sm text-gray-300 leading-relaxed">
+                EMPR EXPORTS PRIVATE LIMITED operates in strict adherence to international maritime, banking, and trade laws (ICC / Incoterms 2020) and maintains full legal responsibility for all issued trade documentation. The entity, its directors, and its trade corridors are not listed on any international sanctions or restricted entity lists.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- =================================================================== -->
+    <!-- 9. ENCRYPTED "ASSOCIATES VAULT" (FIREBASE-GATED)                    -->
+    <!-- =================================================================== -->
+    <section id="vault" class="py-20 lg:py-28 border-t border-gold/15">
+      <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 reveal">
+        <div class="hud-panel rounded-2xl p-6 sm:p-10 relative overflow-hidden">
+          <!-- Vault Header -->
+          <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 border-b border-gold/20 pb-6 mb-6">
+            <div class="flex items-center gap-4">
+              <div class="w-12 h-12 rounded-xl overflow-hidden border border-gold/40 bg-obsidianCard flex items-center justify-center shrink-0">
+                <img src="Logo.jpg" alt="EMPR Vault Emblem" class="w-full h-full object-cover"
+                     onerror="this.style.display='none'; this.nextElementSibling.classList.remove('hidden');" />
+                <svg class="hidden w-6 h-6 text-gold" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+                  <rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect>
+                  <path d="M7 11V7a5 5 0 0 1 10 0v4"></path>
+                </svg>
+              </div>
+              <div>
+                <div class="font-mono text-[10px] tracking-[0.28em] text-gold uppercase">ENCRYPTED ASSOCIATES ACCESS</div>
+                <h2 class="scramble-text font-display text-2xl sm:text-3xl font-bold text-white" data-text="ASSOCIATES VAULT">
+                  ASSOCIATES VAULT
+                </h2>
+              </div>
+            </div>
+            <span id="vault-status-pill" class="font-mono text-[10px] px-3 py-1 rounded-full bg-red-500/15 border border-red-500/40 text-red-300 uppercase tracking-widest self-start sm:self-center">
+              LOCKED // CLEARANCE REQUIRED
+            </span>
+          </div>
+
+          <!-- Locked State -->
+          <div id="vault-locked-view" class="space-y-5">
+            <p class="text-sm text-gray-300 leading-relaxed">
+              Vetted associates, end-buyers, and mandate partners may enter their issued desk passcode to unlock our official Corporate Information Sheet (CIS) brief, Standard SCO/FCO procedures, and Priority Refinery Desk coordinates.
+            </p>
+            <form id="vault-unlock-form" class="flex flex-col sm:flex-row gap-3">
+              <input id="vault-passcode-input" type="password" required placeholder="ENTER ACCESS PASSCODE (DEFAULT: EMPR2026)"
+                     class="flex-1 px-4 py-3.5 rounded-xl bg-obsidian border border-gold/35 focus:border-gold focus:outline-none font-mono text-sm text-gold-light tracking-widest placeholder:text-gray-600" />
+              <button type="submit" data-sound="click"
+                      class="btn-gold px-7 py-3.5 rounded-xl text-xs uppercase tracking-widest shrink-0">
+                UNLOCK VAULT
+              </button>
+            </form>
+            <p id="vault-error-msg" class="hidden font-mono text-xs text-red-400">ACCESS DENIED: Invalid associates passcode.</p>
+          </div>
+
+          <!-- Unlocked State -->
+          <div id="vault-unlocked-view" class="hidden space-y-6">
+            <div class="p-4 rounded-xl bg-emerald-500/10 border border-emerald-500/35 font-mono text-xs text-emerald-300 flex items-center justify-between gap-3">
+              <span>CLEARANCE VERIFIED // WELCOME TO EMPR EXPORTS PRIORITY DESK</span>
+              <button type="button" onclick="lockVault()" class="underline hover:text-white">LOCK</button>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+              <div class="p-5 rounded-xl bg-obsidianCard border border-gold/25 space-y-3">
+                <div class="font-mono text-[10px] text-gold uppercase tracking-widest">DOCUMENT 01 // CIS BRIEF</div>
+                <h4 class="font-display text-lg font-bold text-white">Corporate Information Sheet</h4>
+                <p class="text-xs text-gray-400">Official registration summary (CIN: U46303OD2024PTC045525), key officials, inspection partners, and compliance statement.</p>
+                <button type="button" onclick="downloadVaultDocument('CIS')" data-sound="click"
+                        class="btn-obsidian w-full py-2.5 rounded-lg font-mono text-xs uppercase">
+                  Download CIS Brief (.TXT)
+                </button>
+              </div>
+
+              <div class="p-5 rounded-xl bg-obsidianCard border border-gold/25 space-y-3">
+                <div class="font-mono text-[10px] text-gold uppercase tracking-widest">DOCUMENT 02 // EXECUTION SOP</div>
+                <h4 class="font-display text-lg font-bold text-white">Standard SCO / FCO Procedure</h4>
+                <p class="text-xs text-gray-400">Institutional 9-step CIF execution and settlement protocol across Rotterdam, Fujairah, Jurong, Qingdao, and Houston.</p>
+                <button type="button" onclick="downloadVaultDocument('SCO')" data-sound="click"
+                        class="btn-obsidian w-full py-2.5 rounded-lg font-mono text-xs uppercase">
+                  Download Procedure Brief (.TXT)
+                </button>
+              </div>
+            </div>
+
+            <div class="p-5 rounded-xl bg-gold/10 border border-gold/35 flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+              <div>
+                <div class="font-mono text-[10px] text-gold-light uppercase tracking-widest">PRIORITY REFINERY ALLOCATION DESK</div>
+                <div class="font-mono text-xs sm:text-sm text-white mt-1">
+                  RefineryHQ@protonmail.com &nbsp;|&nbsp; info@emprexports.world
+                </div>
+              </div>
+              <a href="https://wa.me/917978932107?text=Priority%20Associates%20Vault%20Verified%20Inquiry"
+                 target="_blank" rel="noopener noreferrer"
+                 class="btn-gold px-5 py-2.5 rounded-lg text-xs uppercase text-center shrink-0">
+                Message Priority Desk
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- =================================================================== -->
+    <!-- FOOTER                                                              -->
+    <!-- =================================================================== -->
+    <footer class="border-t border-gold/20 bg-[#040406] py-12">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="flex flex-col md:flex-row items-start md:items-center justify-between gap-6 pb-8 border-b border-white/10">
+          <div class="flex items-center gap-3">
+            <div class="w-10 h-10 rounded-lg overflow-hidden border border-gold/40 bg-obsidianCard flex items-center justify-center">
+              <img src="Logo.jpg" alt="EMPR Logo" class="w-full h-full object-cover"
+                   onerror="this.style.display='none'; this.nextElementSibling.classList.remove('hidden');" />
+              <span class="hidden font-display font-bold text-gold">E</span>
+            </div>
+            <div>
+              <div class="font-display text-base font-bold tracking-[0.18em] text-gold-gradient">EMPR EXPORTS PRIVATE LIMITED</div>
+              <div class="font-mono text-[10px] tracking-[0.22em] text-gray-400">CIN: U46303OD2024PTC045525 &bull; TRADE OF TRUST</div>
+            </div>
+          </div>
+          <div class="flex flex-wrap gap-5 font-mono text-xs text-gray-400">
+            <a href="https://in.linkedin.com/in/rionemperor" target="_blank" rel="noopener noreferrer" class="hover:text-gold-light">LinkedIn</a>
+            <a href="https://interviewtimes.net/global-leadership-in-business-spheres-mr-abinash-samantray-rion/" target="_blank" rel="noopener noreferrer" class="hover:text-gold-light">Interview Times</a>
+            <a href="https://www.youtube.com/watch?v=JG9CqlIoceo" target="_blank" rel="noopener noreferrer" class="hover:text-gold-light">KDSushma Podcast</a>
+            <a href="mailto:info@emprexports.world" class="hover:text-gold-light">info@emprexports.world</a>
+          </div>
+        </div>
+        <div class="pt-6 flex flex-col sm:flex-row items-center justify-between gap-3 font-mono text-[11px] text-gray-500">
+          <div>&copy; <span id="footer-year"></span> EMPR EXPORTS PRIVATE LIMITED. ALL RIGHTS RESERVED.</div>
+          <div>DLF CYBER CITY, BHUBANESWAR, INDIA &bull; DUBAI REPRESENTATION OFFICE</div>
+        </div>
+      </div>
+    </footer>
+  </main>
+
+  <!-- ===================================================================== -->
+  <!-- DEAL ESTIMATOR & RFQ SLIDE-OVER DRAWER                                -->
+  <!-- ===================================================================== -->
+  <div id="rfq-drawer-backdrop" class="fixed inset-0 z-[70] bg-black/75 backdrop-blur-sm hidden opacity-0 transition-opacity duration-300"></div>
+  <aside id="rfq-drawer" class="fixed top-0 right-0 bottom-0 z-[80] w-full max-w-xl bg-[#090A0F] border-l border-gold/35 shadow-2xl transform translate-x-full transition-transform duration-300 flex flex-col">
+    <!-- Drawer Header -->
+    <div class="px-6 py-5 border-b border-gold/20 flex items-center justify-between bg-[#06070A]">
+      <div>
+        <div class="font-mono text-[10px] tracking-[0.25em] text-gold uppercase">DEAL ESTIMATOR &amp; VERIFIED RFQ</div>
+        <h3 id="drawer-commodity-title" class="font-display text-xl font-bold text-white mt-0.5">Select Commodity Allocation</h3>
+      </div>
+      <button type="button" onclick="closeRfqDrawer()" class="p-2 rounded-lg border border-gold/25 text-gray-400 hover:text-gold-light hover:border-gold">
+        <svg class="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <line x1="18" y1="6" x2="6" y2="18"></line>
+          <line x1="6" y1="6" x2="18" y2="18"></line>
+        </svg>
+      </button>
+    </div>
+
+    <!-- Drawer Scrollable Body -->
+    <div class="flex-1 overflow-y-auto p-6 space-y-6">
+      <!-- Technical Specifications Card -->
+      <div id="drawer-specs-box" class="p-4 rounded-xl bg-obsidianCard border border-gold/25 space-y-2.5 text-xs">
+        <div class="flex items-center justify-between">
+          <span class="font-mono text-gold uppercase tracking-wider">TECHNICAL SPECIFICATION</span>
+          <span id="drawer-status-badge" class="font-mono text-[10px] px-2.5 py-0.5 rounded bg-emerald-500/20 text-emerald-300 border border-emerald-500/40">SPOT AVAILABLE</span>
+        </div>
+        <div class="grid grid-cols-2 gap-2 pt-1 font-mono">
+          <div><span class="text-gray-500">ORIGIN:</span> <span id="drawer-origin" class="text-gray-200">—</span></div>
+          <div><span class="text-gray-500">MOQ:</span> <span id="drawer-moq" class="text-gold-light">—</span></div>
+          <div><span class="text-gray-500">TERMS:</span> <span id="drawer-terms" class="text-gray-200">—</span></div>
+          <div><span class="text-gray-500">Q&amp;Q:</span> <span class="text-gray-200">SGS / Intertek / BV</span></div>
+        </div>
+        <p id="drawer-spec-notes" class="text-gray-400 pt-1 border-t border-white/5 leading-relaxed"></p>
+      </div>
+
+      <!-- RFQ Submission Form -->
+      <form id="rfq-form" class="space-y-4">
+        <div>
+          <label class="block font-mono text-[11px] text-gold uppercase tracking-wider mb-1.5">Commodity Selection</label>
+          <select id="rfq-commodity-select" required
+                  class="w-full px-3.5 py-2.5 rounded-xl bg-obsidian border border-gold/30 text-sm text-white focus:border-gold focus:outline-none">
+            <!-- Populated by JS -->
+          </select>
+        </div>
+
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+          <div>
+            <label class="block font-mono text-[11px] text-gold uppercase tracking-wider mb-1.5">Buyer Full Name *</label>
+            <input id="rfq-name" type="text" required placeholder="e.g. Alexander Sterling"
+                   class="w-full px-3.5 py-2.5 rounded-xl bg-obsidian border border-gold/30 text-sm text-white focus:border-gold focus:outline-none" />
+          </div>
+          <div>
+            <label class="block font-mono text-[11px] text-gold uppercase tracking-wider mb-1.5">Company / Entity *</label>
+            <input id="rfq-company" type="text" required placeholder="e.g. Meridian Energy Ltd"
+                   class="w-full px-3.5 py-2.5 rounded-xl bg-obsidian border border-gold/30 text-sm text-white focus:border-gold focus:outline-none" />
+          </div>
+        </div>
+
+        <div>
+          <label class="block font-mono text-[11px] text-gold uppercase tracking-wider mb-1.5">Corporate Email or WhatsApp *</label>
+          <input id="rfq-contact" type="text" required placeholder="buyer@company.com / +971..."
+                 class="w-full px-3.5 py-2.5 rounded-xl bg-obsidian border border-gold/30 text-sm text-white focus:border-gold focus:outline-none" />
+        </div>
+
+        <!-- Volume Slider + Input -->
+        <div class="p-4 rounded-xl bg-obsidianCard border border-gold/20 space-y-2.5">
+          <div class="flex items-center justify-between">
+            <label class="font-mono text-[11px] text-gold uppercase tracking-wider">Target Allocation Volume</label>
+            <span id="rfq-volume-display" class="font-mono text-sm font-bold text-gold-light">50,000 MT</span>
+          </div>
+          <input id="rfq-volume-slider" type="range" min="1" max="100" value="25" class="w-full" />
+          <input id="rfq-volume-text" type="text" required value="50,000 MT" placeholder="Specify exact volume & unit"
+                 class="w-full px-3 py-2 rounded-lg bg-obsidian border border-gold/25 font-mono text-xs text-white focus:border-gold focus:outline-none" />
+        </div>
+
+        <div class="grid grid-cols-1 sm:grid-cols-3 gap-3">
+          <div>
+            <label class="block font-mono text-[10px] text-gold uppercase tracking-wider mb-1.5">Target Port / Hub</label>
+            <select id="rfq-port" class="w-full px-3 py-2.5 rounded-xl bg-obsidian border border-gold/30 text-xs text-white focus:border-gold focus:outline-none">
+              <option value="Poti (Georgia)">Poti (Georgia)</option>
+              <option value="Sohar (Oman)">Sohar (Oman)</option>
+              <option value="Fujairah">Fujairah (UAE)</option>
+              <option value="Dubai (DMCC)">Dubai (DMCC)</option>
+              <option value="Rotterdam">Rotterdam (NL)</option>
+              <option value="Zurich">Zurich (CH)</option>
+              <option value="Hong Kong">Hong Kong</option>
+              <option value="Qingdao">Qingdao (CN)</option>
+              <option value="Jurong">Jurong (SG)</option>
+              <option value="Houston">Houston (USA)</option>
+              <option value="Other">Other ASWP</option>
+            </select>
+          </div>
+          <div>
+            <label class="block font-mono text-[10px] text-gold uppercase tracking-wider mb-1.5">Incoterm</label>
+            <select id="rfq-incoterm" class="w-full px-3 py-2.5 rounded-xl bg-obsidian border border-gold/30 text-xs text-white focus:border-gold focus:outline-none">
+              <option value="FOB">FOB (TTV/TTT)</option>
+              <option value="CIF">CIF</option>
+              <option value="TTO">TTO</option>
+            </select>
+          </div>
+          <div>
+            <label class="block font-mono text-[10px] text-gold uppercase tracking-wider mb-1.5">Instrument</label>
+            <select id="rfq-instrument" class="w-full px-3 py-2.5 rounded-xl bg-obsidian border border-gold/30 text-xs text-white focus:border-gold focus:outline-none">
+              <option value="SBLC MT760">SBLC MT760</option>
+              <option value="DLC MT700">DLC MT700</option>
+              <option value="MT103">MT103</option>
+              <option value="Escrow">Escrow</option>
+            </select>
+          </div>
+        </div>
+
+        <button id="rfq-submit-btn" type="submit" data-sound="click"
+                class="btn-gold w-full py-3.5 rounded-xl text-xs uppercase tracking-widest mt-2">
+          TRANSMIT VERIFIED RFQ TO TRADE DESK
+        </button>
+      </form>
+
+      <!-- Confirmation Box (Shown after submit) -->
+      <div id="rfq-confirmation" class="hidden p-5 rounded-xl bg-emerald-500/10 border border-emerald-500/40 space-y-4">
+        <div class="flex items-center gap-2 text-emerald-300 font-mono text-xs font-bold uppercase tracking-wider">
+          <svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+            <polyline points="20 6 9 17 4 12"></polyline>
+          </svg>
+          <span>RFQ LOGGED WITH EMPR TRADE DESK</span>
+        </div>
+        <div class="font-mono text-xs text-gray-300 space-y-1">
+          <div>REFERENCE ID: <span id="rfq-ref-id" class="text-gold-light font-bold"></span></div>
+          <div>STATUS: <span class="text-emerald-300">QUEUED FOR COMPLIANCE &amp; SCO ISSUANCE</span></div>
+        </div>
+        <a id="rfq-whatsapp-forward" href="#" target="_blank" rel="noopener noreferrer"
+           class="btn-gold w-full py-3 rounded-xl text-xs uppercase inline-flex items-center justify-center gap-2">
+          <span>Forward Pre-Filled RFQ to WhatsApp Desk</span>
+        </a>
+        <button type="button" onclick="resetRfqForm()" class="w-full text-center font-mono text-[11px] text-gray-400 hover:text-white underline">
+          Submit Another Inquiry
+        </button>
+      </div>
+    </div>
+  </aside>
+
+  <!-- ===================================================================== -->
+  <!-- 10. PROTECTED FIREBASE ADMIN COMMAND PANEL (MODAL)                    -->
+  <!-- ===================================================================== -->
+  <div id="admin-modal" class="fixed inset-0 z-[90] bg-black/85 backdrop-blur-md hidden items-center justify-center p-4">
+    <div class="hud-panel rounded-2xl w-full max-w-5xl max-h-[90vh] flex flex-col overflow-hidden border border-gold/45">
+      <!-- Admin Header -->
+      <div class="px-6 py-4 bg-[#06070B] border-b border-gold/25 flex items-center justify-between">
+        <div class="flex items-center gap-3">
+          <span class="w-2.5 h-2.5 rounded-full bg-gold animate-pulse"></span>
+          <div>
+            <div class="font-display text-base sm:text-lg font-bold text-gold-light tracking-wider">EMPR ADMIN COMMAND PANEL</div>
+            <div id="admin-auth-status" class="font-mono text-[10px] text-gray-400 uppercase">FIREBASE AUTHENTICATION REQUIRED</div>
+          </div>
+        </div>
+        <div class="flex items-center gap-2">
+          <button id="admin-signout-btn" type="button" class="hidden px-3 py-1.5 rounded-lg border border-red-500/40 bg-red-500/10 text-red-300 font-mono text-[10px] uppercase hover:bg-red-500/20">
+            SIGN OUT
+          </button>
+          <button type="button" onclick="closeAdminModal()" class="p-2 rounded-lg border border-gold/25 text-gray-400 hover:text-white">
+            <svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <line x1="18" y1="6" x2="6" y2="18"></line>
+              <line x1="6" y1="6" x2="18" y2="18"></line>
+            </svg>
+          </button>
+        </div>
+      </div>
+
+      <!-- Admin Body -->
+      <div class="flex-1 overflow-y-auto p-6">
+        <!-- Login View -->
+        <div id="admin-login-view" class="max-w-md mx-auto py-8 space-y-5">
+          <div class="text-center space-y-2">
+            <div class="font-mono text-xs text-gold uppercase tracking-[0.25em]">RESTRICTED EXECUTIVE TERMINAL</div>
+            <p class="text-xs text-gray-400">Sign in with your Firebase Authentication admin credentials to manage live allocations, incoming RFQs, ticker notices, and vault codes.</p>
+          </div>
+          <form id="admin-login-form" class="space-y-4">
+            <div>
+              <label class="block font-mono text-[11px] text-gold uppercase mb-1.5">Admin Email</label>
+              <input id="admin-email" type="email" required placeholder="admin@emprexports.world"
+                     class="w-full px-4 py-3 rounded-xl bg-obsidian border border-gold/30 text-sm text-white focus:border-gold focus:outline-none" />
+            </div>
+            <div>
+              <label class="block font-mono text-[11px] text-gold uppercase mb-1.5">Password</label>
+              <input id="admin-password" type="password" required placeholder="••••••••••••"
+                     class="w-full px-4 py-3 rounded-xl bg-obsidian border border-gold/30 text-sm text-white focus:border-gold focus:outline-none" />
+            </div>
+            <p id="admin-login-error" class="hidden font-mono text-xs text-red-400"></p>
+            <button type="submit" class="btn-gold w-full py-3.5 rounded-xl text-xs uppercase tracking-widest">
+              AUTHENTICATE TO COMMAND DESK
+            </button>
+          </form>
+        </div>
+
+        <!-- Authenticated Dashboard View -->
+        <div id="admin-dashboard-view" class="hidden space-y-6">
+          <!-- 4 Admin Tabs -->
+          <div class="flex flex-wrap gap-2 border-b border-gold/20 pb-4">
+            <button type="button" onclick="switchAdminTab('commodities')" data-admin-tab="commodities"
+                    class="admin-tab-btn px-4 py-2 rounded-lg font-mono text-xs uppercase bg-gold text-obsidian font-bold">
+              01 // Commodities
+            </button>
+            <button type="button" onclick="switchAdminTab('rfqs')" data-admin-tab="rfqs"
+                    class="admin-tab-btn px-4 py-2 rounded-lg font-mono text-xs uppercase bg-obsidianCard border border-gold/25 text-gray-300">
+              02 // Incoming RFQs (<span id="admin-rfq-count">0</span>)
+            </button>
+            <button type="button" onclick="switchAdminTab('settings')" data-admin-tab="settings"
+                    class="admin-tab-btn px-4 py-2 rounded-lg font-mono text-xs uppercase bg-obsidianCard border border-gold/25 text-gray-300">
+              03 // Ticker &amp; Vault
+            </button>
+            <button type="button" onclick="switchAdminTab('sync')" data-admin-tab="sync"
+                    class="admin-tab-btn px-4 py-2 rounded-lg font-mono text-xs uppercase bg-obsidianCard border border-gold/25 text-gray-300">
+              04 // System Sync
+            </button>
+          </div>
+
+          <!-- Tab 1: Commodities Editor -->
+          <div id="admin-panel-commodities" class="admin-panel space-y-3">
+            <div class="font-mono text-xs text-gray-400 mb-2">Edit status, MOQ, or origin for any commodity and click Save to push live to Firestore.</div>
+            <div id="admin-commodities-list" class="space-y-3">
+              <!-- Populated by JS -->
+            </div>
+          </div>
+
+          <!-- Tab 2: Incoming RFQs -->
+          <div id="admin-panel-rfqs" class="admin-panel hidden space-y-3">
+            <div class="overflow-x-auto rounded-xl border border-gold/20">
+              <table class="w-full text-left font-mono text-xs">
+                <thead class="bg-gold/10 text-gold-light uppercase text-[10px]">
+                  <tr>
+                    <th class="p-3">Ref / Date</th>
+                    <th class="p-3">Buyer / Entity</th>
+                    <th class="p-3">Commodity &amp; Vol</th>
+                    <th class="p-3">Port / Terms</th>
+                    <th class="p-3 text-right">Actions</th>
+                  </tr>
+                </thead>
+                <tbody id="admin-rfq-tbody" class="divide-y divide-gold/10 text-gray-300">
+                  <!-- Populated by JS -->
+                </tbody>
+              </table>
+            </div>
+          </div>
+
+          <!-- Tab 3: Ticker & Vault Settings -->
+          <div id="admin-panel-settings" class="admin-panel hidden space-y-5 max-w-2xl">
+            <div class="space-y-2">
+              <label class="block font-mono text-xs text-gold uppercase">Live Scrolling Ticker Override (leave blank to auto-build from commodities)</label>
+              <textarea id="admin-ticker-input" rows="3" placeholder="e.g. EN590 10PPM [SPOT AVAILABLE] // JET A1 [ALLOCATED] // DIRECT MANDATE DESK ACTIVE"
+                        class="w-full p-3.5 rounded-xl bg-obsidian border border-gold/30 font-mono text-xs text-white focus:border-gold focus:outline-none"></textarea>
+            </div>
+            <div class="space-y-2">
+              <label class="block font-mono text-xs text-gold uppercase">Associates Vault Access Passcode</label>
+              <input id="admin-vault-input" type="text" placeholder="EMPR2026"
+                     class="w-full px-4 py-3 rounded-xl bg-obsidian border border-gold/30 font-mono text-sm text-gold-light focus:border-gold focus:outline-none" />
+            </div>
+            <button type="button" onclick="saveSiteSettings()" class="btn-gold px-6 py-3 rounded-xl text-xs uppercase tracking-widest">
+              SAVE TICKER &amp; VAULT SETTINGS TO FIRESTORE
+            </button>
+          </div>
+
+          <!-- Tab 4: System Sync -->
+          <div id="admin-panel-sync" class="admin-panel hidden space-y-4 max-w-2xl">
+            <div class="p-5 rounded-xl bg-obsidianCard border border-gold/25 space-y-3">
+              <div class="font-display text-lg font-bold text-white">Seed / Reset Default Commodities to Firestore</div>
+              <p class="text-xs text-gray-400 leading-relaxed">
+                Push all 9 default EMPR Exports commodities and default site settings (`EMPR2026` vault code) into your Cloud Firestore project (`emprexportsweb`) in one click.
+              </p>
+              <button type="button" id="seed-firestore-btn" onclick="seedDefaultDataToFirestore()"
+                      class="btn-gold px-6 py-3 rounded-xl text-xs uppercase tracking-widest">
+                SEED DEFAULT DATA TO FIRESTORE
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===================================================================== -->
+  <!-- 11. FLOATING DIRECT WHATSAPP DESK BUTTON                              -->
+  <!-- ===================================================================== -->
+  <a href="https://wa.me/917978932107?text=Hello%20EMPR%20Exports%20Desk%2C%20I%20would%20like%20to%20inquire%20about%20a%20commodity%20allocation."
+     target="_blank" rel="noopener noreferrer" data-sound="click"
+     class="fixed bottom-5 right-5 z-50 group flex items-center gap-2.5">
+    <span class="hidden sm:inline-block px-3.5 py-2 rounded-xl bg-[#07080B]/95 border border-gold/40 text-gold-light font-mono text-[11px] tracking-wider uppercase shadow-xl opacity-0 group-hover:opacity-100 translate-x-2 group-hover:translate-x-0 transition-all duration-300 pointer-events-none">
+      Direct Trade Desk
+    </span>
+    <div class="w-14 h-14 rounded-full bg-gradient-to-br from-[#1b160a] to-[#050507] border-2 border-gold flex items-center justify-center shadow-2xl pulse-gold group-hover:scale-105 transition-transform">
+      <svg class="w-7 h-7 text-gold-light" viewBox="0 0 24 24" fill="currentColor">
+        <path d="M12.031 2C6.506 2 2.01 6.496 2.01 12.021c0 1.766.461 3.49 1.337 5.012L2 22l5.088-1.334a9.974 9.974 0 0 0 4.943 1.307h.004c5.524 0 10.02-4.496 10.02-10.021C22.055 6.427 17.556 2 12.031 2zm5.834 14.236c-.246.693-1.432 1.326-1.988 1.409-.513.077-1.179.11-1.903-.12-.442-.141-1.012-.33-1.745-.646-3.072-1.326-5.078-4.421-5.232-4.626-.153-.205-1.249-1.662-1.249-3.171 0-1.509.791-2.25 1.072-2.558.281-.307.614-.384.818-.384.205 0 .409.002.588.011.189.009.442-.072.692.529.256.614.87 2.123.946 2.277.077.153.128.333.026.537-.102.205-.154.333-.307.512-.154.179-.324.4-.461.537-.154.154-.314.321-.135.628.179.307.796 1.313 1.709 2.126 1.174 1.047 2.164 1.372 2.471 1.525.307.154.486.128.665-.077.179-.205.768-.896.973-1.203.205-.307.409-.256.691-.154.281.102 1.791.845 2.098.998.307.154.512.23.588.358.077.128.077.742-.169 1.435z"/>
+      </svg>
+    </div>
+  </a>
+
+  <!-- ===================================================================== -->
+  <!-- APPLICATION LOGIC + FIREBASE v11 MODULAR + THREE.JS 3D GLOBE          -->
+  <!-- ===================================================================== -->
+  <script type="module">
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-app.js";
+    import {
+      getFirestore,
+      collection,
+      doc,
+      setDoc,
+      addDoc,
+      deleteDoc,
+      onSnapshot,
+      serverTimestamp
+    } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-firestore.js";
+    import {
+      getAuth,
+      signInWithEmailAndPassword,
+      signOut,
+      onAuthStateChanged
+    } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-auth.js";
+
+    // =========================================================================
+    // 1. FIREBASE INITIALIZATION (EXACT PROVIDED CONFIG)
+    // =========================================================================
+    const firebaseConfig = {
+      apiKey: "AIzaSyAk77Nsf-9560BC816jykPps86FW6Jc-8s",
+      authDomain: "emprexportsweb.firebaseapp.com",
+      projectId: "emprexportsweb",
+      storageBucket: "emprexportsweb.firebasestorage.app",
+      messagingSenderId: "308117705840",
+      appId: "1:308117705840:web:aff3518f67dcfc32df90b5",
+      measurementId: "G-QX5FRYQV08"
+    };
+
+    let app, db, auth;
+    try {
+      app = initializeApp(firebaseConfig);
+      db = getFirestore(app);
+      auth = getAuth(app);
+    } catch (err) {
+      console.error("Firebase initialization warning:", err);
+    }
+
+    // =========================================================================
+    // 2. DEFAULT SEED DATA (INSTANT LOAD BEFORE/WITHOUT FIRESTORE)
+    // =========================================================================
+    const COMMODITY_IMAGES = {
+      sulfur: "sulfur.jpg",
+      en590: "en590.jpg",
+      gold: "gold.jpg",
+      jeta1: "jeta1.jpg",
+      d6: "d6.jpg",
+      bitumen: "bitumen.jpg",
+      urea: "urea.jpg",
+      copper: "copper.jpg",
+      aluminum: "aluminium.jpg"
+    };
+
+    const DEFAULT_COMMODITIES = [
+      {
+        id: "sulfur",
+        image: "sulfur.jpg",
+        isPrimary: true,
+        name: "Bright Yellow Granular Sulfur (99.5%–99.9% Min)",
+        shortTicker: "GRANULAR SULFUR [PRIMARY]",
+        category: "PETROCHEMICALS & FERTILIZERS",
+        origin: "Kazakhstan, Oman & Georgia (Poti Port)",
+        moq: "10,000 MT – 100,000 MT/Mo",
+        unit: "MT",
+        minVol: 10000,
+        maxVol: 100000,
+        incoterms: "FOB Poti / Sohar / Bandar Abbas & CIF",
+        status: "SPOT AVAILABLE",
+        specs: "PRIMARY FLAGSHIP COMMODITY — Bright Yellow Granular Sulfur, Purity 99.5%–99.9% Min, Ash < 0.05%, Moisture < 0.5%. Inspection: SGS / Intertek / Bureau Veritas. Payment: DLC MT700, SBLC MT760, MT103."
+      },
+      {
+        id: "en590",
+        image: "en590.jpg",
+        name: "Diesel EN590 (10 PPM / 50 PPM)",
+        shortTicker: "EN590 10PPM",
+        category: "ENERGY & FUELS",
+        origin: "Kazakhstan / Non-Sanctioned Refineries",
+        moq: "50,000 MT",
+        unit: "MT",
+        minVol: 50000,
+        maxVol: 500000,
+        incoterms: "FOB / CIF / TTO",
+        status: "SPOT AVAILABLE",
+        specs: "Ultra-Low Sulfur Automotive Diesel Fuel conforming to Euro 5 (EN 590:2013+A1:2017) standard. Sulfur content <= 10 mg/kg. Verified via fresh SGS/Intertek Dip Test."
+      },
+      {
+        id: "gold",
+        image: "gold.jpg",
+        name: "Gold Bullion & AU Doré Bars (African Origin)",
+        shortTicker: "AFRICAN GOLD & AU DORÉ",
+        category: "METALS & BULLION",
+        origin: "Africa (Ghana, Tanzania, DRC, South Africa)",
+        moq: "50 KG Trial / 500 KG+ Mo",
+        unit: "KG",
+        minVol: 50,
+        maxVol: 2000,
+        incoterms: "CIF Dubai (DMCC) / Zurich / Hong Kong",
+        status: "MANDATE ONLY",
+        specs: "African Origin 96%+ AU Doré Bars & 99.99% 24K Hallmarked Bullion. Inspection: Final Refinery Assay at Destination (Dubai DMCC, Zurich, or Hong Kong). Payment: SBLC MT760, DLC MT700, Escrow / MT103 Post-Assay."
+      },
+      {
+        id: "jeta1",
+        image: "jeta1.jpg",
+        name: "Jet Fuel A1",
+        shortTicker: "JET A1",
+        category: "ENERGY & FUELS",
+        origin: "Kazakhstan / Middle East",
+        moq: "1,000,000 BBLs",
+        unit: "BBLs",
+        minVol: 1000000,
+        maxVol: 5000000,
+        incoterms: "FOB / CIF / TTO",
+        status: "ALLOCATED",
+        specs: "Aviation Turbine Kerosene meeting DEF STAN 91-091 / ASTM D1655 Colonial Grade 54 specifications. Direct refinery pipeline allocation for Rotterdam, Fujairah, and Houston."
+      },
+      {
+        id: "d6",
+        image: "d6.jpg",
+        name: "D6 Virgin Fuel Oil",
+        shortTicker: "D6 VIRGIN FUEL OIL",
+        category: "ENERGY & FUELS",
+        origin: "Kazakhstan / Rotterdam / Houston",
+        moq: "100,000,000 GAL",
+        unit: "GAL",
+        minVol: 100000000,
+        maxVol: 400000000,
+        incoterms: "FOB (TTV/TTT)",
+        status: "SPOT AVAILABLE",
+        specs: "High-grade Virgin D6 Bunker & Industrial Fuel Oil. Tank-to-Vessel (TTV) and Tank-to-Tank (TTT) injection available with complete SGS Q&Q certification."
+      },
+      {
+        id: "bitumen",
+        image: "bitumen.jpg",
+        name: "Bitumen (VG-30 / VG-40 / 60/70)",
+        shortTicker: "BITUMEN VG-30 & 60/70",
+        category: "PETROCHEMICALS & FERTILIZERS",
+        origin: "UAE / Iraq / Middle East",
+        moq: "5,000 MT",
+        unit: "MT",
+        minVol: 5000,
+        maxVol: 100000,
+        incoterms: "FOB / CIF",
+        status: "LOADING",
+        specs: "Penetration & Viscosity Grade Paving Bitumen available in bulk bitumen tankers, new steel drums (180kg), or jumbo bags. Full SGS/Intertek test report."
+      },
+      {
+        id: "urea",
+        image: "urea.jpg",
+        name: "Urea N46 (Prilled & Granular)",
+        shortTicker: "UREA N46",
+        category: "PETROCHEMICALS & FERTILIZERS",
+        origin: "Oman / Mersin / Middle East",
+        moq: "25,000 MT",
+        unit: "MT",
+        minVol: 25000,
+        maxVol: 250000,
+        incoterms: "FOB / CIF",
+        status: "SPOT AVAILABLE",
+        specs: "Agricultural Grade Nitrogen 46.0% Min, Biuret 1.0% Max, Moisture 0.5% Max, Free Flowing & Anti-Caking treated. Bulk or 50kg PP bags."
+      },
+      {
+        id: "copper",
+        image: "copper.jpg",
+        name: "Copper Cathodes & Millberry Scrap",
+        shortTicker: "COPPER CATHODES 99.99%",
+        category: "METALS & BULLION",
+        origin: "Africa (Zambia / DRC) & Global",
+        moq: "500 MT",
+        unit: "MT",
+        minVol: 500,
+        maxVol: 10000,
+        incoterms: "CIF / FOB",
+        status: "ALLOCATED",
+        specs: "Electrolytic Copper Cathodes Grade A (Cu 99.99% LME standard) and 99.9% Bare Bright Copper Wire Millberry Scrap. Inspected by SGS / Alex Stewart."
+      },
+      {
+        id: "aluminum",
+        image: "aluminium.jpg",
+        name: "Aluminum A7 Ingots (99.7% Min)",
+        shortTicker: "ALUMINUM A7",
+        category: "METALS & BULLION",
+        origin: "Global / CIS / Middle East",
+        moq: "1,000 MT",
+        unit: "MT",
+        minVol: 1000,
+        maxVol: 25000,
+        incoterms: "FOB / CIF",
+        status: "SPOT AVAILABLE",
+        specs: "Non-alloyed Primary Aluminum Ingots Grade A7 (Al 99.70% Min, Fe 0.20% Max, Si 0.10% Max). Delivered in strapped bundles with mill test certificates."
+      }
+    ];
+
+    // Application Reactive State
+    let commoditiesState = JSON.parse(JSON.stringify(DEFAULT_COMMODITIES));
+    let rfqInquiriesState = [];
+    let siteSettingsState = {
+      tickerText: "",
+      vaultCode: "EMPR2026"
+    };
+    let activeFilter = "ALL";
+    let currentAdminUser = null;
+    let activeProcedureStep = 0;
+
+    // =========================================================================
+    // 3. UTILITIES: TOAST NOTIFICATIONS & HTML ESCAPING
+    // =========================================================================
+    function escapeHtml(str) {
+      return String(str ?? "")
+        .replace(/&/g, "&amp;")
+        .replace(/</g, "&lt;")
+        .replace(/>/g, "&gt;")
+        .replace(/"/g, "&quot;")
+        .replace(/'/g, "&#39;");
+    }
+
+    function showToast(message, type = "gold") {
+      const container = document.getElementById("toast-container");
+      if (!container) return;
+      const palette = {
+        success: "border-emerald-500/50 bg-[#071510]/95 text-emerald-300",
+        error: "border-red-500/50 bg-[#19090b]/95 text-red-300",
+        gold: "border-gold/50 bg-[#12100a]/95 text-gold-light"
+      };
+      const el = document.createElement("div");
+      el.className = `pointer-events-auto px-4 py-3 rounded-xl border backdrop-blur-md shadow-2xl font-mono text-xs tracking-wide transition-all duration-300 ${palette[type] || palette.gold}`;
+      el.textContent = message;
+      container.appendChild(el);
+      setTimeout(() => {
+        el.style.opacity = "0";
+        el.style.transform = "translateX(16px)";
+        setTimeout(() => el.remove(), 300);
+      }, 3600);
+    }
+
+    // =========================================================================
+    // 4. TACTICAL UI AUDIO FX (WEB AUDIO API — ZERO EXTERNAL FILES)
+    // =========================================================================
+    let soundEnabled = false;
+    let audioCtx = null;
+
+    function playTacticalSound(kind = "click") {
+      if (!soundEnabled) return;
+      try {
+        if (!audioCtx) {
+          const AudioContextClass = window.AudioContext || window.webkitAudioContext;
+          audioCtx = new AudioContextClass();
+        }
+        if (audioCtx.state === "suspended") audioCtx.resume();
+        const osc = audioCtx.createOscillator();
+        const gain = audioCtx.createGain();
+        osc.type = kind === "hover" ? "sine" : "triangle";
+        osc.frequency.setValueAtTime(kind === "hover" ? 680 : 420, audioCtx.currentTime);
+        osc.frequency.exponentialRampToValueAtTime(kind === "hover" ? 920 : 180, audioCtx.currentTime + 0.055);
+        gain.gain.setValueAtTime(kind === "hover" ? 0.018 : 0.04, audioCtx.currentTime);
+        gain.gain.exponentialRampToValueAtTime(0.0001, audioCtx.currentTime + 0.06);
+        osc.connect(gain);
+        gain.connect(audioCtx.destination);
+        osc.start();
+        osc.stop(audioCtx.currentTime + 0.065);
+      } catch (e) {
+        // Ignore audio context autoplay restrictions
+      }
+    }
+
+    const soundToggleBtn = document.getElementById("sound-toggle-btn");
+    if (soundToggleBtn) {
+      soundToggleBtn.addEventListener("click", () => {
+        soundEnabled = !soundEnabled;
+        document.getElementById("sound-icon-on").classList.toggle("hidden", !soundEnabled);
+        document.getElementById("sound-icon-off").classList.toggle("hidden", soundEnabled);
+        document.getElementById("sound-label").textContent = soundEnabled ? "SFX ON" : "SFX OFF";
+        if (soundEnabled) playTacticalSound("click");
+        showToast(`Tactical UI Audio ${soundEnabled ? "Activated" : "Muted"}.`, "gold");
+      });
+    }
+
+    document.addEventListener("click", (e) => {
+      if (e.target.closest("[data-sound='click']")) playTacticalSound("click");
+    });
+
+    // =========================================================================
+    // 5. LIVE GLOBAL TRADING DESK CLOCKS
+    // =========================================================================
+    function updateGlobalClocks() {
+      const now = new Date();
+      const zones = [
+        { id: "clock-dubai", tz: "Asia/Dubai" },
+        { id: "clock-rotterdam", tz: "Europe/Amsterdam" },
+        { id: "clock-singapore", tz: "Asia/Singapore" },
+        { id: "clock-houston", tz: "America/Chicago" },
+        { id: "clock-india", tz: "Asia/Kolkata" }
+      ];
+      zones.forEach(({ id, tz }) => {
+        const el = document.getElementById(id);
+        if (!el) return;
+        try {
+          el.textContent = new Intl.DateTimeFormat("en-GB", {
+            timeZone: tz,
+            hour: "2-digit",
+            minute: "2-digit",
+            second: "2-digit",
+            hour12: false
+          }).format(now);
+        } catch {
+          el.textContent = now.toISOString().slice(11, 19);
+        }
+      });
+    }
+
+    // =========================================================================
+    // 6. LIVE ALLOCATION TELEMETRY TICKER
+    // =========================================================================
+    function renderTicker() {
+      const track = document.getElementById("live-ticker-track");
+      if (!track) return;
+
+      if (siteSettingsState.tickerText && siteSettingsState.tickerText.trim().length > 0) {
+        const customText = escapeHtml(siteSettingsState.tickerText.trim());
+        track.innerHTML = `
+          <span class="text-gold-light font-semibold">${customText}</span>
+          <span class="text-gold/50">///</span>
+          <span class="text-gold-light font-semibold">${customText}</span>
+        `;
+        return;
+      }
+
+      const itemsHtml = commoditiesState.map(c => {
+        const badgeColor =
+          c.status === "SPOT AVAILABLE" ? "text-emerald-400" :
+          c.status === "LOADING" ? "text-amber-300" :
+          c.status === "MANDATE ONLY" ? "text-gold-light" : "text-sky-300";
+        return `
+          <span class="inline-flex items-center gap-2">
+            <span class="text-white font-semibold">${escapeHtml(c.shortTicker || c.name)}</span>
+            <span class="${badgeColor}">[${escapeHtml(c.status)}]</span>
+            <span class="text-gray-400">${escapeHtml(c.moq)}</span>
+            <span class="text-gold/40 pl-4">&#9670;</span>
+          </span>
+        `;
+      }).join("");
+
+      track.innerHTML = itemsHtml + itemsHtml;
+    }
+
+    // =========================================================================
+    // 7. 9-COMMODITY INTERACTIVE DESK & FILTERS
+    // =========================================================================
+    function getStatusBadgeClasses(status) {
+      switch (status) {
+        case "SPOT AVAILABLE":
+          return "bg-emerald-500/15 border-emerald-500/40 text-emerald-300";
+        case "LOADING":
+          return "bg-amber-500/15 border-amber-500/40 text-amber-300";
+        case "MANDATE ONLY":
+          return "bg-gold/15 border-gold/45 text-gold-light";
+        default:
+          return "bg-sky-500/15 border-sky-500/40 text-sky-300";
+      }
+    }
+
+    function renderCommodities() {
+      const grid = document.getElementById("commodity-grid");
+      if (!grid) return;
+
+      const filtered = activeFilter === "ALL"
+        ? commoditiesState
+        : commoditiesState.filter(c => c.category === activeFilter);
+
+      grid.innerHTML = filtered.map(c => {
+        const isPrimary = Boolean(c.isPrimary || c.id === "sulfur");
+        const imgSrc = c.image || COMMODITY_IMAGES[c.id] || `${c.id}.jpg`;
+        return `
+          <article class="hud-panel hud-panel-hover rounded-2xl overflow-hidden flex flex-col justify-between relative group ${
+            isPrimary ? "border-gold/60 shadow-[0_0_32px_rgba(212,175,55,0.14)]" : ""
+          }">
+            <div>
+              <!-- Commodity Visual Header -->
+              <div class="relative w-full h-44 bg-[#07080B] border-b border-gold/20 overflow-hidden">
+                <img src="${escapeHtml(imgSrc)}" alt="${escapeHtml(c.name)}"
+                     class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+                     onerror="this.style.display='none'; this.nextElementSibling.classList.remove('hidden');" />
+                <!-- Luxury Obsidian Fallback if image is not placed yet -->
+                <div class="hidden w-full h-full flex flex-col items-center justify-center bg-gradient-to-br from-[#17130a] via-[#0a0b0e] to-[#050507] p-4 text-center">
+                  <div class="font-display text-sm font-bold text-gold-light tracking-[0.2em] uppercase">${escapeHtml(c.shortTicker || c.name)}</div>
+                  <div class="font-mono text-[10px] text-gray-500 mt-1">PLACE ${escapeHtml(imgSrc)} IN ROOT FOLDER</div>
+                </div>
+                <div class="absolute inset-0 bg-gradient-to-t from-[#090A0F] via-[#090A0F]/25 to-transparent pointer-events-none"></div>
+                <div class="absolute top-3 left-3 right-3 flex items-center justify-between gap-2">
+                  <span class="font-mono text-[9px] px-2.5 py-1 rounded-md bg-obsidian/85 backdrop-blur-md border border-white/10 tracking-[0.18em] text-gray-300 uppercase">
+                    ${escapeHtml(c.category)}
+                  </span>
+                  <span class="font-mono text-[10px] px-2.5 py-0.5 rounded-full border backdrop-blur-md uppercase tracking-wider shrink-0 ${getStatusBadgeClasses(c.status)}">
+                    ${escapeHtml(c.status)}
+                  </span>
+                </div>
+                ${isPrimary ? `
+                  <div class="absolute bottom-3 left-3 inline-flex items-center gap-1.5 px-2.5 py-1 rounded-md bg-obsidian/90 backdrop-blur-md border border-gold/60">
+                    <span class="w-1.5 h-1.5 rounded-full bg-gold animate-pulse"></span>
+                    <span class="font-mono text-[9px] font-bold tracking-[0.22em] text-gold-light uppercase">PRIMARY COMMODITY // FLAGSHIP DESK</span>
+                  </div>
+                ` : ""}
+              </div>
+
+              <div class="p-6 pb-0">
+                <h3 class="font-display text-lg sm:text-xl font-bold text-white leading-snug mb-3">
+                  ${escapeHtml(c.name)}
+                </h3>
+
+                <div class="space-y-2 font-mono text-xs border-y border-gold/15 py-3.5 mb-4">
+                  <div class="flex justify-between gap-2">
+                    <span class="text-gray-500">ORIGIN</span>
+                    <span class="text-gray-200 text-right">${escapeHtml(c.origin)}</span>
+                  </div>
+                  <div class="flex justify-between gap-2">
+                    <span class="text-gray-500">MOQ</span>
+                    <span class="text-gold-light font-semibold text-right">${escapeHtml(c.moq)}</span>
+                  </div>
+                  <div class="flex justify-between gap-2">
+                    <span class="text-gray-500">INCOTERMS</span>
+                    <span class="text-gray-200 text-right">${escapeHtml(c.incoterms)}</span>
+                  </div>
+                </div>
+
+                <p class="text-xs text-gray-400 leading-relaxed mb-5 line-clamp-3">
+                  ${escapeHtml(c.specs)}
+                </p>
+              </div>
+            </div>
+
+            <div class="px-6 pb-6">
+              <button type="button" onclick="openRfqDrawer('${escapeHtml(c.id)}')" data-sound="click"
+                      class="${isPrimary ? "btn-gold" : "btn-obsidian"} w-full py-3 rounded-xl text-xs font-mono uppercase tracking-widest">
+                Inspect Specs &amp; Request Allocation
+              </button>
+            </div>
+          </article>
+        `;
+      }).join("");
+
+      // Keep RFQ Commodity Select dropdown synced
+      const selectEl = document.getElementById("rfq-commodity-select");
+      if (selectEl) {
+        const currentVal = selectEl.value;
+        selectEl.innerHTML = commoditiesState.map(c =>
+          `<option value="${escapeHtml(c.id)}">${escapeHtml(c.name)}</option>`
+        ).join("");
+        if (currentVal && commoditiesState.some(c => c.id === currentVal)) {
+          selectEl.value = currentVal;
+        }
+      }
+    }
+
+    document.querySelectorAll(".filter-btn").forEach(btn => {
+      btn.addEventListener("click", () => {
+        activeFilter = btn.dataset.filter;
+        document.querySelectorAll(".filter-btn").forEach(b => {
+          const isAct = b.dataset.filter === activeFilter;
+          b.className = isAct
+            ? "filter-btn active px-4 py-2 rounded-xl font-mono text-xs tracking-wider uppercase border border-gold bg-gold text-obsidian font-bold transition-all"
+            : "filter-btn px-4 py-2 rounded-xl font-mono text-xs tracking-wider uppercase border border-gold/25 bg-obsidianCard text-gray-300 hover:border-gold/60 transition-all";
+        });
+        renderCommodities();
+      });
+    });
+
+    // =========================================================================
+    // 8. INTERACTIVE CIF TRANSACTION PROTOCOLS (9-STEP WORKFLOW)
+    // =========================================================================
+    const CIF_PROCEDURE_STEPS = [
+      {
+        step: "01",
+        short: "LOI",
+        title: "Step 01: Buyer Submits Official LOI",
+        desc: "Buyer submits an official Letter of Intent (LOI) on company letterhead detailing the desired commodity, target monthly/spot volume, technical specifications, and nominated destination discharge port.",
+        docs: ["Official Letter of Intent (LOI)", "Target Volume & Technical Specs", "Nominated Discharge Port"]
+      },
+      {
+        step: "02",
+        short: "FCO",
+        title: "Step 02: EMPR Exports Issues FCO",
+        desc: "Upon reviewing the LOI and verifying allocation capacity, EMPR Exports Private Limited issues a binding Full Corporate Offer (FCO) stating pricing structure, Incoterms, delivery schedule, and non-negotiable procedures.",
+        docs: ["Binding Full Corporate Offer (FCO)", "Indicative Pricing & Allocation Schedule", "Standard Execution Terms"]
+      },
+      {
+        step: "03",
+        short: "ICPO",
+        title: "Step 03: Buyer Returns Signed ICPO",
+        desc: "Buyer accepts the FCO and returns a signed and sealed Irrevocable Corporate Purchase Order (ICPO) accompanied by a completed Company Information Sheet (CIS) and authorized signatory passport copy.",
+        docs: ["Signed & Sealed ICPO", "Buyer Company Information Sheet (CIS)", "Authorized Signatory Passport Copy"]
+      },
+      {
+        step: "04",
+        short: "SPA",
+        title: "Step 04: Execution of SPA & Bank Lodging",
+        desc: "Both parties review, finalize, and execute the Sales & Purchase Agreement (SPA), open for mutually agreed amendments, and lodge the countersigned contract with their respective banks.",
+        docs: ["Countersigned Final SPA", "Bank Lodging Confirmation", "ICC NCNDA / IMFPA (If Applicable)"]
+      },
+      {
+        step: "05",
+        short: "PPOP",
+        title: "Step 05: Seller Issues Partial Proof of Product (PPOP)",
+        desc: "Following SPA execution, Seller issues the Partial Proof of Product (PPOP) package comprising the Refinery Commitment to Supply, Authorization to Sell (ATS), and Statement of Product Availability.",
+        docs: ["Refinery Commitment to Supply", "Authorization to Sell (ATS)", "Statement of Product Availability"]
+      },
+      {
+        step: "06",
+        short: "INSTRUMENT",
+        title: "Step 06: Buyer Issues Financial Instrument",
+        desc: "Buyer's prime bank issues a non-operative or operative Financial Instrument — Irrevocable, Confirmed, Transferable SBLC MT760 or DLC MT700 — covering the shipment value as stipulated in the SPA.",
+        docs: ["SBLC MT760 or DLC MT700", "SWIFT Bank-to-Bank Transmission", "Verbiage Approval Confirmation"]
+      },
+      {
+        step: "07",
+        short: "POP & INSPECTION",
+        title: "Step 07: Full POP, 2% PB & SGS / Intertek Inspection",
+        desc: "Seller provides Full Proof of Product (POP) and posts a 2% Performance Bond (PB) to activate the financial instrument. Independent SGS / Intertek / Bureau Veritas Q&Q inspection is conducted.",
+        docs: ["Full Proof of Product (POP) Package", "2% Seller Performance Bond (PB)", "SGS / Intertek / BV Q&Q Inspection"]
+      },
+      {
+        step: "08",
+        short: "LOADING",
+        title: "Step 08: Vessel Loading & Shipping Documentation",
+        desc: "Cargo is loaded onto the nominated vessel under port supervision. Seller executes the Charter Party Agreement (CPA) and dispatches the Clean On-Board Bill of Lading, Vessel Q88, and full shipping dossier.",
+        docs: ["Charter Party Agreement (CPA)", "Clean On-Board Bill of Lading", "Certificate of Origin & Vessel Q88"]
+      },
+      {
+        step: "09",
+        short: "PAYMENT AT LOADING OR DISCHARGE",
+        title: "Step 09: MT103 / T/T Payment & Title Transfer",
+        desc: "Upon completion of Q&Q verification at the loading port or destination discharge port (as per SPA terms), Buyer releases 100% payment via SWIFT MT103 / T/T wire and full product title transfers to Buyer.",
+        docs: ["Loading / Discharge Port Q&Q Report", "SWIFT MT103 / T/T Settlement", "Final Title Ownership Transfer"]
+      }
+    ];
+
+    function renderProcedures() {
+      const steps = CIF_PROCEDURE_STEPS;
+      const nav = document.getElementById("procedure-steps-nav");
+      nav.className = "grid grid-cols-2 sm:grid-cols-3 gap-3 mb-8";
+
+      nav.innerHTML = steps.map((s, idx) => {
+        const isActive = idx === activeProcedureStep;
+        return `
+          <button type="button" onclick="selectProcedureStep(${idx})" data-sound="click"
+                  class="p-3.5 rounded-xl border text-left transition-all ${
+                    isActive
+                      ? "bg-gold/15 border-gold shadow-[0_0_20px_rgba(212,175,55,0.2)]"
+                      : "bg-obsidianCard border-gold/20 hover:border-gold/50"
+                  }">
+            <div class="font-mono text-[10px] ${isActive ? "text-gold-light" : "text-gray-500"}">STEP ${s.step}</div>
+            <div class="font-mono text-xs font-semibold mt-1 leading-snug ${isActive ? "text-white" : "text-gray-300"}">${s.short}</div>
+          </button>
+        `;
+      }).join("");
+
+      const current = steps[activeProcedureStep];
+      document.getElementById("proc-step-badge").textContent = `STEP ${current.step} // CIF PROTOCOL`;
+      document.getElementById("proc-step-title").textContent = current.title;
+      document.getElementById("proc-step-desc").textContent = current.desc;
+      document.getElementById("proc-step-docs").innerHTML = current.docs.map(d => `
+        <li class="flex items-start gap-2">
+          <span class="text-gold mt-0.5">&#9656;</span>
+          <span>${d}</span>
+        </li>
+      `).join("");
+    }
+
+    window.selectProcedureStep = function(index) {
+      activeProcedureStep = index;
+      renderProcedures();
+    };
+
+    // =========================================================================
+    // 9. DEAL ESTIMATOR & RFQ SLIDE-OVER DRAWER
+    // =========================================================================
+    const rfqBackdrop = document.getElementById("rfq-drawer-backdrop");
+    const rfqDrawer = document.getElementById("rfq-drawer");
+    let currentDrawerCommodity = null;
+
+    function populateDrawerSpecs(commodityId) {
+      const c = commoditiesState.find(item => item.id === commodityId) || commoditiesState[0];
+      if (!c) return;
+      currentDrawerCommodity = c;
+
+      document.getElementById("drawer-commodity-title").textContent = c.name;
+      const statusBadge = document.getElementById("drawer-status-badge");
+      statusBadge.textContent = c.status;
+      statusBadge.className = `font-mono text-[10px] px-2.5 py-0.5 rounded border ${getStatusBadgeClasses(c.status)}`;
+      document.getElementById("drawer-origin").textContent = c.origin;
+      document.getElementById("drawer-moq").textContent = c.moq;
+      document.getElementById("drawer-terms").textContent = c.incoterms;
+      document.getElementById("drawer-spec-notes").textContent = c.specs;
+
+      const selectEl = document.getElementById("rfq-commodity-select");
+      if (selectEl) selectEl.value = c.id;
+
+      // Sync volume slider to commodity range
+      const slider = document.getElementById("rfq-volume-slider");
+      slider.value = 25;
+      updateVolumeFromSlider();
+    }
+
+    function updateVolumeFromSlider() {
+      const c = currentDrawerCommodity || commoditiesState[0];
+      if (!c) return;
+      const pct = Number(document.getElementById("rfq-volume-slider").value) / 100;
+      const minV = Number(c.minVol) || 10000;
+      const maxV = Number(c.maxVol) || 100000;
+      const val = Math.round((minV + (maxV - minV) * pct) / (minV >= 1000 ? 500 : 10)) * (minV >= 1000 ? 500 : 10);
+      const formatted = `${val.toLocaleString()} ${c.unit || "MT"}`;
+      document.getElementById("rfq-volume-display").textContent = formatted;
+      document.getElementById("rfq-volume-text").value = formatted;
+    }
+
+    document.getElementById("rfq-commodity-select").addEventListener("change", (e) => {
+      populateDrawerSpecs(e.target.value);
+    });
+
+    document.getElementById("rfq-volume-slider").addEventListener("input", updateVolumeFromSlider);
+
+    window.openRfqDrawer = function(commodityId) {
+      populateDrawerSpecs(commodityId || commoditiesState[0]?.id);
+      rfqBackdrop.classList.remove("hidden");
+      requestAnimationFrame(() => {
+        rfqBackdrop.classList.remove("opacity-0");
+        rfqDrawer.classList.remove("translate-x-full");
+      });
+    };
+
+    window.closeRfqDrawer = function() {
+      rfqBackdrop.classList.add("opacity-0");
+      rfqDrawer.classList.add("translate-x-full");
+      setTimeout(() => rfqBackdrop.classList.add("hidden"), 300);
+    };
+
+    rfqBackdrop.addEventListener("click", window.closeRfqDrawer);
+
+    window.resetRfqForm = function() {
+      document.getElementById("rfq-form").reset();
+      document.getElementById("rfq-form").classList.remove("hidden");
+      document.getElementById("rfq-confirmation").classList.add("hidden");
+      populateDrawerSpecs(currentDrawerCommodity?.id || commoditiesState[0]?.id);
+    };
+
+    document.getElementById("rfq-form").addEventListener("submit", async (e) => {
+      e.preventDefault();
+      const btn = document.getElementById("rfq-submit-btn");
+      btn.disabled = true;
+      btn.textContent = "TRANSMITTING TO TRADE DESK...";
+
+      const c = commoditiesState.find(item => item.id === document.getElementById("rfq-commodity-select").value) || commoditiesState[0];
+      const refId = `EMPR-${Date.now().toString().slice(-6)}`;
+      const payload = {
+        refId,
+        commodityId: c.id,
+        commodityName: c.name,
+        buyerName: document.getElementById("rfq-name").value.trim(),
+        company: document.getElementById("rfq-company").value.trim(),
+        contact: document.getElementById("rfq-contact").value.trim(),
+        volume: document.getElementById("rfq-volume-text").value.trim(),
+        port: document.getElementById("rfq-port").value,
+        incoterm: document.getElementById("rfq-incoterm").value,
+        instrument: document.getElementById("rfq-instrument").value,
+        createdAt: new Date().toISOString(),
+        timestamp: serverTimestamp()
+      };
+
+      try {
+        if (db) {
+          await addDoc(collection(db, "rfqs"), payload);
+        }
+        showToast(`Verified RFQ ${refId} logged with EMPR Desk.`, "success");
+      } catch (err) {
+        console.warn("Firestore RFQ fallback:", err);
+        showToast(`RFQ ${refId} prepared for direct WhatsApp dispatch.`, "gold");
+      } finally {
+        btn.disabled = false;
+        btn.textContent = "TRANSMIT VERIFIED RFQ TO TRADE DESK";
+      }
+
+      document.getElementById("rfq-ref-id").textContent = refId;
+      const waText = [
+        `*EMPR EXPORTS — VERIFIED RFQ (${refId})*`,
+        `Commodity: ${payload.commodityName}`,
+        `Volume: ${payload.volume}`,
+        `Port / Terms: ${payload.port} (${payload.incoterm})`,
+        `Instrument: ${payload.instrument}`,
+        `Buyer: ${payload.buyerName} (${payload.company})`,
+        `Contact: ${payload.contact}`
+      ].join("\n");
+      document.getElementById("rfq-whatsapp-forward").href = `https://wa.me/917978932107?text=${encodeURIComponent(waText)}`;
+
+      document.getElementById("rfq-form").classList.add("hidden");
+      document.getElementById("rfq-confirmation").classList.remove("hidden");
+    });
+
+    // =========================================================================
+    // 10. 3D METALLIC BUSINESS CARD TILT & ONE-CLICK VCARD (.VCF) EXPORT
+    // =========================================================================
+    const bcCard = document.getElementById("business-card-3d");
+    const bcGlare = document.getElementById("business-card-glare");
+    if (bcCard && bcGlare) {
+      bcCard.addEventListener("mousemove", (e) => {
+        const rect = bcCard.getBoundingClientRect();
+        const x = (e.clientX - rect.left) / rect.width;
+        const y = (e.clientY - rect.top) / rect.height;
+        const rotateY = (x - 0.5) * 22;
+        const rotateX = (0.5 - y) * 18;
+        bcCard.style.transform = `rotateX(${rotateX}deg) rotateY(${rotateY}deg) scale3d(1.02, 1.02, 1.02)`;
+        bcGlare.style.opacity = "1";
+        bcGlare.style.background = `radial-gradient(circle at ${x * 100}% ${y * 100}%, rgba(245, 215, 142, 0.42), rgba(212, 175, 55, 0.08) 40%, transparent 70%)`;
+      });
+      bcCard.addEventListener("mouseleave", () => {
+        bcCard.style.transform = "rotateX(0deg) rotateY(0deg) scale3d(1, 1, 1)";
+        bcGlare.style.opacity = "0";
+      });
+    }
+
+    window.downloadVCard = function() {
+      const vcf = [
+        "BEGIN:VCARD",
+        "VERSION:3.0",
+        "N:Samantaray;Abinash (Rion);;;Mr.",
+        "FN:Mr. Abinash Samantaray (Rion)",
+        "ORG:EMPR EXPORTS PRIVATE LIMITED",
+        "TITLE:CEO & Managing Director",
+        "TEL;TYPE=WORK,VOICE:+917978932107",
+        "EMAIL;TYPE=PREF,INTERNET:info@emprexports.world",
+        "EMAIL;TYPE=WORK,INTERNET:RefineryHQ@protonmail.com",
+        "URL:https://www.emprexports.world",
+        "ADR;TYPE=WORK:;;DLF Cyber City, Infocity;Bhubaneswar;Odisha;751024;India",
+        "NOTE:EMPR Exports Private Limited — Trade of Trust | CIN: U46303OD2024PTC045525",
+        "END:VCARD"
+      ].join("\r\n");
+
+      const blob = new Blob([vcf], { type: "text/vcard;charset=utf-8" });
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement("a");
+      a.href = url;
+      a.download = "Abinash_Samantaray_EMPR_Exports.vcf";
+      document.body.appendChild(a);
+      a.click();
+      document.body.removeChild(a);
+      URL.revokeObjectURL(url);
+      showToast("Executive Contact (.VCF) downloaded.", "success");
+    };
+
+    // =========================================================================
+    // 11. ENCRYPTED ASSOCIATES VAULT (FIREBASE-GATED)
+    // =========================================================================
+    document.getElementById("vault-unlock-form").addEventListener("submit", (e) => {
+      e.preventDefault();
+      const entered = document.getElementById("vault-passcode-input").value.trim();
+      const expected = (siteSettingsState.vaultCode || "EMPR2026").trim();
+      const errEl = document.getElementById("vault-error-msg");
+
+      if (entered.toUpperCase() === expected.toUpperCase()) {
+        errEl.classList.add("hidden");
+        document.getElementById("vault-locked-view").classList.add("hidden");
+        document.getElementById("vault-unlocked-view").classList.remove("hidden");
+        const pill = document.getElementById("vault-status-pill");
+        pill.textContent = "UNLOCKED // CLEARANCE GRANTED";
+        pill.className = "font-mono text-[10px] px-3 py-1 rounded-full bg-emerald-500/15 border border-emerald-500/40 text-emerald-300 uppercase tracking-widest self-start sm:self-center";
+        showToast("Associates Vault Unlocked.", "success");
+      } else {
+        errEl.classList.remove("hidden");
+        showToast("Invalid Associates Passcode.", "error");
+      }
+    });
+
+    window.lockVault = function() {
+      document.getElementById("vault-passcode-input").value = "";
+      document.getElementById("vault-unlocked-view").classList.add("hidden");
+      document.getElementById("vault-locked-view").classList.remove("hidden");
+      const pill = document.getElementById("vault-status-pill");
+      pill.textContent = "LOCKED // CLEARANCE REQUIRED";
+      pill.className = "font-mono text-[10px] px-3 py-1 rounded-full bg-red-500/15 border border-red-500/40 text-red-300 uppercase tracking-widest self-start sm:self-center";
+    };
+
+    window.downloadVaultDocument = function(docType) {
+      let filename = "EMPR_Exports_CIS_Brief.txt";
+      let content = "";
+
+      if (docType === "CIS") {
+        content = [
+          "======================================================================",
+          "EMPR EXPORTS PRIVATE LIMITED — CORPORATE INFORMATION SHEET (CIS BRIEF)",
+          "\"TRADE OF TRUST\"",
+          "======================================================================",
+          "Corporate Identification No. (CIN): U46303OD2024PTC045525",
+          "Date of Incorporation: 9th April 2024 (RoC - Cuttack, Republic of India)",
+          "Company Status: Active | Private Company Limited by Shares",
+          "Registered Office: DLF Cyber City, Infocity, Bhubaneswar, Odisha - 751024, India",
+          "Operational Contact: Dubai Representation Office (Global Correspondence)",
+          "",
+          "KEY OFFICIALS:",
+          "- Mr. Abinash Samantaray (Rion) | CEO & Managing Director | +91 79789 32107",
+          "- Mr. Tapaswi Sekhar Panda | Director (Acting)",
+          "",
+          "PRIMARY COMMODITIES:",
+          "EN590 (10ppm/50ppm), Jet Fuel A1, D6 Virgin Fuel Oil, Granular Sulfur,",
+          "Bitumen (60/70, 80/100, VG-30/40), Urea N46, Copper Cathodes, Aluminum A7, Gold Bullion",
+          "",
+          "VERIFICATION & PAYMENT INSTRUMENTS:",
+          "Inspection: SGS, Intertek, Bureau Veritas | Go4WorldBusiness Verified Gold Member",
+          "Instruments: SBLC MT760, DLC MT700, T/T, MT103, Escrow",
+          "Priority Desk: RefineryHQ@protonmail.com | info@emprexports.world",
+          "======================================================================"
+        ].join("\r\n");
+      } else {
+        filename = "EMPR_Exports_SCO_FCO_Procedure.txt";
+        content = [
+          "======================================================================",
+          "EMPR EXPORTS PRIVATE LIMITED — STANDARD SCO / FCO EXECUTION PROTOCOL",
+          "======================================================================",
+          "CIF (9-STEP PROTOCOL — GLOBAL PORTS) WORKFLOW:",
+          "01. LOI — Buyer submits official Letter of Intent with target volume, specs & port.",
+          "02. FCO — EMPR Exports issues Full Corporate Offer with pricing, terms & procedures.",
+          "03. ICPO — Buyer returns signed & sealed ICPO with CIS & Passport.",
+          "04. SPA — Both parties execute Sales & Purchase Agreement & lodge with banks.",
+          "05. PPOP — Seller issues Partial Proof of Product (Refinery Commitment, ATS, Availability).",
+          "06. INSTRUMENT — Buyer's bank issues SBLC MT760 or DLC MT700.",
+          "07. POP & INSPECTION — Seller provides Full POP & 2% PB; SGS / Intertek Q&Q conducted.",
+          "08. LOADING — Vessel loading, Charter Party Agreement, Bill of Lading & shipping docs.",
+          "09. PAYMENT AT LOADING OR DISCHARGE — Buyer releases MT103 / T/T & title transfers.",
+          "",
+          "Direct Desk: +91 79789 32107 | RefineryHQ@protonmail.com | www.emprexports.world",
+          "======================================================================"
+        ].join("\r\n");
+      }
+
+      const blob = new Blob([content], { type: "text/plain;charset=utf-8" });
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement("a");
+      a.href = url;
+      a.download = filename;
+      document.body.appendChild(a);
+      a.click();
+      document.body.removeChild(a);
+      URL.revokeObjectURL(url);
+      showToast(`${filename} downloaded.`, "success");
+    };
+
+    // =========================================================================
+    // 12. PROTECTED FIREBASE ADMIN COMMAND PANEL
+    // =========================================================================
+    const adminModal = document.getElementById("admin-modal");
+    const openAdminBtn = document.getElementById("open-admin-btn");
+
+    if (openAdminBtn && adminModal) {
+      openAdminBtn.addEventListener("click", () => {
+        adminModal.classList.remove("hidden");
+        adminModal.classList.add("flex");
+      });
+    }
+
+    window.closeAdminModal = function() {
+      if (!adminModal) return;
+      adminModal.classList.add("hidden");
+      adminModal.classList.remove("flex");
+    };
+
+    if (adminModal) {
+      adminModal.addEventListener("click", (e) => {
+        if (e.target === adminModal) window.closeAdminModal();
+      });
+    }
+
+    const adminLoginForm = document.getElementById("admin-login-form");
+    const adminLoginErr = document.getElementById("admin-login-error");
+    const adminSignoutBtn = document.getElementById("admin-signout-btn");
+
+    if (adminLoginForm) {
+      adminLoginForm.addEventListener("submit", async (e) => {
+        e.preventDefault();
+        if (!auth) {
+          showToast("Firebase Auth is not initialized.", "error");
+          return;
+        }
+        adminLoginErr.classList.add("hidden");
+        const email = document.getElementById("admin-email").value.trim();
+        const password = document.getElementById("admin-password").value;
+        try {
+          await signInWithEmailAndPassword(auth, email, password);
+          showToast("Authenticated to EMPR Admin Command Desk.", "success");
+        } catch (err) {
+          adminLoginErr.textContent = `AUTH ERROR: ${err.message || "Invalid credentials."}`;
+          adminLoginErr.classList.remove("hidden");
+        }
+      });
+    }
+
+    if (adminSignoutBtn) {
+      adminSignoutBtn.addEventListener("click", async () => {
+        if (!auth) return;
+        try {
+          await signOut(auth);
+          showToast("Signed out of Admin Command Desk.", "gold");
+        } catch (err) {
+          showToast("Sign out failed.", "error");
+        }
+      });
+    }
+
+    window.switchAdminTab = function(tabName) {
+      document.querySelectorAll(".admin-tab-btn").forEach(btn => {
+        const isAct = btn.dataset.adminTab === tabName;
+        btn.className = isAct
+          ? "admin-tab-btn px-4 py-2 rounded-lg font-mono text-xs uppercase bg-gold text-obsidian font-bold"
+          : "admin-tab-btn px-4 py-2 rounded-lg font-mono text-xs uppercase bg-obsidianCard border border-gold/25 text-gray-300";
+      });
+      document.querySelectorAll(".admin-panel").forEach(panel => {
+        panel.classList.toggle("hidden", panel.id !== `admin-panel-${tabName}`);
+      });
+    };
+
+    function renderAdminCommodities() {
+      const container = document.getElementById("admin-commodities-list");
+      if (!container) return;
+      container.innerHTML = commoditiesState.map(c => `
+        <div class="p-4 rounded-xl bg-obsidianCard border border-gold/20 grid grid-cols-1 md:grid-cols-12 gap-3 items-end">
+          <div class="md:col-span-3">
+            <div class="font-mono text-[10px] text-gold uppercase">COMMODITY</div>
+            <div class="text-xs font-semibold text-white mt-1">${escapeHtml(c.name)}</div>
+          </div>
+          <div class="md:col-span-3">
+            <label class="block font-mono text-[10px] text-gray-400 uppercase mb-1">Status</label>
+            <select id="adm-status-${escapeHtml(c.id)}" class="w-full px-2.5 py-2 rounded-lg bg-obsidian border border-gold/25 font-mono text-xs text-white">
+              ${["SPOT AVAILABLE", "ALLOCATED", "LOADING", "MANDATE ONLY"].map(st =>
+                `<option value="${st}" ${c.status === st ? "selected" : ""}>${st}</option>`
+              ).join("")}
+            </select>
+          </div>
+          <div class="md:col-span-2">
+            <label class="block font-mono text-[10px] text-gray-400 uppercase mb-1">MOQ</label>
+            <input id="adm-moq-${escapeHtml(c.id)}" type="text" value="${escapeHtml(c.moq)}"
+                   class="w-full px-2.5 py-2 rounded-lg bg-obsidian border border-gold/25 font-mono text-xs text-gold-light" />
+          </div>
+          <div class="md:col-span-2">
+            <label class="block font-mono text-[10px] text-gray-400 uppercase mb-1">Origin</label>
+            <input id="adm-origin-${escapeHtml(c.id)}" type="text" value="${escapeHtml(c.origin)}"
+                   class="w-full px-2.5 py-2 rounded-lg bg-obsidian border border-gold/25 font-mono text-xs text-gray-200" />
+          </div>
+          <div class="md:col-span-2">
+            <button type="button" onclick="saveCommodityAdmin('${escapeHtml(c.id)}')"
+                    class="btn-gold w-full py-2 rounded-lg font-mono text-[11px] uppercase">
+              Save
+            </button>
+          </div>
+        </div>
+      `).join("");
+    }
+
+    window.saveCommodityAdmin = async function(id) {
+      const target = commoditiesState.find(c => c.id === id);
+      if (!target) return;
+      const updated = {
+        ...target,
+        status: document.getElementById(`adm-status-${id}`).value,
+        moq: document.getElementById(`adm-moq-${id}`).value.trim(),
+        origin: document.getElementById(`adm-origin-${id}`).value.trim()
+      };
+      try {
+        if (db) {
+          await setDoc(doc(db, "commodities", id), updated, { merge: true });
+        }
+        const idx = commoditiesState.findIndex(c => c.id === id);
+        if (idx >= 0) commoditiesState[idx] = updated;
+        renderCommodities();
+        renderTicker();
+        showToast(`${updated.shortTicker || updated.name} updated live.`, "success");
+      } catch (err) {
+        showToast(`Save failed: ${err.message}`, "error");
+      }
+    };
+
+    function renderAdminRfqs() {
+      const tbody = document.getElementById("admin-rfq-tbody");
+      const countEl = document.getElementById("admin-rfq-count");
+      if (countEl) countEl.textContent = String(rfqInquiriesState.length);
+      if (!tbody) return;
+
+      if (rfqInquiriesState.length === 0) {
+        tbody.innerHTML = `<tr><td colspan="5" class="p-6 text-center text-gray-500">No incoming RFQs logged yet.</td></tr>`;
+        return;
+      }
+
+      tbody.innerHTML = rfqInquiriesState.map(r => `
+        <tr class="hover:bg-gold/5">
+          <td class="p-3 align-top">
+            <div class="text-gold-light font-semibold">${escapeHtml(r.refId || r.docId)}</div>
+            <div class="text-[10px] text-gray-500">${escapeHtml((r.createdAt || "").slice(0, 16).replace("T", " "))}</div>
+          </td>
+          <td class="p-3 align-top">
+            <div class="text-white">${escapeHtml(r.buyerName)}</div>
+            <div class="text-[10px] text-gray-400">${escapeHtml(r.company)}</div>
+            <div class="text-[10px] text-gold">${escapeHtml(r.contact)}</div>
+          </td>
+          <td class="p-3 align-top">
+            <div class="text-white">${escapeHtml(r.commodityName)}</div>
+            <div class="text-[10px] text-emerald-300">${escapeHtml(r.volume)}</div>
+          </td>
+          <td class="p-3 align-top">
+            <div>${escapeHtml(r.port)} (${escapeHtml(r.incoterm)})</div>
+            <div class="text-[10px] text-gray-400">${escapeHtml(r.instrument)}</div>
+          </td>
+          <td class="p-3 align-top text-right">
+            <button type="button" onclick="deleteRfq('${escapeHtml(r.docId)}')"
+                    class="px-2.5 py-1 rounded border border-red-500/40 bg-red-500/10 text-red-300 text-[10px] hover:bg-red-500/20">
+              ARCHIVE
+            </button>
+          </td>
+        </tr>
+      `).join("");
+    }
+
+    window.deleteRfq = async function(docId) {
+      if (!db || !docId) return;
+      try {
+        await deleteDoc(doc(db, "rfqs", docId));
+        showToast("RFQ archived from Firestore.", "gold");
+      } catch (err) {
+        showToast(`Archive failed: ${err.message}`, "error");
+      }
+    };
+
+    window.saveSiteSettings = async function() {
+      const tickerText = document.getElementById("admin-ticker-input").value.trim();
+      const vaultCode = document.getElementById("admin-vault-input").value.trim() || "EMPR2026";
+      try {
+        if (db) {
+          await setDoc(doc(db, "settings", "site"), { tickerText, vaultCode }, { merge: true });
+        }
+        siteSettingsState = { tickerText, vaultCode };
+        renderTicker();
+        showToast("Ticker & Associates Vault settings saved live.", "success");
+      } catch (err) {
+        showToast(`Settings save failed: ${err.message}`, "error");
+      }
+    };
+
+    window.seedDefaultDataToFirestore = async function() {
+      if (!db) {
+        showToast("Firestore is not connected.", "error");
+        return;
+      }
+      const btn = document.getElementById("seed-firestore-btn");
+      if (btn) {
+        btn.disabled = true;
+        btn.textContent = "SEEDING FIRESTORE...";
+      }
+      try {
+        await Promise.all(
+          DEFAULT_COMMODITIES.map(item => setDoc(doc(db, "commodities", item.id), item, { merge: true }))
+        );
+        await setDoc(doc(db, "settings", "site"), {
+          tickerText: "",
+          vaultCode: siteSettingsState.vaultCode || "EMPR2026"
+        }, { merge: true });
+        showToast("All 9 commodities & settings seeded to Firestore.", "success");
+      } catch (err) {
+        showToast(`Seed failed: ${err.message}`, "error");
+      } finally {
+        if (btn) {
+          btn.disabled = false;
+          btn.textContent = "SEED DEFAULT DATA TO FIRESTORE";
+        }
+      }
+    };
+
+    function initFirestoreSync() {
+      if (auth) {
+        onAuthStateChanged(auth, (user) => {
+          currentAdminUser = user;
+          const loginView = document.getElementById("admin-login-view");
+          const dashView = document.getElementById("admin-dashboard-view");
+          const statusEl = document.getElementById("admin-auth-status");
+          if (user) {
+            loginView.classList.add("hidden");
+            dashView.classList.remove("hidden");
+            adminSignoutBtn.classList.remove("hidden");
+            statusEl.textContent = `AUTHENTICATED // ${user.email}`;
+            renderAdminCommodities();
+            renderAdminRfqs();
+          } else {
+            loginView.classList.remove("hidden");
+            dashView.classList.add("hidden");
+            adminSignoutBtn.classList.add("hidden");
+            statusEl.textContent = "FIREBASE AUTHENTICATION REQUIRED";
+          }
+        });
+      }
+
+      if (!db) return;
+
+      // Live Commodities Listener
+      onSnapshot(collection(db, "commodities"), (snapshot) => {
+        if (snapshot.empty) return;
+        const orderMap = new Map(DEFAULT_COMMODITIES.map((c, idx) => [c.id, idx]));
+        const loaded = [];
+        snapshot.forEach(docSnap => {
+          const data = docSnap.data();
+          loaded.push({
+            ...data,
+            id: data.id || docSnap.id,
+            image: data.image || COMMODITY_IMAGES[data.id || docSnap.id] || `${docSnap.id}.jpg`
+          });
+        });
+        loaded.sort((a, b) => {
+          const ia = orderMap.has(a.id) ? orderMap.get(a.id) : 99;
+          const ib = orderMap.has(b.id) ? orderMap.get(b.id) : 99;
+          return ia - ib;
+        });
+        commoditiesState = loaded;
+        renderCommodities();
+        renderTicker();
+        if (currentAdminUser) renderAdminCommodities();
+      }, (err) => {
+        console.warn("Firestore commodities listener fallback:", err);
+      });
+
+      // Live Site Settings Listener
+      onSnapshot(doc(db, "settings", "site"), (docSnap) => {
+        if (!docSnap.exists()) return;
+        const data = docSnap.data();
+        siteSettingsState = {
+          tickerText: data.tickerText || "",
+          vaultCode: data.vaultCode || "EMPR2026"
+        };
+        const tickerIn = document.getElementById("admin-ticker-input");
+        const vaultIn = document.getElementById("admin-vault-input");
+        if (tickerIn) tickerIn.value = siteSettingsState.tickerText;
+        if (vaultIn) vaultIn.value = siteSettingsState.vaultCode;
+        renderTicker();
+      }, (err) => {
+        console.warn("Firestore settings listener fallback:", err);
+      });
+
+      // Live RFQs Listener
+      onSnapshot(collection(db, "rfqs"), (snapshot) => {
+        const list = [];
+        snapshot.forEach(docSnap => {
+          list.push({ docId: docSnap.id, ...docSnap.data() });
+        });
+        list.sort((a, b) => String(b.createdAt || "").localeCompare(String(a.createdAt || "")));
+        rfqInquiriesState = list;
+        renderAdminRfqs();
+      }, (err) => {
+        console.warn("Firestore RFQs listener fallback:", err);
+      });
+    }
+
+    // =========================================================================
+    // 13. LIQUID OBSIDIAN & GOLD REACTIVE BACKGROUND CANVAS
+    // =========================================================================
+    function initBackgroundCanvas() {
+      const canvas = document.getElementById("bg-canvas");
+      if (!canvas) return;
+      const ctx = canvas.getContext("2d");
+      let w = 0, h = 0;
+      const pointer = { x: 0.5, y: 0.35, tx: 0.5, ty: 0.35 };
+
+      function resize() {
+        w = canvas.width = window.innerWidth;
+        h = canvas.height = window.innerHeight;
+      }
+      resize();
+      window.addEventListener("resize", resize);
+      window.addEventListener("mousemove", (e) => {
+        pointer.tx = e.clientX / Math.max(w, 1);
+        pointer.ty = e.clientY / Math.max(h, 1);
+      });
+
+      let t = 0;
+      function draw() {
+        t += 0.004;
+        pointer.x += (pointer.tx - pointer.x) * 0.04;
+        pointer.y += (pointer.ty - pointer.y) * 0.04;
+
+        ctx.clearRect(0, 0, w, h);
+
+        // Primary cursor-reactive gold aura
+        const g1 = ctx.createRadialGradient(
+          w * pointer.x, h * pointer.y, 10,
+          w * pointer.x, h * pointer.y, Math.max(w, h) * 0.45
+        );
+        g1.addColorStop(0, "rgba(212, 175, 55, 0.11)");
+        g1.addColorStop(0.45, "rgba(153, 101, 21, 0.04)");
+        g1.addColorStop(1, "rgba(5, 5, 7, 0)");
+        ctx.fillStyle = g1;
+        ctx.fillRect(0, 0, w, h);
+
+        // Secondary ambient drifting obsidian-gold refraction
+        const ox = w * (0.75 + Math.sin(t) * 0.12);
+        const oy = h * (0.28 + Math.cos(t * 0.8) * 0.12);
+        const g2 = ctx.createRadialGradient(ox, oy, 10, ox, oy, Math.max(w, h) * 0.38);
+        g2.addColorStop(0, "rgba(245, 215, 142, 0.07)");
+        g2.addColorStop(1, "rgba(5, 5, 7, 0)");
+        ctx.fillStyle = g2;
+        ctx.fillRect(0, 0, w, h);
+
+        requestAnimationFrame(draw);
+      }
+      draw();
+    }
+
+    // =========================================================================
+    // 14. PHOTOREALISTIC 3D EARTH TRADE CORRIDOR GLOBE (THREE.JS r128)
+    // =========================================================================
+    function initEarthGlobe() {
+      const container = document.getElementById("globe-container");
+      if (!container || typeof THREE === "undefined") return;
+
+      const HUBS = [
+        {
+          id: "poti",
+          label: "Poti / KZ",
+          name: "KAZAKHSTAN / POTI (GEORGIA)",
+          lat: 42.15, lon: 41.67,
+          status: "FLAGSHIP",
+          incoterms: "INCOTERMS: FOB POTI / SOHAR • CIF WORLDWIDE",
+          focus: "CARGO: GRANULAR SULFUR (PRIMARY), EN590, JET A1, D6"
+        },
+        {
+          id: "africa",
+          label: "Africa Gold",
+          name: "ACCRA / JOHANNESBURG (AFRICA CORRIDOR)",
+          lat: 5.60, lon: -0.19,
+          status: "MANDATE",
+          incoterms: "INCOTERMS: CIF DUBAI (DMCC) / ZURICH / HONG KONG",
+          focus: "CARGO: AFRICAN GOLD BULLION, AU DORÉ BARS, COPPER CATHODES"
+        },
+        {
+          id: "dubai",
+          label: "Dubai / Fujairah",
+          name: "DUBAI & FUJAIRAH (UAE HUB)",
+          lat: 25.20, lon: 55.27,
+          status: "ACTIVE DESK",
+          incoterms: "INCOTERMS: FOB FUJAIRAH • CIF DMCC / ASWP",
+          focus: "CARGO: EN590 10PPM, JET A1, BITUMEN, GOLD BULLION"
+        },
+        {
+          id: "rotterdam",
+          label: "Rotterdam",
+          name: "ROTTERDAM (NETHERLANDS)",
+          lat: 51.92, lon: 4.48,
+          status: "SPOT ACTIVE",
+          incoterms: "INCOTERMS: FOB TTV/TTT • CIF ROTTERDAM",
+          focus: "CARGO: DIESEL EN590 (10PPM), JET FUEL A1, D6 VIRGIN OIL"
+        },
+        {
+          id: "singapore",
+          label: "Jurong (SG)",
+          name: "SINGAPORE / JURONG PORT",
+          lat: 1.35, lon: 103.82,
+          status: "ACTIVE",
+          incoterms: "INCOTERMS: CIF JURONG • FOB / TTO",
+          focus: "CARGO: GRANULAR SULFUR, EN590, UREA N46, ALUMINUM A7"
+        },
+        {
+          id: "qingdao",
+          label: "Qingdao",
+          name: "QINGDAO (CHINA)",
+          lat: 36.07, lon: 120.38,
+          status: "ALLOCATED",
+          incoterms: "INCOTERMS: CIF QINGDAO • DLC MT700 / SBLC",
+          focus: "CARGO: GRANULAR SULFUR, BITUMEN, COPPER, ALUMINUM A7"
+        },
+        {
+          id: "houston",
+          label: "Houston",
+          name: "HOUSTON (USA)",
+          lat: 29.76, lon: -95.37,
+          status: "ACTIVE",
+          incoterms: "INCOTERMS: FOB HOUSTON • CIF AMERICAS",
+          focus: "CARGO: JET FUEL A1, D6 VIRGIN FUEL OIL, EN590"
+        },
+        {
+          id: "india",
+          label: "India HQ",
+          name: "BHUBANESWAR (INDIA COMMAND HQ)",
+          lat: 20.30, lon: 85.82,
+          status: "HQ DESK",
+          incoterms: "ENTITY: EMPR EXPORTS PVT. LTD. (CIN: U46303OD2024PTC045525)",
+          focus: "ROLE: GLOBAL TRADE GOVERNANCE, COMPLIANCE & REFINERY MANDATES"
+        }
+      ];
+
+      // Convert lat/lon to 3D sphere vector
+      function latLonToVec3(lat, lon, radius) {
+        const phi = (90 - lat) * (Math.PI / 180);
+        const theta = (lon + 180) * (Math.PI / 180);
+        return new THREE.Vector3(
+          -radius * Math.sin(phi) * Math.cos(theta),
+          radius * Math.cos(phi),
+          radius * Math.sin(phi) * Math.sin(theta)
+        );
+      }
+
+      // Procedural high-contrast Earth fallback canvas texture
+      function createFallbackEarthTexture() {
+        const c = document.createElement("canvas");
+        c.width = 1024;
+        c.height = 512;
+        const g = c.getContext("2d");
+        const grad = g.createLinearGradient(0, 0, 0, 512);
+        grad.addColorStop(0, "#0a1628");
+        grad.addColorStop(0.5, "#0d223d");
+        grad.addColorStop(1, "#091424");
+        g.fillStyle = grad;
+        g.fillRect(0, 0, 1024, 512);
+        // Subtle lat/lon graticules
+        g.strokeStyle = "rgba(212, 175, 55, 0.12)";
+        g.lineWidth = 1;
+        for (let x = 0; x <= 1024; x += 64) {
+          g.beginPath(); g.moveTo(x, 0); g.lineTo(x, 512); g.stroke();
+        }
+        for (let y = 0; y <= 512; y += 64) {
+          g.beginPath(); g.moveTo(0, y); g.lineTo(1024, y); g.stroke();
+        }
+        return new THREE.CanvasTexture(c);
+      }
+
+      const scene = new THREE.Scene();
+      const width = container.clientWidth || 500;
+      const height = container.clientHeight || 360;
+      const camera = new THREE.PerspectiveCamera(42, width / height, 0.1, 1000);
+      camera.position.z = 3.15;
+
+      const renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
+      renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+      renderer.setSize(width, height);
+      container.innerHTML = "";
+      container.appendChild(renderer.domElement);
+
+      // Lighting (Neutral daylight for crisp satellite map clarity; golden rim light removed)
+      scene.add(new THREE.AmbientLight(0xeef4ff, 0.88));
+      const sunLight = new THREE.DirectionalLight(0xffffff, 1.25);
+      sunLight.position.set(5, 3, 5);
+      scene.add(sunLight);
+      const fillLight = new THREE.DirectionalLight(0xbfd8ff, 0.35);
+      fillLight.position.set(-5, -2, -4);
+      scene.add(fillLight);
+
+      // Starfield
+      const starGeo = new THREE.BufferGeometry();
+      const starVerts = [];
+      for (let i = 0; i < 650; i++) {
+        const r = 12 + Math.random() * 18;
+        const theta = Math.random() * Math.PI * 2;
+        const phi = Math.acos(2 * Math.random() - 1);
+        starVerts.push(r * Math.sin(phi) * Math.cos(theta), r * Math.cos(phi), r * Math.sin(phi) * Math.sin(theta));
+      }
+      starGeo.setAttribute("position", new THREE.Float32BufferAttribute(starVerts, 3));
+      const stars = new THREE.Points(starGeo, new THREE.PointsMaterial({ color: 0xf5d78e, size: 0.05, transparent: true, opacity: 0.55 }));
+      scene.add(stars);
+
+      const globeGroup = new THREE.Group();
+      scene.add(globeGroup);
+
+      const RADIUS = 1.08;
+      const maxAnisotropy = renderer.capabilities.getMaxAnisotropy();
+      const texLoader = new THREE.TextureLoader();
+      texLoader.setCrossOrigin("anonymous");
+
+      const earthMat = new THREE.MeshPhongMaterial({
+        map: createFallbackEarthTexture(),
+        specular: new THREE.Color(0x3b6ea5),
+        shininess: 26
+      });
+
+      // Load high-detail satellite Earth maps (albedo + terrain relief + ocean specular mask)
+      texLoader.load(
+        "https://unpkg.com/three-globe/example/img/earth-blue-marble.jpg",
+        (tex) => {
+          tex.anisotropy = maxAnisotropy;
+          earthMat.map = tex;
+          earthMat.needsUpdate = true;
+        }
+      );
+      texLoader.load(
+        "https://unpkg.com/three-globe/example/img/earth-topology.png",
+        (bump) => {
+          bump.anisotropy = maxAnisotropy;
+          earthMat.bumpMap = bump;
+          earthMat.bumpScale = 0.05;
+          earthMat.needsUpdate = true;
+        }
+      );
+      texLoader.load(
+        "https://unpkg.com/three-globe/example/img/earth-water.png",
+        (spec) => {
+          spec.anisotropy = maxAnisotropy;
+          earthMat.specularMap = spec;
+          earthMat.needsUpdate = true;
+        }
+      );
+
+      const earthMesh = new THREE.Mesh(new THREE.SphereGeometry(RADIUS, 96, 96), earthMat);
+      globeGroup.add(earthMesh);
+
+      // Subtle Rotating Cloud Layer (kept light so surface detail stays sharp)
+      const cloudMat = new THREE.MeshPhongMaterial({
+        transparent: true,
+        opacity: 0.14,
+        depthWrite: false
+      });
+      texLoader.load(
+        "https://unpkg.com/three-globe/example/img/earth-clouds.png",
+        (cloudTex) => {
+          cloudTex.anisotropy = maxAnisotropy;
+          cloudMat.map = cloudTex;
+          cloudMat.needsUpdate = true;
+        }
+      );
+      const cloudMesh = new THREE.Mesh(new THREE.SphereGeometry(RADIUS * 1.01, 64, 64), cloudMat);
+      globeGroup.add(cloudMesh);
+
+      // (Golden Atmospheric Fresnel Rim removed — hub markers & corridor arcs remain active below)
+
+      // Hub Markers & Animated Trade Corridor Arcs
+      const hubVecs = {};
+      HUBS.forEach(h => {
+        const pos = latLonToVec3(h.lat, h.lon, RADIUS * 1.018);
+        hubVecs[h.id] = pos;
+        const marker = new THREE.Mesh(
+          new THREE.SphereGeometry(h.id === "poti" || h.id === "africa" ? 0.028 : 0.021, 16, 16),
+          new THREE.MeshBasicMaterial({ color: h.id === "poti" ? 0xf5d78e : 0xd4af37 })
+        );
+        marker.position.copy(pos);
+        globeGroup.add(marker);
+      });
+
+      const ROUTES = [
+        ["poti", "dubai"],
+        ["poti", "rotterdam"],
+        ["poti", "singapore"],
+        ["poti", "qingdao"],
+        ["africa", "dubai"],
+        ["africa", "rotterdam"],
+        ["dubai", "india"],
+        ["dubai", "houston"],
+        ["dubai", "singapore"]
+      ];
+
+      const routePulses = [];
+      ROUTES.forEach(([fromId, toId], idx) => {
+        const start = hubVecs[fromId];
+        const end = hubVecs[toId];
+        if (!start || !end) return;
+        const mid = start.clone().add(end).multiplyScalar(0.5);
+        const dist = start.distanceTo(end);
+        mid.normalize().multiplyScalar(RADIUS + dist * 0.34);
+
+        const curve = new THREE.QuadraticBezierCurve3(start, mid, end);
+        const pts = curve.getPoints(48);
+        const lineGeo = new THREE.BufferGeometry().setFromPoints(pts);
+        const lineMat = new THREE.LineBasicMaterial({ color: 0xd4af37, transparent: true, opacity: 0.55 });
+        globeGroup.add(new THREE.Line(lineGeo, lineMat));
+
+        const pulse = new THREE.Mesh(
+          new THREE.SphereGeometry(0.014, 10, 10),
+          new THREE.MeshBasicMaterial({ color: 0xfff3c4 })
+        );
+        globeGroup.add(pulse);
+        routePulses.push({ curve, mesh: pulse, t: (idx * 0.14) % 1 });
+      });
+
+      // Render Hub Selector Pills
+      const pillsEl = document.getElementById("hub-pills");
+      let targetRotY = -2.25;
+      let targetRotX = 0.38;
+      let manualTargetActive = false;
+
+      function selectHub(hub) {
+        document.getElementById("hub-name").textContent = hub.name;
+        document.getElementById("hub-status").textContent = hub.status;
+        document.getElementById("hub-incoterms").textContent = hub.incoterms;
+        document.getElementById("hub-focus").textContent = hub.focus;
+
+        // Rotate globe smoothly toward selected hub
+        targetRotY = -(hub.lon * Math.PI) / 180 - Math.PI / 2;
+        targetRotX = Math.max(-0.8, Math.min(0.8, (hub.lat * Math.PI) / 180));
+        manualTargetActive = true;
+
+        if (pillsEl) {
+          pillsEl.querySelectorAll("button").forEach(b => {
+            const isAct = b.dataset.hubId === hub.id;
+            b.className = isAct
+              ? "px-2.5 py-1 rounded-lg font-mono text-[10px] uppercase bg-gold text-obsidian font-bold transition-all"
+              : "px-2.5 py-1 rounded-lg font-mono text-[10px] uppercase bg-obsidianCard border border-gold/25 text-gray-300 hover:border-gold/60 transition-all";
+          });
+        }
+      }
+
+      if (pillsEl) {
+        pillsEl.innerHTML = HUBS.map((h, i) => `
+          <button type="button" data-hub-id="${h.id}" data-sound="click"
+                  class="${i === 0 ? "px-2.5 py-1 rounded-lg font-mono text-[10px] uppercase bg-gold text-obsidian font-bold" : "px-2.5 py-1 rounded-lg font-mono text-[10px] uppercase bg-obsidianCard border border-gold/25 text-gray-300 hover:border-gold/60"} transition-all">
+            ${h.label}
+          </button>
+        `).join("");
+        pillsEl.querySelectorAll("button").forEach(btn => {
+          btn.addEventListener("click", () => {
+            const found = HUBS.find(h => h.id === btn.dataset.hubId);
+            if (found) selectHub(found);
+          });
+        });
+      }
+
+      // Initial focus on Poti / Kazakhstan / Dubai corridor
+      globeGroup.rotation.y = targetRotY;
+      globeGroup.rotation.x = targetRotX;
+
+      // Drag Controls (Mouse & Touch)
+      let isDragging = false;
+      let prevX = 0, prevY = 0;
+
+      const onDown = (x, y) => { isDragging = true; manualTargetActive = false; prevX = x; prevY = y; };
+      const onMove = (x, y) => {
+        if (!isDragging) return;
+        const dx = x - prevX;
+        const dy = y - prevY;
+        globeGroup.rotation.y += dx * 0.006;
+        globeGroup.rotation.x = Math.max(-1.05, Math.min(1.05, globeGroup.rotation.x + dy * 0.005));
+        prevX = x;
+        prevY = y;
+      };
+      const onUp = () => { isDragging = false; };
+
+      renderer.domElement.addEventListener("mousedown", (e) => onDown(e.clientX, e.clientY));
+      window.addEventListener("mousemove", (e) => onMove(e.clientX, e.clientY));
+      window.addEventListener("mouseup", onUp);
+
+      renderer.domElement.addEventListener("touchstart", (e) => {
+        if (e.touches.length === 1) onDown(e.touches[0].clientX, e.touches[0].clientY);
+      }, { passive: true });
+      renderer.domElement.addEventListener("touchmove", (e) => {
+        if (e.touches.length === 1) onMove(e.touches[0].clientX, e.touches[0].clientY);
+      }, { passive: true });
+      renderer.domElement.addEventListener("touchend", onUp);
+
+      window.addEventListener("resize", () => {
+        const nw = container.clientWidth;
+        const nh = container.clientHeight;
+        if (!nw || !nh) return;
+        camera.aspect = nw / nh;
+        camera.updateProjectionMatrix();
+        renderer.setSize(nw, nh);
+      });
+
+      function animate() {
+        requestAnimationFrame(animate);
+        cloudMesh.rotation.y += 0.00045;
+        stars.rotation.y -= 0.00015;
+
+        if (!isDragging) {
+          if (manualTargetActive) {
+            globeGroup.rotation.y += (targetRotY - globeGroup.rotation.y) * 0.06;
+            globeGroup.rotation.x += (targetRotX - globeGroup.rotation.x) * 0.06;
+            if (Math.abs(targetRotY - globeGroup.rotation.y) < 0.008 && Math.abs(targetRotX - globeGroup.rotation.x) < 0.008) {
+              manualTargetActive = false;
+            }
+          } else {
+            globeGroup.rotation.y += 0.0018;
+          }
+        }
+
+        routePulses.forEach(p => {
+          p.t = (p.t + 0.0045) % 1;
+          p.mesh.position.copy(p.curve.getPoint(p.t));
+        });
+
+        renderer.render(scene, camera);
+      }
+      animate();
+    }
+
+    // =========================================================================
+    // 15. UI MICRO-INTERACTIONS (REVEAL, SCRAMBLE, MAGNETIC, MOBILE MENU)
+    // =========================================================================
+    function scrambleElement(el) {
+      const target = el.dataset.text || el.textContent;
+      const chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789#/";
+      let iter = 0;
+      const timer = setInterval(() => {
+        el.textContent = target.split("").map((ch, idx) => {
+          if (ch === " ") return " ";
+          if (idx < iter) return target[idx];
+          return chars[Math.floor(Math.random() * chars.length)];
+        }).join("");
+        iter += 0.65;
+        if (iter >= target.length) {
+          el.textContent = target;
+          clearInterval(timer);
+        }
+      }, 24);
+    }
+
+    function initUiAndEffects() {
+      const yearEl = document.getElementById("footer-year");
+      if (yearEl) yearEl.textContent = String(new Date().getFullYear());
+
+      // Mobile menu toggle
+      const mobileBtn = document.getElementById("mobile-menu-btn");
+      const mobileMenu = document.getElementById("mobile-menu");
+      if (mobileBtn && mobileMenu) {
+        mobileBtn.addEventListener("click", () => mobileMenu.classList.toggle("hidden"));
+        document.querySelectorAll(".mobile-nav-link").forEach(link => {
+          link.addEventListener("click", () => mobileMenu.classList.add("hidden"));
+        });
+      }
+
+      // Scroll reveal + scramble headings
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add("visible");
+            entry.target.querySelectorAll(".scramble-text").forEach(h => {
+              if (!h.dataset.scrambled) {
+                h.dataset.scrambled = "1";
+                scrambleElement(h);
+              }
+            });
+            observer.unobserve(entry.target);
+          }
+        });
+      }, { threshold: 0.12 });
+
+      document.querySelectorAll(".reveal").forEach(el => observer.observe(el));
+
+      // Subtle magnetic button pull
+      document.querySelectorAll(".magnetic-btn").forEach(btn => {
+        btn.addEventListener("mousemove", (e) => {
+          const r = btn.getBoundingClientRect();
+          const dx = (e.clientX - r.left - r.width / 2) * 0.14;
+          const dy = (e.clientY - r.top - r.height / 2) * 0.14;
+          btn.style.transform = `translate(${dx}px, ${dy}px)`;
+        });
+        btn.addEventListener("mouseleave", () => {
+          btn.style.transform = "translate(0px, 0px)";
+        });
+      });
+    }
+
+    // =========================================================================
+    // 16. BOOT TERMINAL
+    // =========================================================================
+    updateGlobalClocks();
+    setInterval(updateGlobalClocks, 1000);
+    renderTicker();
+    renderCommodities();
+    renderProcedures();
+    initBackgroundCanvas();
+    initEarthGlobe();
+    initUiAndEffects();
+    initFirestoreSync();
+  </script>
+</body>
+</html>
