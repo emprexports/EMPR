@@ -254,68 +254,57 @@
     </div>
 
     <!-- =================================================================== -->
-    <!-- 2. SOVEREIGN NAVIGATION BAR                                         -->
+    <!-- 2. SOVEREIGN COMMAND NAVBAR                                         -->
     <!-- =================================================================== -->
-    <nav class="border-t border-white/5 bg-[#050507]/85 backdrop-blur-xl">
+    <nav class="border-t border-gold/15 bg-[#050507]/90 backdrop-blur-xl">
       <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between gap-4">
-        <!-- Brand Mark -->
-        <a href="#top" class="flex items-center gap-3 group shrink-0" data-sound="click">
-          <div class="relative w-10 h-10 rounded-lg overflow-hidden border border-gold/40 bg-obsidianCard flex items-center justify-center shadow-lg">
+        <!-- Brand Emblem & Wordmark -->
+        <a href="#corridors" class="flex items-center gap-3 group shrink-0">
+          <div class="w-10 h-10 rounded-xl overflow-hidden border border-gold/50 bg-obsidianCard flex items-center justify-center shadow-lg group-hover:border-gold transition-colors">
             <img src="Logo.jpg" alt="EMPR Exports Logo" class="w-full h-full object-cover"
                  onerror="this.style.display='none'; this.nextElementSibling.classList.remove('hidden');" />
-            <div class="hidden w-full h-full flex items-center justify-center bg-gradient-to-br from-[#1b1507] to-[#050507]">
-              <svg class="w-6 h-6 text-gold" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6">
-                <path d="M12 2L3 7v6c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V7l-9-5z"/>
-                <path d="M12 7l4 5-4 5-4-5 4-5z" fill="currentColor" fill-opacity="0.25"/>
-              </svg>
-            </div>
+            <span class="hidden font-display font-bold text-lg text-gold-gradient">E</span>
           </div>
           <div>
-            <div class="font-display text-sm sm:text-base font-bold tracking-[0.18em] text-gold-gradient leading-none">EMPR EXPORTS</div>
-            <div class="font-mono text-[9px] sm:text-[10px] tracking-[0.26em] text-gray-400 uppercase mt-0.5">TRADE OF TRUST</div>
+            <div class="font-display text-sm sm:text-base font-bold tracking-[0.2em] text-gold-gradient leading-none">EMPR EXPORTS</div>
+            <div class="font-mono text-[9px] tracking-[0.28em] text-gray-400 mt-1 uppercase">TRADE OF TRUST</div>
           </div>
         </a>
 
-        <!-- Desktop Links -->
-        <div class="hidden lg:flex items-center gap-7 text-xs font-medium tracking-[0.16em] uppercase text-gray-300">
-          <a href="#corridors" class="hover:text-gold-light transition-colors" data-sound="hover">Corridors</a>
-          <a href="#commodities" class="hover:text-gold-light transition-colors" data-sound="hover">Commodities</a>
-          <a href="#procedures" class="hover:text-gold-light transition-colors" data-sound="hover">Procedures</a>
-          <a href="#executive" class="hover:text-gold-light transition-colors" data-sound="hover">Executive</a>
-          <a href="#vault" class="hover:text-gold-light transition-colors" data-sound="hover">Mandate Vault</a>
-          <a href="#contact" class="hover:text-gold-light transition-colors" data-sound="hover">Contact</a>
+        <!-- Desktop Navigation Links -->
+        <div class="hidden lg:flex items-center gap-6 font-mono text-[11px] tracking-[0.18em] text-gray-300 uppercase">
+          <a href="#corridors" class="hover:text-gold-light transition-colors">Corridors</a>
+          <a href="#commodities" class="hover:text-gold-light transition-colors">Commodity Desk</a>
+          <a href="#procedures" class="hover:text-gold-light transition-colors">Protocols</a>
+          <a href="#executive" class="hover:text-gold-light transition-colors">Executive</a>
+          <a href="#contact" class="hover:text-gold-light transition-colors">Registry</a>
+          <a href="#vault" class="hover:text-gold-light transition-colors">Associates Vault</a>
         </div>
 
-        <!-- Right Controls: Sound Toggle + Admin Desk + Mobile Menu -->
+        <!-- Right Controls: Audio Toggle, Admin Desk, Mobile Hamburger -->
         <div class="flex items-center gap-2 sm:gap-3">
-          <!-- Tactical Audio FX Toggle -->
-          <button id="sound-toggle-btn" type="button" title="Toggle Tactical UI Audio"
-                  class="flex items-center gap-1.5 px-2.5 py-1.5 rounded-lg border border-gold/25 bg-obsidianCard/80 hover:border-gold/60 text-xs font-mono text-gray-300 transition-all">
-            <svg id="sound-icon-on" class="w-3.5 h-3.5 text-gold hidden" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <button id="sound-toggle-btn" type="button"
+                  class="px-2.5 sm:px-3 py-2 rounded-lg border border-gold/25 bg-obsidianCard text-gray-300 hover:border-gold/60 hover:text-gold-light font-mono text-[10px] tracking-widest uppercase inline-flex items-center gap-1.5 transition-all">
+            <svg id="sound-icon-on" class="hidden w-3.5 h-3.5 text-gold-light" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
               <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon>
               <path d="M15.54 8.46a5 5 0 0 1 0 7.07"></path>
               <path d="M19.07 4.93a10 10 0 0 1 0 14.14"></path>
             </svg>
-            <svg id="sound-icon-off" class="w-3.5 h-3.5 text-gray-500" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <svg id="sound-icon-off" class="w-3.5 h-3.5 text-gray-400" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
               <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon>
               <line x1="23" y1="9" x2="17" y2="15"></line>
               <line x1="17" y1="9" x2="23" y2="15"></line>
             </svg>
-            <span id="sound-label" class="hidden sm:inline text-[10px] tracking-widest">SFX OFF</span>
+            <span id="sound-label" class="hidden sm:inline">SFX OFF</span>
           </button>
 
-          <!-- Discreet Admin Desk Lock Button -->
           <button id="open-admin-btn" type="button" data-sound="click"
-                  class="flex items-center gap-1.5 px-3 py-1.5 rounded-lg border border-gold/35 bg-gold/10 hover:bg-gold/20 text-gold-light font-mono text-[10px] sm:text-xs tracking-wider uppercase transition-all">
-            <svg class="w-3.5 h-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-              <rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect>
-              <path d="M7 11V7a5 5 0 0 1 10 0v4"></path>
-            </svg>
-            <span class="hidden sm:inline">ADMIN DESK</span>
+                  class="px-3 sm:px-4 py-2 rounded-lg border border-gold/45 bg-gold/10 hover:bg-gold/20 text-gold-light font-mono text-[10px] sm:text-[11px] font-semibold tracking-widest uppercase transition-all">
+            ADMIN DESK
           </button>
 
-          <!-- Mobile Hamburger -->
-          <button id="mobile-menu-btn" type="button" class="lg:hidden p-2 rounded-lg border border-gold/25 text-gold-light">
+          <button id="mobile-menu-btn" type="button" aria-label="Toggle Menu"
+                  class="lg:hidden p-2 rounded-lg border border-gold/30 text-gold-light hover:bg-gold/10">
             <svg class="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
               <line x1="3" y1="6" x2="21" y2="6"></line>
               <line x1="3" y1="12" x2="21" y2="12"></line>
@@ -326,170 +315,182 @@
       </div>
 
       <!-- Mobile Dropdown Menu -->
-      <div id="mobile-menu" class="hidden lg:hidden border-t border-gold/20 bg-[#07080B]/95 px-4 py-4 space-y-3 font-mono text-xs uppercase tracking-widest">
-        <a href="#corridors" class="block py-2 text-gray-300 hover:text-gold-light mobile-nav-link">01 // Trade Corridors</a>
-        <a href="#commodities" class="block py-2 text-gray-300 hover:text-gold-light mobile-nav-link">02 // Commodities Matrix</a>
-        <a href="#procedures" class="block py-2 text-gray-300 hover:text-gold-light mobile-nav-link">03 // FOB / CIF Procedures</a>
-        <a href="#executive" class="block py-2 text-gray-300 hover:text-gold-light mobile-nav-link">04 // Executive Dossier</a>
-        <a href="#vault" class="block py-2 text-gray-300 hover:text-gold-light mobile-nav-link">05 // Mandate Vault</a>
-        <a href="#contact" class="block py-2 text-gray-300 hover:text-gold-light mobile-nav-link">06 // Corporate Registry</a>
+      <div id="mobile-menu" class="hidden lg:hidden border-t border-gold/15 bg-[#07080B]/95 px-4 py-4 space-y-2 font-mono text-xs uppercase tracking-widest">
+        <a href="#corridors" class="mobile-nav-link block py-2 text-gray-200 hover:text-gold-light">01 // Trade Corridors</a>
+        <a href="#commodities" class="mobile-nav-link block py-2 text-gray-200 hover:text-gold-light">02 // Commodity Desk</a>
+        <a href="#procedures" class="mobile-nav-link block py-2 text-gray-200 hover:text-gold-light">03 // Transaction Protocols</a>
+        <a href="#executive" class="mobile-nav-link block py-2 text-gray-200 hover:text-gold-light">04 // Executive Dossier</a>
+        <a href="#contact" class="mobile-nav-link block py-2 text-gray-200 hover:text-gold-light">05 // Corporate Registry</a>
+        <a href="#vault" class="mobile-nav-link block py-2 text-gold-light">06 // Associates Vault</a>
       </div>
     </nav>
   </div>
 
-  <!-- Main Content Wrapper -->
-  <main id="top" class="relative z-10 pt-28">
+  <!-- ===================================================================== -->
+  <!-- MAIN SOVEREIGN TERMINAL CONTENT                                       -->
+  <!-- ===================================================================== -->
+  <main class="relative z-10 pt-24 sm:pt-28">
 
     <!-- =================================================================== -->
-    <!-- 3. HERO SECTION + INTERACTIVE 3D GLOBAL TRADE CORRIDOR GLOBE        -->
+    <!-- 3. HERO COMMAND CENTER + PHOTOREALISTIC 3D EARTH GLOBE              -->
     <!-- =================================================================== -->
-    <section id="corridors" class="relative min-h-[86vh] flex items-center py-10 lg:py-16">
-      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full">
+    <section id="corridors" class="relative py-12 sm:py-16 lg:py-20 overflow-hidden">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div class="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-8 items-center">
-
-          <!-- Left Column: Sovereign Authority Positioning -->
+          <!-- Left: Command Copy & Sovereign KPIs -->
           <div class="lg:col-span-6 space-y-6">
-            <!-- Live CIN Badge -->
-            <div class="inline-flex flex-wrap items-center gap-2.5 px-3.5 py-1.5 rounded-full border border-gold/35 bg-gold/10 backdrop-blur-md">
-              <span class="w-2 h-2 rounded-full bg-gold animate-pulse"></span>
-              <span class="font-mono text-[10px] sm:text-xs tracking-[0.14em] text-gold-light uppercase">
-                CIN: U46303OD2024PTC045525 <span class="text-gold/50 mx-1">|</span> EST. APRIL 2024
+            <div class="inline-flex items-center gap-2.5 px-3.5 py-1.5 rounded-full bg-gold/10 border border-gold/35">
+              <span class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
+              <span class="font-mono text-[10px] sm:text-[11px] tracking-[0.22em] text-gold-light uppercase">
+                SOVEREIGN PHYSICAL COMMODITY DESK // EST. 2024
               </span>
             </div>
 
-            <!-- Sovereign Scramble Headline -->
-            <div class="space-y-2">
-              <p class="font-mono text-xs tracking-[0.35em] text-gold uppercase">EMPR EXPORTS PRIVATE LIMITED</p>
-              <h1 class="scramble-text font-display text-3xl sm:text-5xl xl:text-[3.35rem] font-bold leading-[1.1] tracking-wide text-white"
-                  data-text="GLOBAL ENERGY & COMMODITY SYNDICATE">
-                GLOBAL ENERGY &amp; COMMODITY SYNDICATE
-              </h1>
-              <div class="flex items-center gap-3 pt-1">
-                <span class="h-[1px] w-12 bg-gradient-to-r from-gold to-transparent"></span>
-                <span class="font-display text-lg sm:text-xl tracking-[0.28em] text-gold-gradient font-semibold uppercase">
-                  "TRADE OF TRUST"
-                </span>
-              </div>
-            </div>
+            <h1 class="font-display text-4xl sm:text-5xl lg:text-6xl font-bold tracking-tight text-white leading-[1.08]">
+              GLOBAL ENERGY, <span class="text-gold-gradient">SULFUR</span> &amp; BULLION CORRIDORS
+            </h1>
 
-            <!-- High-Authority Positioning Copy -->
             <p class="text-sm sm:text-base text-gray-300 leading-relaxed max-w-xl">
-              Direct refinery mandates and sovereign-grade physical allocations across the world's most strategic maritime and aviation corridors. Headquartered in India with global correspondence through Dubai, we lead with <span class="text-gold-light font-semibold">Bright Yellow Granular Sulfur</span> alongside <span class="text-gold-light font-medium">EN590, African Gold Bullion &amp; AU Dor&eacute;, Jet A1, D6, Bitumen, Urea, and Industrial Metals</span> verified under SGS, Intertek, and Bureau Veritas protocols.
+              <strong class="text-gold-light">EMPR Exports Private Limited</strong> bridges direct refinery allocations and African bullion corridors with financially vetted end-buyers worldwide — anchored by SGS, Intertek, and Bureau Veritas verification.
             </p>
 
-            <!-- Magnetic CTA Buttons -->
-            <div class="flex flex-wrap items-center gap-4 pt-2">
+            <div class="flex flex-wrap gap-3 pt-2">
               <a href="#commodities" data-sound="click"
-                 class="magnetic-btn btn-gold px-7 py-3.5 rounded-xl text-xs sm:text-sm uppercase inline-flex items-center gap-2.5 shadow-xl">
-                <span>Explore Allocations</span>
-                <svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4">
+                 class="magnetic-btn btn-gold px-6 py-3.5 rounded-xl text-xs uppercase tracking-widest inline-flex items-center gap-2">
+                <span>Explore Commodity Desk</span>
+                <svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2">
                   <line x1="5" y1="12" x2="19" y2="12"></line>
                   <polyline points="12 5 19 12 12 19"></polyline>
                 </svg>
               </a>
-              <button type="button" onclick="openRfqDrawer(null)" data-sound="click"
-                      class="magnetic-btn btn-obsidian px-7 py-3.5 rounded-xl text-xs sm:text-sm uppercase inline-flex items-center gap-2.5">
-                <svg class="w-4 h-4 text-gold" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                  <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
-                  <polyline points="14 2 14 8 20 8"></polyline>
-                  <line x1="16" y1="13" x2="8" y2="13"></line>
-                  <line x1="16" y1="17" x2="8" y2="17"></line>
-                </svg>
-                <span>Submit Verified RFQ</span>
+              <button type="button" onclick="openRfqDrawer('sulfur')" data-sound="click"
+                      class="magnetic-btn btn-obsidian px-6 py-3.5 rounded-xl text-xs font-mono uppercase tracking-widest">
+                Request Allocation (RFQ)
               </button>
             </div>
 
-            <!-- Key Sovereign Metrics -->
-            <div class="grid grid-cols-3 gap-3 sm:gap-4 pt-4 border-t border-gold/15 max-w-xl">
-              <div>
-                <div class="font-mono text-lg sm:text-2xl font-bold text-gold-light">09</div>
-                <div class="font-mono text-[10px] tracking-widest text-gray-400 uppercase mt-0.5">Core Commodities</div>
+            <!-- Institutional Telemetry KPIs -->
+            <div class="grid grid-cols-3 gap-3 pt-4 border-t border-gold/15">
+              <div class="p-3.5 rounded-xl bg-obsidianCard/80 border border-gold/20">
+                <div class="font-display text-xl sm:text-2xl font-bold text-gold-light">09</div>
+                <div class="font-mono text-[10px] text-gray-400 uppercase tracking-wider mt-0.5">Active Commodities</div>
               </div>
-              <div>
-                <div class="font-mono text-lg sm:text-2xl font-bold text-gold-light">08</div>
-                <div class="font-mono text-[10px] tracking-widest text-gray-400 uppercase mt-0.5">Active Port Hubs</div>
+              <div class="p-3.5 rounded-xl bg-obsidianCard/80 border border-gold/20">
+                <div class="font-display text-xl sm:text-2xl font-bold text-gold-light">08</div>
+                <div class="font-mono text-[10px] text-gray-400 uppercase tracking-wider mt-0.5">Global Port Hubs</div>
               </div>
-              <div>
-                <div class="font-mono text-lg sm:text-2xl font-bold text-gold-light">100%</div>
-                <div class="font-mono text-[10px] tracking-widest text-gray-400 uppercase mt-0.5">SGS / Intertek Q&amp;Q</div>
+              <div class="p-3.5 rounded-xl bg-obsidianCard/80 border border-gold/20">
+                <div class="font-display text-xl sm:text-2xl font-bold text-emerald-400">100%</div>
+                <div class="font-mono text-[10px] text-gray-400 uppercase tracking-wider mt-0.5">SGS / Intertek Q&amp;Q</div>
               </div>
             </div>
           </div>
 
-          <!-- Right Column: Interactive Three.js 3D Global Trade Corridor Globe -->
+          <!-- Right: Interactive Photorealistic 3D Earth Globe HUD -->
           <div class="lg:col-span-6">
             <div class="hud-panel rounded-2xl p-4 sm:p-5 relative overflow-hidden">
-              <!-- HUD Top Bar -->
-              <div class="flex items-center justify-between border-b border-gold/15 pb-3 mb-2">
+              <div class="flex items-center justify-between gap-2 pb-3 border-b border-gold/15">
                 <div class="flex items-center gap-2">
-                  <span class="w-2 h-2 rounded-full bg-gold animate-ping"></span>
-                  <span class="font-mono text-[10px] sm:text-xs tracking-[0.2em] text-gold-light uppercase">MARITIME CORRIDOR TELEMETRY</span>
+                  <span class="w-2 h-2 rounded-full bg-gold animate-pulse"></span>
+                  <span class="font-mono text-[10px] tracking-[0.22em] text-gold-light uppercase">3D GLOBAL TRADE CORRIDOR TELEMETRY</span>
                 </div>
-                <span class="font-mono text-[10px] text-gray-400">DRAG TO ROTATE // 3D WEBGL</span>
+                <span class="font-mono text-[10px] text-gray-400">DRAG TO ROTATE</span>
               </div>
 
-              <!-- 3D Globe Canvas Mount -->
-              <div id="globe-container" class="relative w-full h-[320px] sm:h-[400px] lg:h-[430px] rounded-xl overflow-hidden bg-[radial-gradient(circle_at_center,rgba(212,175,55,0.12)_0%,rgba(5,5,7,0.95)_70%)]">
-                <!-- Overlay Active Hub Telemetry Card -->
-                <div id="hub-telemetry-overlay" class="absolute bottom-3 left-3 right-3 sm:right-auto sm:max-w-xs bg-[#050507]/85 border border-gold/35 backdrop-blur-md rounded-xl p-3 pointer-events-none">
-                  <div class="flex items-center justify-between gap-2">
-                    <span id="hub-name" class="font-display text-xs sm:text-sm font-bold text-gold-light tracking-wider">KAZAKHSTAN / POTI (GEORGIA)</span>
-                    <span id="hub-status" class="font-mono text-[9px] px-2 py-0.5 rounded bg-emerald-500/20 text-emerald-300 border border-emerald-500/40">FLAGSHIP</span>
-                  </div>
-                  <div id="hub-incoterms" class="font-mono text-[10px] text-gray-300 mt-1">INCOTERMS: FOB POTI / CIF WORLDWIDE</div>
-                  <div id="hub-focus" class="font-mono text-[10px] text-gold/80 mt-0.5">CARGO: GRANULAR SULFUR (PRIMARY), EN590, JET A1</div>
-                </div>
+              <!-- Three.js Canvas Mount -->
+              <div id="globe-container" class="w-full h-[320px] sm:h-[390px] relative"></div>
+
+              <!-- Interactive Hub Selector Pills -->
+              <div id="hub-pills" class="flex flex-wrap gap-1.5 pt-3 border-t border-gold/15">
+                <!-- Populated by JS -->
               </div>
 
-              <!-- Clickable Hub Selector Pills -->
-              <div id="hub-pills" class="flex flex-wrap gap-1.5 mt-3 pt-3 border-t border-gold/15">
-                <!-- Generated by JS -->
+              <!-- Active Hub Telemetry Readout -->
+              <div class="mt-3 p-3.5 rounded-xl bg-obsidian/90 border border-gold/25 font-mono text-xs space-y-1.5">
+                <div class="flex items-center justify-between gap-2">
+                  <span id="hub-name" class="text-white font-semibold tracking-wider">KAZAKHSTAN / POTI (GEORGIA)</span>
+                  <span id="hub-status" class="text-[10px] px-2 py-0.5 rounded bg-gold/15 border border-gold/40 text-gold-light uppercase">FLAGSHIP</span>
+                </div>
+                <div id="hub-incoterms" class="text-[11px] text-gold-light">INCOTERMS: FOB POTI / SOHAR &bull; CIF WORLDWIDE</div>
+                <div id="hub-focus" class="text-[11px] text-gray-400">CARGO: GRANULAR SULFUR (PRIMARY), EN590, JET A1, D6</div>
               </div>
             </div>
           </div>
-
         </div>
       </div>
     </section>
 
     <!-- =================================================================== -->
-    <!-- 4. LIVE GLOBAL TRADING DESK CLOCKS BAR                              -->
+    <!-- 4. LIVE GLOBAL TRADING DESK CLOCKS                                  -->
     <!-- =================================================================== -->
-    <section class="py-5 border-y border-gold/20 bg-[#08090D]/90 backdrop-blur-md">
+    <section class="border-y border-gold/15 bg-[#07080C]/85 py-4">
       <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-3 sm:gap-4" id="global-clocks-grid">
-          <!-- Populated & ticked every second by JS -->
+        <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-3 font-mono">
+          <div class="px-3.5 py-2.5 rounded-xl bg-obsidianCard/80 border border-gold/15 flex items-center justify-between">
+            <div>
+              <div class="text-[10px] text-gray-400 uppercase">DUBAI (GST)</div>
+              <div id="clock-dubai" class="text-sm font-semibold text-gold-light">--:--:--</div>
+            </div>
+            <span class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
+          </div>
+          <div class="px-3.5 py-2.5 rounded-xl bg-obsidianCard/80 border border-gold/15 flex items-center justify-between">
+            <div>
+              <div class="text-[10px] text-gray-400 uppercase">ROTTERDAM (CET)</div>
+              <div id="clock-rotterdam" class="text-sm font-semibold text-gold-light">--:--:--</div>
+            </div>
+            <span class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
+          </div>
+          <div class="px-3.5 py-2.5 rounded-xl bg-obsidianCard/80 border border-gold/15 flex items-center justify-between">
+            <div>
+              <div class="text-[10px] text-gray-400 uppercase">SINGAPORE (SGT)</div>
+              <div id="clock-singapore" class="text-sm font-semibold text-gold-light">--:--:--</div>
+            </div>
+            <span class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
+          </div>
+          <div class="px-3.5 py-2.5 rounded-xl bg-obsidianCard/80 border border-gold/15 flex items-center justify-between">
+            <div>
+              <div class="text-[10px] text-gray-400 uppercase">HOUSTON (CST)</div>
+              <div id="clock-houston" class="text-sm font-semibold text-gold-light">--:--:--</div>
+            </div>
+            <span class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
+          </div>
+          <div class="col-span-2 sm:col-span-1 px-3.5 py-2.5 rounded-xl bg-obsidianCard/80 border border-gold/30 flex items-center justify-between">
+            <div>
+              <div class="text-[10px] text-gold uppercase">INDIA HQ (IST)</div>
+              <div id="clock-india" class="text-sm font-semibold text-white">--:--:--</div>
+            </div>
+            <span class="w-2 h-2 rounded-full bg-gold animate-pulse"></span>
+          </div>
         </div>
       </div>
     </section>
 
     <!-- =================================================================== -->
-    <!-- 5. 9-COMMODITY INTERACTIVE MATRIX                                   -->
+    <!-- 5. 9-COMMODITY INTERACTIVE DESK (FIREBASE-SYNCED)                   -->
     <!-- =================================================================== -->
     <section id="commodities" class="py-20 lg:py-28">
       <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <!-- Section Header -->
-        <div class="flex flex-col lg:flex-row lg:items-end justify-between gap-6 mb-12 reveal">
+        <div class="flex flex-col lg:flex-row lg:items-end justify-between gap-6 mb-10 reveal">
           <div>
-            <p class="font-mono text-xs tracking-[0.3em] text-gold uppercase mb-2">01 // PHYSICAL ALLOCATION DESK</p>
-            <h2 class="scramble-text font-display text-3xl sm:text-4xl lg:text-5xl font-bold text-white tracking-wide"
+            <p class="font-mono text-xs tracking-[0.3em] text-gold uppercase mb-2">01 // VERIFIED PHYSICAL ALLOCATIONS</p>
+            <h2 class="scramble-text font-display text-3xl sm:text-4xl font-bold text-white tracking-wide"
                 data-text="COMMODITY DESK">
               COMMODITY DESK
             </h2>
             <p class="text-sm sm:text-base text-gray-400 mt-3 max-w-2xl">
-              Real-time physical cargo availability synced directly with our trade desk database. Select any commodity to inspect institutional specifications and launch the Deal Estimator &amp; RFQ Drawer.
+              Direct refinery and mine-gate allocations across Energy, Petrochemicals, and African Bullion. Click any commodity to inspect technical specifications and initiate a verified RFQ.
             </p>
           </div>
 
-          <!-- Filter Tabs -->
-          <div class="flex flex-wrap gap-2" id="commodity-filters">
+          <!-- Category Filter Controls -->
+          <div class="flex flex-wrap gap-2">
             <button type="button" data-filter="ALL" data-sound="click"
                     class="filter-btn active px-4 py-2 rounded-xl font-mono text-xs tracking-wider uppercase border border-gold bg-gold text-obsidian font-bold transition-all">
               ALL (09)
             </button>
             <button type="button" data-filter="PETROCHEMICALS & FERTILIZERS" data-sound="click"
                     class="filter-btn px-4 py-2 rounded-xl font-mono text-xs tracking-wider uppercase border border-gold/25 bg-obsidianCard text-gray-300 hover:border-gold/60 transition-all">
-              PETROCHEMICALS &amp; FERTILIZERS
+              PETROCHEM &amp; SULFUR
             </button>
             <button type="button" data-filter="ENERGY & FUELS" data-sound="click"
                     class="filter-btn px-4 py-2 rounded-xl font-mono text-xs tracking-wider uppercase border border-gold/25 bg-obsidianCard text-gray-300 hover:border-gold/60 transition-all">
@@ -502,7 +503,7 @@
           </div>
         </div>
 
-        <!-- 9-Commodity Grid -->
+        <!-- 9-Commodity Responsive Grid -->
         <div id="commodity-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
           <!-- Populated dynamically via JS / Firestore -->
         </div>
@@ -510,7 +511,7 @@
     </section>
 
     <!-- =================================================================== -->
-    <!-- 6. INTERACTIVE FOB / CIF PROCEDURE SIMULATOR                        -->
+    <!-- 6. INTERACTIVE CIF TRANSACTION PROTOCOLS                            -->
     <!-- =================================================================== -->
     <section id="procedures" class="py-20 lg:py-28 border-t border-gold/15 bg-[#07080C]/75">
       <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -518,29 +519,25 @@
           <div>
             <p class="font-mono text-xs tracking-[0.3em] text-gold uppercase mb-2">02 // INSTITUTIONAL EXECUTION PROTOCOL</p>
             <h2 class="scramble-text font-display text-3xl sm:text-4xl font-bold text-white tracking-wide"
-                data-text="TRANSACTION PROCEDURE SIMULATOR">
-              TRANSACTION PROCEDURE SIMULATOR
+                data-text="TRANSACTION PROTOCOLS">
+              TRANSACTION PROTOCOLS
             </h2>
             <p class="text-sm sm:text-base text-gray-400 mt-3 max-w-2xl">
-              Non-negotiable, bank-verified execution workflows designed to protect both refinery titleholders and financially capable end-buyers.
+              Non-negotiable, bank-verified CIF execution workflow designed to protect both refinery titleholders and financially capable end-buyers.
             </p>
           </div>
 
-          <!-- FOB / CIF Toggle Switch -->
-          <div class="inline-flex p-1.5 rounded-xl bg-obsidianCard border border-gold/30 self-start">
-            <button type="button" id="proc-btn-fob" onclick="setProcedureMode('FOB')" data-sound="click"
-                    class="px-5 py-2.5 rounded-lg font-mono text-xs font-bold tracking-wider uppercase transition-all bg-gold text-obsidian">
-              FOB (TTV / TTT / TTO / TTM)
-            </button>
-            <button type="button" id="proc-btn-cif" onclick="setProcedureMode('CIF')" data-sound="click"
-                    class="px-5 py-2.5 rounded-lg font-mono text-xs font-bold tracking-wider uppercase transition-all text-gray-300 hover:text-gold-light">
-              CIF (GLOBAL PORTS)
-            </button>
+          <!-- CIF 9-Step Protocol Indicator -->
+          <div class="inline-flex items-center gap-2.5 px-5 py-2.5 rounded-xl bg-gold/15 border border-gold/45 self-start">
+            <span class="w-2 h-2 rounded-full bg-gold animate-pulse"></span>
+            <span class="font-mono text-xs font-bold tracking-wider uppercase text-gold-light">
+              CIF // 9-STEP PROTOCOL
+            </span>
           </div>
         </div>
 
-        <!-- 6-Step Illuminated Timeline Nodes -->
-        <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-3 mb-8" id="procedure-steps-nav">
+        <!-- Illuminated Timeline Nodes -->
+        <div class="grid grid-cols-2 sm:grid-cols-3 gap-3 mb-8" id="procedure-steps-nav">
           <!-- Populated by JS -->
         </div>
 
@@ -550,7 +547,7 @@
             <div class="lg:col-span-8 space-y-3">
               <div class="flex items-center gap-3">
                 <span id="proc-step-badge" class="font-mono text-xs px-3 py-1 rounded-full bg-gold/15 border border-gold/40 text-gold-light uppercase tracking-widest">
-                  STEP 01 // FOB PROTOCOL
+                  STEP 01 // CIF PROTOCOL
                 </span>
                 <span class="font-mono text-xs text-emerald-400 uppercase tracking-wider">VERIFIED STANDARD</span>
               </div>
@@ -653,19 +650,7 @@
         </div>
 
         <!-- Key Officials Strip -->
-        <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-12 reveal">
-          <div class="hud-panel rounded-2xl p-6 flex flex-col sm:flex-row sm:items-center justify-between gap-4">
-            <div>
-              <div class="font-mono text-[10px] tracking-[0.25em] text-gold uppercase">CHIEF FINANCIAL OFFICER</div>
-              <h4 class="font-display text-xl font-bold text-white mt-1">Mr. Rajesh Martha</h4>
-              <p class="font-mono text-xs text-gray-400 mt-1">Financial Instruments, SBLC / DLC &amp; Settlement Governance</p>
-            </div>
-            <div class="font-mono text-xs space-y-1 sm:text-right">
-              <div class="text-gold-light">+91 99389 44402</div>
-              <div class="text-gray-400">emprexports@gmail.com</div>
-            </div>
-          </div>
-
+        <div class="grid grid-cols-1 gap-6 mb-12 reveal">
           <div class="hud-panel rounded-2xl p-6 flex flex-col sm:flex-row sm:items-center justify-between gap-4">
             <div>
               <div class="font-mono text-[10px] tracking-[0.25em] text-gold uppercase">DIRECTOR (ACTING)</div>
@@ -750,21 +735,21 @@
     </section>
 
     <!-- =================================================================== -->
-    <!-- 8. 3D METALLIC BUSINESS CARD (BC.jpg) & CORPORATE REGISTRY          -->
+    <!-- 8. 3D METALLIC BUSINESS CARD & CORPORATE REGISTRY (CIS)             -->
     <!-- =================================================================== -->
-    <section id="contact" class="py-20 lg:py-28 border-t border-gold/15 bg-[#07080C]/80">
+    <section id="contact" class="py-20 lg:py-28 border-t border-gold/15 bg-[#07080C]/75">
       <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div class="mb-12 reveal">
-          <p class="font-mono text-xs tracking-[0.3em] text-gold uppercase mb-2">04 // CREDENTIALS &amp; VERIFICATION</p>
+          <p class="font-mono text-xs tracking-[0.3em] text-gold uppercase mb-2">04 // CORPORATE CREDENTIALS &amp; DIRECT DESK</p>
           <h2 class="scramble-text font-display text-3xl sm:text-4xl font-bold text-white tracking-wide"
-              data-text="EXECUTIVE CARD & CORPORATE REGISTRY">
-            EXECUTIVE CARD &amp; CORPORATE REGISTRY
+              data-text="CORPORATE REGISTRY & EXECUTIVE CARD">
+            CORPORATE REGISTRY &amp; EXECUTIVE CARD
           </h2>
         </div>
 
         <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
-          <!-- Left: 3D Metallic Business Card Showcase -->
-          <div class="lg:col-span-5 space-y-5 reveal">
+          <!-- Left: 3D Interactive Metallic Business Card + vCard Export -->
+          <div class="lg:col-span-5 space-y-6 reveal">
             <div class="hud-panel rounded-2xl p-6">
               <div class="flex items-center justify-between mb-4">
                 <span class="font-mono text-[10px] tracking-[0.22em] text-gold uppercase">INTERACTIVE 3D CREDENTIAL</span>
@@ -880,7 +865,7 @@
     </section>
 
     <!-- =================================================================== -->
-    <!-- 9. ENCRYPTED "MANDATE VAULT" (FIREBASE-GATED)                       -->
+    <!-- 9. ENCRYPTED "ASSOCIATES VAULT" (FIREBASE-GATED)                    -->
     <!-- =================================================================== -->
     <section id="vault" class="py-20 lg:py-28 border-t border-gold/15">
       <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 reveal">
@@ -897,9 +882,9 @@
                 </svg>
               </div>
               <div>
-                <div class="font-mono text-[10px] tracking-[0.28em] text-gold uppercase">ENCRYPTED BUYER ACCESS</div>
-                <h2 class="scramble-text font-display text-2xl sm:text-3xl font-bold text-white" data-text="SOVEREIGN MANDATE VAULT">
-                  SOVEREIGN MANDATE VAULT
+                <div class="font-mono text-[10px] tracking-[0.28em] text-gold uppercase">ENCRYPTED ASSOCIATES ACCESS</div>
+                <h2 class="scramble-text font-display text-2xl sm:text-3xl font-bold text-white" data-text="ASSOCIATES VAULT">
+                  ASSOCIATES VAULT
                 </h2>
               </div>
             </div>
@@ -911,7 +896,7 @@
           <!-- Locked State -->
           <div id="vault-locked-view" class="space-y-5">
             <p class="text-sm text-gray-300 leading-relaxed">
-              Vetted end-buyers and mandate holders may enter their issued desk passcode to unlock our official Corporate Information Sheet (CIS) brief, Standard SCO/FCO procedures, and Priority Refinery Desk coordinates.
+              Vetted associates, end-buyers, and mandate partners may enter their issued desk passcode to unlock our official Corporate Information Sheet (CIS) brief, Standard SCO/FCO procedures, and Priority Refinery Desk coordinates.
             </p>
             <form id="vault-unlock-form" class="flex flex-col sm:flex-row gap-3">
               <input id="vault-passcode-input" type="password" required placeholder="ENTER ACCESS PASSCODE (DEFAULT: EMPR2026)"
@@ -921,7 +906,7 @@
                 UNLOCK VAULT
               </button>
             </form>
-            <p id="vault-error-msg" class="hidden font-mono text-xs text-red-400">ACCESS DENIED: Invalid mandate passcode.</p>
+            <p id="vault-error-msg" class="hidden font-mono text-xs text-red-400">ACCESS DENIED: Invalid associates passcode.</p>
           </div>
 
           <!-- Unlocked State -->
@@ -945,7 +930,7 @@
               <div class="p-5 rounded-xl bg-obsidianCard border border-gold/25 space-y-3">
                 <div class="font-mono text-[10px] text-gold uppercase tracking-widest">DOCUMENT 02 // EXECUTION SOP</div>
                 <h4 class="font-display text-lg font-bold text-white">Standard SCO / FCO Procedure</h4>
-                <p class="text-xs text-gray-400">Institutional FOB (TTV/TTT/TTO) and CIF Rotterdam/Fujairah/Jurong/Qingdao/Houston settlement protocol.</p>
+                <p class="text-xs text-gray-400">Institutional 9-step CIF execution and settlement protocol across Rotterdam, Fujairah, Jurong, Qingdao, and Houston.</p>
                 <button type="button" onclick="downloadVaultDocument('SCO')" data-sound="click"
                         class="btn-obsidian w-full py-2.5 rounded-lg font-mono text-xs uppercase">
                   Download Procedure Brief (.TXT)
@@ -960,7 +945,7 @@
                   RefineryHQ@protonmail.com &nbsp;|&nbsp; info@emprexports.world
                 </div>
               </div>
-              <a href="https://wa.me/917978932107?text=Priority%20Mandate%20Vault%20Verified%20Buyer%20Inquiry"
+              <a href="https://wa.me/917978932107?text=Priority%20Associates%20Vault%20Verified%20Inquiry"
                  target="_blank" rel="noopener noreferrer"
                  class="btn-gold px-5 py-2.5 rounded-lg text-xs uppercase text-center shrink-0">
                 Message Priority Desk
@@ -1255,7 +1240,7 @@
                         class="w-full p-3.5 rounded-xl bg-obsidian border border-gold/30 font-mono text-xs text-white focus:border-gold focus:outline-none"></textarea>
             </div>
             <div class="space-y-2">
-              <label class="block font-mono text-xs text-gold uppercase">Mandate Vault Access Passcode</label>
+              <label class="block font-mono text-xs text-gold uppercase">Associates Vault Access Passcode</label>
               <input id="admin-vault-input" type="text" placeholder="EMPR2026"
                      class="w-full px-4 py-3 rounded-xl bg-obsidian border border-gold/30 font-mono text-sm text-gold-light focus:border-gold focus:outline-none" />
             </div>
@@ -1345,9 +1330,22 @@
     // =========================================================================
     // 2. DEFAULT SEED DATA (INSTANT LOAD BEFORE/WITHOUT FIRESTORE)
     // =========================================================================
+    const COMMODITY_IMAGES = {
+      sulfur: "sulfur.jpg",
+      en590: "en590.jpg",
+      gold: "gold.jpg",
+      jeta1: "jeta1.jpg",
+      d6: "d6.jpg",
+      bitumen: "bitumen.jpg",
+      urea: "urea.jpg",
+      copper: "copper.jpg",
+      aluminum: "aluminium.jpg"
+    };
+
     const DEFAULT_COMMODITIES = [
       {
         id: "sulfur",
+        image: "sulfur.jpg",
         isPrimary: true,
         name: "Bright Yellow Granular Sulfur (99.5%–99.9% Min)",
         shortTicker: "GRANULAR SULFUR [PRIMARY]",
@@ -1363,6 +1361,7 @@
       },
       {
         id: "en590",
+        image: "en590.jpg",
         name: "Diesel EN590 (10 PPM / 50 PPM)",
         shortTicker: "EN590 10PPM",
         category: "ENERGY & FUELS",
@@ -1377,6 +1376,7 @@
       },
       {
         id: "gold",
+        image: "gold.jpg",
         name: "Gold Bullion & AU Doré Bars (African Origin)",
         shortTicker: "AFRICAN GOLD & AU DORÉ",
         category: "METALS & BULLION",
@@ -1391,6 +1391,7 @@
       },
       {
         id: "jeta1",
+        image: "jeta1.jpg",
         name: "Jet Fuel A1",
         shortTicker: "JET A1",
         category: "ENERGY & FUELS",
@@ -1405,6 +1406,7 @@
       },
       {
         id: "d6",
+        image: "d6.jpg",
         name: "D6 Virgin Fuel Oil",
         shortTicker: "D6 VIRGIN FUEL OIL",
         category: "ENERGY & FUELS",
@@ -1419,6 +1421,7 @@
       },
       {
         id: "bitumen",
+        image: "bitumen.jpg",
         name: "Bitumen (VG-30 / VG-40 / 60/70)",
         shortTicker: "BITUMEN VG-30 & 60/70",
         category: "PETROCHEMICALS & FERTILIZERS",
@@ -1433,6 +1436,7 @@
       },
       {
         id: "urea",
+        image: "urea.jpg",
         name: "Urea N46 (Prilled & Granular)",
         shortTicker: "UREA N46",
         category: "PETROCHEMICALS & FERTILIZERS",
@@ -1447,6 +1451,7 @@
       },
       {
         id: "copper",
+        image: "copper.jpg",
         name: "Copper Cathodes & Millberry Scrap",
         shortTicker: "COPPER CATHODES 99.99%",
         category: "METALS & BULLION",
@@ -1461,6 +1466,7 @@
       },
       {
         id: "aluminum",
+        image: "aluminium.jpg",
         name: "Aluminum A7 Ingots (99.7% Min)",
         shortTicker: "ALUMINUM A7",
         category: "METALS & BULLION",
@@ -1484,213 +1490,254 @@
     };
     let activeFilter = "ALL";
     let currentAdminUser = null;
-    let activeProcedureMode = "FOB";
     let activeProcedureStep = 0;
 
     // =========================================================================
-    // 3. TACTICAL WEB AUDIO API SOUND ENGINE
+    // 3. UTILITIES: TOAST NOTIFICATIONS & HTML ESCAPING
     // =========================================================================
-    let soundEnabled = false;
-    let audioCtx = null;
-
-    function playTacticalSound(type = "click") {
-      if (!soundEnabled) return;
-      try {
-        if (!audioCtx) {
-          audioCtx = new (window.AudioContext || window.webkitAudioContext)();
-        }
-        if (audioCtx.state === "suspended") audioCtx.resume();
-        const osc = audioCtx.createOscillator();
-        const gain = audioCtx.createGain();
-        const now = audioCtx.currentTime;
-
-        if (type === "hover") {
-          osc.type = "sine";
-          osc.frequency.setValueAtTime(880, now);
-          osc.frequency.exponentialRampToValueAtTime(1240, now + 0.03);
-          gain.gain.setValueAtTime(0.02, now);
-          gain.gain.exponentialRampToValueAtTime(0.0001, now + 0.035);
-          osc.connect(gain);
-          gain.connect(audioCtx.destination);
-          osc.start(now);
-          osc.stop(now + 0.04);
-        } else {
-          osc.type = "triangle";
-          osc.frequency.setValueAtTime(620, now);
-          osc.frequency.exponentialRampToValueAtTime(220, now + 0.06);
-          gain.gain.setValueAtTime(0.055, now);
-          gain.gain.exponentialRampToValueAtTime(0.0001, now + 0.065);
-          osc.connect(gain);
-          gain.connect(audioCtx.destination);
-          osc.start(now);
-          osc.stop(now + 0.07);
-        }
-      } catch (e) {
-        // Silently ignore audio errors
-      }
+    function escapeHtml(str) {
+      return String(str ?? "")
+        .replace(/&/g, "&amp;")
+        .replace(/</g, "&lt;")
+        .replace(/>/g, "&gt;")
+        .replace(/"/g, "&quot;")
+        .replace(/'/g, "&#39;");
     }
 
-    document.getElementById("sound-toggle-btn").addEventListener("click", () => {
-      soundEnabled = !soundEnabled;
-      document.getElementById("sound-icon-on").classList.toggle("hidden", !soundEnabled);
-      document.getElementById("sound-icon-off").classList.toggle("hidden", soundEnabled);
-      document.getElementById("sound-label").textContent = soundEnabled ? "SFX ON" : "SFX OFF";
-      if (soundEnabled) playTacticalSound("click");
-      showToast(soundEnabled ? "Tactical UI Audio Enabled" : "Tactical UI Audio Muted", "gold");
-    });
-
-    document.addEventListener("click", (e) => {
-      if (e.target.closest("[data-sound='click']")) playTacticalSound("click");
-    });
-    document.addEventListener("mouseover", (e) => {
-      if (e.target.closest("[data-sound='hover']")) playTacticalSound("hover");
-    });
-
-    // =========================================================================
-    // 4. TOAST NOTIFICATION SYSTEM (NO alert() OR confirm())
-    // =========================================================================
     function showToast(message, type = "gold") {
       const container = document.getElementById("toast-container");
-      const toast = document.createElement("div");
-      const colors = {
-        gold: "border-gold/50 bg-[#0c0d12]/95 text-gold-light",
-        success: "border-emerald-500/50 bg-[#08130e]/95 text-emerald-300",
-        error: "border-red-500/50 bg-[#17090a]/95 text-red-300"
+      if (!container) return;
+      const palette = {
+        success: "border-emerald-500/50 bg-[#071510]/95 text-emerald-300",
+        error: "border-red-500/50 bg-[#19090b]/95 text-red-300",
+        gold: "border-gold/50 bg-[#12100a]/95 text-gold-light"
       };
-      toast.className = `pointer-events-auto px-4 py-3 rounded-xl border backdrop-blur-md shadow-2xl font-mono text-xs tracking-wide transition-all duration-300 transform translate-x-6 opacity-0 ${colors[type] || colors.gold}`;
-      toast.textContent = message;
-      container.appendChild(toast);
-      requestAnimationFrame(() => {
-        toast.classList.remove("translate-x-6", "opacity-0");
-      });
+      const el = document.createElement("div");
+      el.className = `pointer-events-auto px-4 py-3 rounded-xl border backdrop-blur-md shadow-2xl font-mono text-xs tracking-wide transition-all duration-300 ${palette[type] || palette.gold}`;
+      el.textContent = message;
+      container.appendChild(el);
       setTimeout(() => {
-        toast.classList.add("translate-x-6", "opacity-0");
-        setTimeout(() => toast.remove(), 300);
+        el.style.opacity = "0";
+        el.style.transform = "translateX(16px)";
+        setTimeout(() => el.remove(), 300);
       }, 3600);
     }
 
     // =========================================================================
-    // 5. LIVE ALLOCATION TELEMETRY TICKER RENDERER
+    // 4. TACTICAL UI AUDIO FX (WEB AUDIO API — ZERO EXTERNAL FILES)
+    // =========================================================================
+    let soundEnabled = false;
+    let audioCtx = null;
+
+    function playTacticalSound(kind = "click") {
+      if (!soundEnabled) return;
+      try {
+        if (!audioCtx) {
+          const AudioContextClass = window.AudioContext || window.webkitAudioContext;
+          audioCtx = new AudioContextClass();
+        }
+        if (audioCtx.state === "suspended") audioCtx.resume();
+        const osc = audioCtx.createOscillator();
+        const gain = audioCtx.createGain();
+        osc.type = kind === "hover" ? "sine" : "triangle";
+        osc.frequency.setValueAtTime(kind === "hover" ? 680 : 420, audioCtx.currentTime);
+        osc.frequency.exponentialRampToValueAtTime(kind === "hover" ? 920 : 180, audioCtx.currentTime + 0.055);
+        gain.gain.setValueAtTime(kind === "hover" ? 0.018 : 0.04, audioCtx.currentTime);
+        gain.gain.exponentialRampToValueAtTime(0.0001, audioCtx.currentTime + 0.06);
+        osc.connect(gain);
+        gain.connect(audioCtx.destination);
+        osc.start();
+        osc.stop(audioCtx.currentTime + 0.065);
+      } catch (e) {
+        // Ignore audio context autoplay restrictions
+      }
+    }
+
+    const soundToggleBtn = document.getElementById("sound-toggle-btn");
+    if (soundToggleBtn) {
+      soundToggleBtn.addEventListener("click", () => {
+        soundEnabled = !soundEnabled;
+        document.getElementById("sound-icon-on").classList.toggle("hidden", !soundEnabled);
+        document.getElementById("sound-icon-off").classList.toggle("hidden", soundEnabled);
+        document.getElementById("sound-label").textContent = soundEnabled ? "SFX ON" : "SFX OFF";
+        if (soundEnabled) playTacticalSound("click");
+        showToast(`Tactical UI Audio ${soundEnabled ? "Activated" : "Muted"}.`, "gold");
+      });
+    }
+
+    document.addEventListener("click", (e) => {
+      if (e.target.closest("[data-sound='click']")) playTacticalSound("click");
+    });
+
+    // =========================================================================
+    // 5. LIVE GLOBAL TRADING DESK CLOCKS
+    // =========================================================================
+    function updateGlobalClocks() {
+      const now = new Date();
+      const zones = [
+        { id: "clock-dubai", tz: "Asia/Dubai" },
+        { id: "clock-rotterdam", tz: "Europe/Amsterdam" },
+        { id: "clock-singapore", tz: "Asia/Singapore" },
+        { id: "clock-houston", tz: "America/Chicago" },
+        { id: "clock-india", tz: "Asia/Kolkata" }
+      ];
+      zones.forEach(({ id, tz }) => {
+        const el = document.getElementById(id);
+        if (!el) return;
+        try {
+          el.textContent = new Intl.DateTimeFormat("en-GB", {
+            timeZone: tz,
+            hour: "2-digit",
+            minute: "2-digit",
+            second: "2-digit",
+            hour12: false
+          }).format(now);
+        } catch {
+          el.textContent = now.toISOString().slice(11, 19);
+        }
+      });
+    }
+
+    // =========================================================================
+    // 6. LIVE ALLOCATION TELEMETRY TICKER
     // =========================================================================
     function renderTicker() {
       const track = document.getElementById("live-ticker-track");
-      let itemsHtml = "";
+      if (!track) return;
 
       if (siteSettingsState.tickerText && siteSettingsState.tickerText.trim().length > 0) {
-        const customParts = siteSettingsState.tickerText.split("//").map(s => s.trim()).filter(Boolean);
-        const loopParts = [...customParts, ...customParts];
-        itemsHtml = loopParts.map(part => `
-          <span class="inline-flex items-center gap-2">
-            <span class="text-gold">&#9670;</span>
-            <span>${escapeHtml(part)}</span>
-          </span>
-        `).join("");
-      } else {
-        const doubled = [...commoditiesState, ...commoditiesState];
-        itemsHtml = doubled.map(c => {
-          const badgeClass = getStatusTextColor(c.status);
-          return `
-            <span class="inline-flex items-center gap-2">
-              <span class="text-gold/60">&#9670;</span>
-              <span class="text-white font-semibold">${escapeHtml(c.shortTicker || c.name)}</span>
-              <span class="${badgeClass}">[${escapeHtml(c.status)}]</span>
-            </span>
-          `;
-        }).join("");
+        const customText = escapeHtml(siteSettingsState.tickerText.trim());
+        track.innerHTML = `
+          <span class="text-gold-light font-semibold">${customText}</span>
+          <span class="text-gold/50">///</span>
+          <span class="text-gold-light font-semibold">${customText}</span>
+        `;
+        return;
       }
-      track.innerHTML = itemsHtml;
-    }
 
-    function getStatusTextColor(status) {
-      const s = (status || "").toUpperCase();
-      if (s.includes("SPOT")) return "text-emerald-400";
-      if (s.includes("LOADING")) return "text-amber-300";
-      if (s.includes("MANDATE")) return "text-gold-light";
-      return "text-sky-300";
-    }
+      const itemsHtml = commoditiesState.map(c => {
+        const badgeColor =
+          c.status === "SPOT AVAILABLE" ? "text-emerald-400" :
+          c.status === "LOADING" ? "text-amber-300" :
+          c.status === "MANDATE ONLY" ? "text-gold-light" : "text-sky-300";
+        return `
+          <span class="inline-flex items-center gap-2">
+            <span class="text-white font-semibold">${escapeHtml(c.shortTicker || c.name)}</span>
+            <span class="${badgeColor}">[${escapeHtml(c.status)}]</span>
+            <span class="text-gray-400">${escapeHtml(c.moq)}</span>
+            <span class="text-gold/40 pl-4">&#9670;</span>
+          </span>
+        `;
+      }).join("");
 
-    function getStatusBadgeClass(status) {
-      const s = (status || "").toUpperCase();
-      if (s.includes("SPOT")) return "bg-emerald-500/15 text-emerald-300 border-emerald-500/40";
-      if (s.includes("LOADING")) return "bg-amber-500/15 text-amber-300 border-amber-500/40";
-      if (s.includes("MANDATE")) return "bg-gold/15 text-gold-light border-gold/45";
-      return "bg-sky-500/15 text-sky-300 border-sky-500/40";
-    }
-
-    function escapeHtml(str) {
-      return String(str || "")
-        .replace(/&/g, "&amp;")
-        .replace(/</g, "&lt;")
-        .replace(/>/g, "&gt;")
-        .replace(/"/g, "&quot;");
+      track.innerHTML = itemsHtml + itemsHtml;
     }
 
     // =========================================================================
-    // 6. 9-COMMODITY MATRIX RENDERER & FILTERS
+    // 7. 9-COMMODITY INTERACTIVE DESK & FILTERS
     // =========================================================================
+    function getStatusBadgeClasses(status) {
+      switch (status) {
+        case "SPOT AVAILABLE":
+          return "bg-emerald-500/15 border-emerald-500/40 text-emerald-300";
+        case "LOADING":
+          return "bg-amber-500/15 border-amber-500/40 text-amber-300";
+        case "MANDATE ONLY":
+          return "bg-gold/15 border-gold/45 text-gold-light";
+        default:
+          return "bg-sky-500/15 border-sky-500/40 text-sky-300";
+      }
+    }
+
     function renderCommodities() {
       const grid = document.getElementById("commodity-grid");
+      if (!grid) return;
+
       const filtered = activeFilter === "ALL"
         ? commoditiesState
         : commoditiesState.filter(c => c.category === activeFilter);
 
-      grid.innerHTML = filtered.map((c) => {
-        const isFlagship = Boolean(c.isPrimary || c.id === "sulfur");
+      grid.innerHTML = filtered.map(c => {
+        const isPrimary = Boolean(c.isPrimary || c.id === "sulfur");
+        const imgSrc = c.image || COMMODITY_IMAGES[c.id] || `${c.id}.jpg`;
         return `
-        <article onclick="openRfqDrawer('${c.id}')" data-sound="click"
-                 class="hud-panel hud-panel-hover rounded-2xl p-6 cursor-pointer flex flex-col justify-between group relative overflow-hidden ${
-                   isFlagship ? "border-gold/70 shadow-[0_0_35px_rgba(212,175,55,0.18)] ring-1 ring-gold/40" : ""
-                 }">
-          <div>
-            ${isFlagship ? `
-              <div class="mb-3 inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-gradient-to-r from-[#F5D78E] via-[#D4AF37] to-[#996515] text-obsidian font-mono text-[10px] font-bold tracking-[0.18em] uppercase shadow-md">
-                <span>&#9733;</span>
-                <span>PRIMARY COMMODITY // FLAGSHIP DESK</span>
+          <article class="hud-panel hud-panel-hover rounded-2xl overflow-hidden flex flex-col justify-between relative group ${
+            isPrimary ? "border-gold/60 shadow-[0_0_32px_rgba(212,175,55,0.14)]" : ""
+          }">
+            <div>
+              <!-- Commodity Visual Header -->
+              <div class="relative w-full h-44 bg-[#07080B] border-b border-gold/20 overflow-hidden">
+                <img src="${escapeHtml(imgSrc)}" alt="${escapeHtml(c.name)}"
+                     class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+                     onerror="this.style.display='none'; this.nextElementSibling.classList.remove('hidden');" />
+                <!-- Luxury Obsidian Fallback if image is not placed yet -->
+                <div class="hidden w-full h-full flex flex-col items-center justify-center bg-gradient-to-br from-[#17130a] via-[#0a0b0e] to-[#050507] p-4 text-center">
+                  <div class="font-display text-sm font-bold text-gold-light tracking-[0.2em] uppercase">${escapeHtml(c.shortTicker || c.name)}</div>
+                  <div class="font-mono text-[10px] text-gray-500 mt-1">PLACE ${escapeHtml(imgSrc)} IN ROOT FOLDER</div>
+                </div>
+                <div class="absolute inset-0 bg-gradient-to-t from-[#090A0F] via-[#090A0F]/25 to-transparent pointer-events-none"></div>
+                <div class="absolute top-3 left-3 right-3 flex items-center justify-between gap-2">
+                  <span class="font-mono text-[9px] px-2.5 py-1 rounded-md bg-obsidian/85 backdrop-blur-md border border-white/10 tracking-[0.18em] text-gray-300 uppercase">
+                    ${escapeHtml(c.category)}
+                  </span>
+                  <span class="font-mono text-[10px] px-2.5 py-0.5 rounded-full border backdrop-blur-md uppercase tracking-wider shrink-0 ${getStatusBadgeClasses(c.status)}">
+                    ${escapeHtml(c.status)}
+                  </span>
+                </div>
+                ${isPrimary ? `
+                  <div class="absolute bottom-3 left-3 inline-flex items-center gap-1.5 px-2.5 py-1 rounded-md bg-obsidian/90 backdrop-blur-md border border-gold/60">
+                    <span class="w-1.5 h-1.5 rounded-full bg-gold animate-pulse"></span>
+                    <span class="font-mono text-[9px] font-bold tracking-[0.22em] text-gold-light uppercase">PRIMARY COMMODITY // FLAGSHIP DESK</span>
+                  </div>
+                ` : ""}
               </div>
-            ` : ""}
-            <div class="flex items-start justify-between gap-3 mb-4">
-              <span class="font-mono text-[10px] tracking-[0.2em] text-gold/80 uppercase">${escapeHtml(c.category)}</span>
-              <span class="font-mono text-[10px] px-2.5 py-0.5 rounded-full border shrink-0 ${getStatusBadgeClass(c.status)}">
-                ${escapeHtml(c.status)}
-              </span>
+
+              <div class="p-6 pb-0">
+                <h3 class="font-display text-lg sm:text-xl font-bold text-white leading-snug mb-3">
+                  ${escapeHtml(c.name)}
+                </h3>
+
+                <div class="space-y-2 font-mono text-xs border-y border-gold/15 py-3.5 mb-4">
+                  <div class="flex justify-between gap-2">
+                    <span class="text-gray-500">ORIGIN</span>
+                    <span class="text-gray-200 text-right">${escapeHtml(c.origin)}</span>
+                  </div>
+                  <div class="flex justify-between gap-2">
+                    <span class="text-gray-500">MOQ</span>
+                    <span class="text-gold-light font-semibold text-right">${escapeHtml(c.moq)}</span>
+                  </div>
+                  <div class="flex justify-between gap-2">
+                    <span class="text-gray-500">INCOTERMS</span>
+                    <span class="text-gray-200 text-right">${escapeHtml(c.incoterms)}</span>
+                  </div>
+                </div>
+
+                <p class="text-xs text-gray-400 leading-relaxed mb-5 line-clamp-3">
+                  ${escapeHtml(c.specs)}
+                </p>
+              </div>
             </div>
 
-            <h3 class="font-display text-lg sm:text-xl font-bold ${isFlagship ? "text-gold-gradient" : "text-white"} group-hover:text-gold-light transition-colors leading-snug mb-3">
-              ${escapeHtml(c.name)}
-            </h3>
-
-            <div class="space-y-2 py-3 border-y border-gold/15 font-mono text-xs">
-              <div class="flex justify-between gap-2">
-                <span class="text-gray-500">ORIGIN</span>
-                <span class="text-gray-200 text-right">${escapeHtml(c.origin)}</span>
-              </div>
-              <div class="flex justify-between gap-2">
-                <span class="text-gray-500">MIN. ORDER (MOQ)</span>
-                <span class="text-gold-light font-semibold text-right">${escapeHtml(c.moq)}</span>
-              </div>
-              <div class="flex justify-between gap-2">
-                <span class="text-gray-500">INCOTERMS</span>
-                <span class="text-gray-200 text-right">${escapeHtml(c.incoterms)}</span>
-              </div>
+            <div class="px-6 pb-6">
+              <button type="button" onclick="openRfqDrawer('${escapeHtml(c.id)}')" data-sound="click"
+                      class="${isPrimary ? "btn-gold" : "btn-obsidian"} w-full py-3 rounded-xl text-xs font-mono uppercase tracking-widest">
+                Inspect Specs &amp; Request Allocation
+              </button>
             </div>
-          </div>
-
-          <div class="pt-4 mt-2 flex items-center justify-between">
-            <span class="font-mono text-[10px] text-gray-400 tracking-wider">${c.id === "gold" ? "FINAL REFINERY ASSAY" : "SGS / INTERTEK VERIFIED"}</span>
-            <span class="font-mono text-xs text-gold-light group-hover:translate-x-1 transition-transform inline-flex items-center gap-1">
-              ESTIMATE &amp; RFQ &rarr;
-            </span>
-          </div>
-        </article>
-      `;
+          </article>
+        `;
       }).join("");
 
-      // Sync dropdown in RFQ Drawer
-      const select = document.getElementById("rfq-commodity-select");
-      const prevVal = select.value;
-      select.innerHTML = commoditiesState.map(c => `<option value="${c.id}">${escapeHtml(c.name)}</option>`).join("");
-      if (prevVal && commoditiesState.some(c => c.id === prevVal)) {
-        select.value = prevVal;
+      // Keep RFQ Commodity Select dropdown synced
+      const selectEl = document.getElementById("rfq-commodity-select");
+      if (selectEl) {
+        const currentVal = selectEl.value;
+        selectEl.innerHTML = commoditiesState.map(c =>
+          `<option value="${escapeHtml(c.id)}">${escapeHtml(c.name)}</option>`
+        ).join("");
+        if (currentVal && commoditiesState.some(c => c.id === currentVal)) {
+          selectEl.value = currentVal;
+        }
       }
     }
 
@@ -1698,237 +1745,89 @@
       btn.addEventListener("click", () => {
         activeFilter = btn.dataset.filter;
         document.querySelectorAll(".filter-btn").forEach(b => {
-          b.classList.remove("bg-gold", "text-obsidian", "font-bold", "border-gold");
-          b.classList.add("bg-obsidianCard", "text-gray-300", "border-gold/25");
+          const isAct = b.dataset.filter === activeFilter;
+          b.className = isAct
+            ? "filter-btn active px-4 py-2 rounded-xl font-mono text-xs tracking-wider uppercase border border-gold bg-gold text-obsidian font-bold transition-all"
+            : "filter-btn px-4 py-2 rounded-xl font-mono text-xs tracking-wider uppercase border border-gold/25 bg-obsidianCard text-gray-300 hover:border-gold/60 transition-all";
         });
-        btn.classList.add("bg-gold", "text-obsidian", "font-bold", "border-gold");
-        btn.classList.remove("bg-obsidianCard", "text-gray-300", "border-gold/25");
         renderCommodities();
       });
     });
 
     // =========================================================================
-    // 7. DEAL ESTIMATOR & RFQ SLIDE-OVER DRAWER
+    // 8. INTERACTIVE CIF TRANSACTION PROTOCOLS (9-STEP WORKFLOW)
     // =========================================================================
-    function updateDrawerForCommodity(commodityId) {
-      const c = commoditiesState.find(item => item.id === commodityId) || commoditiesState[0];
-      if (!c) return;
-      document.getElementById("drawer-commodity-title").textContent = c.name;
-      document.getElementById("drawer-origin").textContent = c.origin;
-      document.getElementById("drawer-moq").textContent = c.moq;
-      document.getElementById("drawer-terms").textContent = c.incoterms;
-      document.getElementById("drawer-spec-notes").textContent = c.specs || "Verified refinery allocation under ICC Incoterms 2020.";
-
-      const badge = document.getElementById("drawer-status-badge");
-      badge.textContent = c.status;
-      badge.className = `font-mono text-[10px] px-2.5 py-0.5 rounded border ${getStatusBadgeClass(c.status)}`;
-
-      document.getElementById("rfq-commodity-select").value = c.id;
-
-      // Update volume slider calibration
-      const slider = document.getElementById("rfq-volume-slider");
-      slider.value = 20;
-      const computedVol = c.minVol || 50000;
-      const formatted = `${Number(computedVol).toLocaleString()} ${c.unit || "MT"}`;
-      document.getElementById("rfq-volume-display").textContent = formatted;
-      document.getElementById("rfq-volume-text").value = formatted;
-    }
-
-    window.openRfqDrawer = function(commodityId) {
-      resetRfqForm();
-      updateDrawerForCommodity(commodityId || commoditiesState[0]?.id);
-      const backdrop = document.getElementById("rfq-drawer-backdrop");
-      const drawer = document.getElementById("rfq-drawer");
-      backdrop.classList.remove("hidden");
-      requestAnimationFrame(() => {
-        backdrop.classList.remove("opacity-0");
-        drawer.classList.remove("translate-x-full");
-      });
-    };
-
-    window.closeRfqDrawer = function() {
-      const backdrop = document.getElementById("rfq-drawer-backdrop");
-      const drawer = document.getElementById("rfq-drawer");
-      backdrop.classList.add("opacity-0");
-      drawer.classList.add("translate-x-full");
-      setTimeout(() => backdrop.classList.add("hidden"), 300);
-    };
-
-    document.getElementById("rfq-drawer-backdrop").addEventListener("click", window.closeRfqDrawer);
-
-    document.getElementById("rfq-commodity-select").addEventListener("change", (e) => {
-      updateDrawerForCommodity(e.target.value);
-    });
-
-    document.getElementById("rfq-volume-slider").addEventListener("input", (e) => {
-      const c = commoditiesState.find(item => item.id === document.getElementById("rfq-commodity-select").value) || commoditiesState[0];
-      const minV = c.minVol || 10000;
-      const maxV = c.maxVol || 200000;
-      const ratio = Number(e.target.value) / 100;
-      const val = Math.round((minV + (maxV - minV) * ratio) / (minV >= 10000 ? 1000 : 10)) * (minV >= 10000 ? 1000 : 10);
-      const formatted = `${val.toLocaleString()} ${c.unit || "MT"}`;
-      document.getElementById("rfq-volume-display").textContent = formatted;
-      document.getElementById("rfq-volume-text").value = formatted;
-    });
-
-    window.resetRfqForm = function() {
-      document.getElementById("rfq-form").classList.remove("hidden");
-      document.getElementById("rfq-confirmation").classList.add("hidden");
-    };
-
-    document.getElementById("rfq-form").addEventListener("submit", async (e) => {
-      e.preventDefault();
-      const submitBtn = document.getElementById("rfq-submit-btn");
-      submitBtn.disabled = true;
-      submitBtn.textContent = "TRANSMITTING TO DESK...";
-
-      const commodityId = document.getElementById("rfq-commodity-select").value;
-      const commodityObj = commoditiesState.find(c => c.id === commodityId);
-      const refId = "EMPR-RFQ-" + Math.random().toString(36).substring(2, 7).toUpperCase();
-
-      const payload = {
-        refId,
-        commodityId,
-        commodityName: commodityObj ? commodityObj.name : commodityId,
-        buyerName: document.getElementById("rfq-name").value.trim(),
-        company: document.getElementById("rfq-company").value.trim(),
-        contact: document.getElementById("rfq-contact").value.trim(),
-        volume: document.getElementById("rfq-volume-text").value.trim(),
-        port: document.getElementById("rfq-port").value,
-        incoterm: document.getElementById("rfq-incoterm").value,
-        instrument: document.getElementById("rfq-instrument").value,
-        createdAt: new Date().toISOString()
-      };
-
-      try {
-        if (db) {
-          await addDoc(collection(db, "rfqs"), {
-            ...payload,
-            serverTime: serverTimestamp()
-          });
-        }
-        showToast(`Verified RFQ ${refId} transmitted to Trade Desk.`, "success");
-      } catch (err) {
-        console.warn("Firestore write fallback:", err);
-        showToast(`RFQ ${refId} prepared. Forward via WhatsApp Desk for instant confirmation.`, "gold");
+    const CIF_PROCEDURE_STEPS = [
+      {
+        step: "01",
+        short: "LOI",
+        title: "Step 01: Buyer Submits Official LOI",
+        desc: "Buyer submits an official Letter of Intent (LOI) on company letterhead detailing the desired commodity, target monthly/spot volume, technical specifications, and nominated destination discharge port.",
+        docs: ["Official Letter of Intent (LOI)", "Target Volume & Technical Specs", "Nominated Discharge Port"]
+      },
+      {
+        step: "02",
+        short: "FCO",
+        title: "Step 02: EMPR Exports Issues FCO",
+        desc: "Upon reviewing the LOI and verifying allocation capacity, EMPR Exports Private Limited issues a binding Full Corporate Offer (FCO) stating pricing structure, Incoterms, delivery schedule, and non-negotiable procedures.",
+        docs: ["Binding Full Corporate Offer (FCO)", "Indicative Pricing & Allocation Schedule", "Standard Execution Terms"]
+      },
+      {
+        step: "03",
+        short: "ICPO",
+        title: "Step 03: Buyer Returns Signed ICPO",
+        desc: "Buyer accepts the FCO and returns a signed and sealed Irrevocable Corporate Purchase Order (ICPO) accompanied by a completed Company Information Sheet (CIS) and authorized signatory passport copy.",
+        docs: ["Signed & Sealed ICPO", "Buyer Company Information Sheet (CIS)", "Authorized Signatory Passport Copy"]
+      },
+      {
+        step: "04",
+        short: "SPA",
+        title: "Step 04: Execution of SPA & Bank Lodging",
+        desc: "Both parties review, finalize, and execute the Sales & Purchase Agreement (SPA), open for mutually agreed amendments, and lodge the countersigned contract with their respective banks.",
+        docs: ["Countersigned Final SPA", "Bank Lodging Confirmation", "ICC NCNDA / IMFPA (If Applicable)"]
+      },
+      {
+        step: "05",
+        short: "PPOP",
+        title: "Step 05: Seller Issues Partial Proof of Product (PPOP)",
+        desc: "Following SPA execution, Seller issues the Partial Proof of Product (PPOP) package comprising the Refinery Commitment to Supply, Authorization to Sell (ATS), and Statement of Product Availability.",
+        docs: ["Refinery Commitment to Supply", "Authorization to Sell (ATS)", "Statement of Product Availability"]
+      },
+      {
+        step: "06",
+        short: "INSTRUMENT",
+        title: "Step 06: Buyer Issues Financial Instrument",
+        desc: "Buyer's prime bank issues a non-operative or operative Financial Instrument — Irrevocable, Confirmed, Transferable SBLC MT760 or DLC MT700 — covering the shipment value as stipulated in the SPA.",
+        docs: ["SBLC MT760 or DLC MT700", "SWIFT Bank-to-Bank Transmission", "Verbiage Approval Confirmation"]
+      },
+      {
+        step: "07",
+        short: "POP & INSPECTION",
+        title: "Step 07: Full POP, 2% PB & SGS / Intertek Inspection",
+        desc: "Seller provides Full Proof of Product (POP) and posts a 2% Performance Bond (PB) to activate the financial instrument. Independent SGS / Intertek / Bureau Veritas Q&Q inspection is conducted.",
+        docs: ["Full Proof of Product (POP) Package", "2% Seller Performance Bond (PB)", "SGS / Intertek / BV Q&Q Inspection"]
+      },
+      {
+        step: "08",
+        short: "LOADING",
+        title: "Step 08: Vessel Loading & Shipping Documentation",
+        desc: "Cargo is loaded onto the nominated vessel under port supervision. Seller executes the Charter Party Agreement (CPA) and dispatches the Clean On-Board Bill of Lading, Vessel Q88, and full shipping dossier.",
+        docs: ["Charter Party Agreement (CPA)", "Clean On-Board Bill of Lading", "Certificate of Origin & Vessel Q88"]
+      },
+      {
+        step: "09",
+        short: "PAYMENT AT LOADING OR DISCHARGE",
+        title: "Step 09: MT103 / T/T Payment & Title Transfer",
+        desc: "Upon completion of Q&Q verification at the loading port or destination discharge port (as per SPA terms), Buyer releases 100% payment via SWIFT MT103 / T/T wire and full product title transfers to Buyer.",
+        docs: ["Loading / Discharge Port Q&Q Report", "SWIFT MT103 / T/T Settlement", "Final Title Ownership Transfer"]
       }
-
-      // Show confirmation & WhatsApp pre-filled link
-      document.getElementById("rfq-ref-id").textContent = refId;
-      const waText = encodeURIComponent(
-        `EMPR EXPORTS VERIFIED RFQ [${refId}]\n` +
-        `Buyer: ${payload.buyerName} (${payload.company})\n` +
-        `Contact: ${payload.contact}\n` +
-        `Commodity: ${payload.commodityName}\n` +
-        `Volume: ${payload.volume}\n` +
-        `Port/Terms: ${payload.port} | ${payload.incoterm}\n` +
-        `Payment Instrument: ${payload.instrument}`
-      );
-      document.getElementById("rfq-whatsapp-forward").href = `https://wa.me/917978932107?text=${waText}`;
-
-      document.getElementById("rfq-form").classList.add("hidden");
-      document.getElementById("rfq-confirmation").classList.remove("hidden");
-      submitBtn.disabled = false;
-      submitBtn.textContent = "TRANSMIT VERIFIED RFQ TO TRADE DESK";
-    });
-
-    // =========================================================================
-    // 8. INTERACTIVE FOB / CIF PROCEDURE SIMULATOR
-    // =========================================================================
-    const PROCEDURES_DATA = {
-      FOB: [
-        {
-          step: "01",
-          short: "ICPO & CIS",
-          title: "Buyer Issues Official ICPO & CIS",
-          desc: "Buyer submits an Irrevocable Corporate Purchase Order (ICPO) addressed to EMPR Exports Private Limited along with Company Information Sheet (CIS), passport copy, and Tank Storage Agreement (TSA) or Charter Party Agreement (CPA).",
-          docs: ["Signed ICPO on Company Letterhead", "Corporate Information Sheet (CIS)", "TSA (for TTT) or CPA (for TTV)"]
-        },
-        {
-          step: "02",
-          short: "FCO & Vetting",
-          title: "Seller Issues Full Corporate Offer (FCO)",
-          desc: "Upon compliance clearance, EMPR Exports issues the binding Full Corporate Offer (FCO) detailing exact grade specifications, port terminal coordinates, allocation schedule, and pricing structure.",
-          docs: ["Official Binding FCO", "Refinery Allocation Confirmation", "Compliance Clearance Notice"]
-        },
-        {
-          step: "03",
-          short: "SPA & NCNDA",
-          title: "Execution of SPA & NCNDA/IMFPA",
-          desc: "Both parties countersign the Commercial Invoice / Sales & Purchase Agreement (SPA) along with NCNDA/IMFPA where intermediaries are registered. Seller lodges the contract with the port terminal.",
-          docs: ["Countersigned Commercial Invoice / SPA", "ICC NCNDA / IMFPA", "Terminal Allocation Schedule"]
-        },
-        {
-          step: "04",
-          short: "SBLC / TSR",
-          title: "Financial Readiness & Tank Verification",
-          desc: "Buyer's tank farm issues verifiable Tank Storage Receipt (TSR) or Buyer's bank confirms financial readiness via SBLC MT760 / MT199 POF as stipulated in the agreed FCO.",
-          docs: ["Verifiable Tank Storage Receipt (TSR)", "SBLC MT760 / Bank Readiness", "Authorization to Verify (ATV)"]
-        },
-        {
-          step: "05",
-          short: "SGS Dip Test",
-          title: "SGS / Intertek Dip Test & Injection",
-          desc: "Seller issues Unconditional Dip Test Authorization (DTA), Fresh SGS Report (less than 48 hours), and Injection Report. Buyer's SGS / Intertek / Bureau Veritas team conducts independent Q&Q verification in seller's tank.",
-          docs: ["Unconditional Dip Test Authorization (DTA)", "Fresh SGS / Intertek Q&Q Report", "Tank-to-Tank / Tank-to-Vessel Injection"]
-        },
-        {
-          step: "06",
-          short: "MT103 & Title",
-          title: "MT103 Settlement & Title Transfer",
-          desc: "Within 24 hours of successful Dip Test and injection completion, Buyer executes 100% payment via SWIFT MT103/TT wire. Seller immediately transfers full Product Title Ownership and Export Documentation.",
-          docs: ["SWIFT MT103 / T/T Settlement", "Title Ownership Transfer Certificate", "Full Export & Customs Dossier"]
-        }
-      ],
-      CIF: [
-        {
-          step: "01",
-          short: "ICPO & CIS",
-          title: "Buyer Submits ICPO, CIS & RWA",
-          desc: "Buyer submits an official ICPO with banking coordinates, CIS, and Ready, Willing & Able (RWA) confirmation specifying discharge port (Rotterdam, Fujairah, Qingdao, Jurong, Houston, or global ASWP).",
-          docs: ["Official ICPO with Banking Coordinates", "Buyer CIS & Certificate of Incorporation", "Target Discharge Port Nomination"]
-        },
-        {
-          step: "02",
-          short: "FCO & Draft SPA",
-          title: "Seller Issues FCO & Draft SPA",
-          desc: "EMPR Exports vets the buyer entity and issues the FCO and Draft Sales & Purchase Agreement (SPA) outlining vessel laycan, trial shipment volume, and 12-month contract rollovers.",
-          docs: ["Binding FCO & Draft SPA", "Product Technical Spec Sheet", "Vessel Laycan Schedule"]
-        },
-        {
-          step: "03",
-          short: "Signed SPA",
-          title: "Countersigned SPA & POP Package",
-          desc: "Buyer and Seller execute the final SPA. Seller registers the contract with the refinery and releases Partial Proof of Product (PPOP) including Refinery Commitment to Supply and Statement of Availability.",
-          docs: ["Executed Final SPA", "Refinery Commitment to Supply", "Statement of Product Availability"]
-        },
-        {
-          step: "04",
-          short: "DLC / SBLC",
-          title: "Buyer Issues DLC MT700 or SBLC MT760",
-          desc: "Buyer's prime bank issues an Irrevocable, Confirmed, Transferable Documentary Letter of Credit (DLC MT700) or Standby Letter of Credit (SBLC MT760) covering one month's shipment value. Seller posts 2% Performance Bond (PB).",
-          docs: ["DLC MT700 or SBLC MT760", "2% Seller Performance Bond (PB)", "Charter Party Agreement (CPA)"]
-        },
-        {
-          step: "05",
-          short: "SGS Loading",
-          title: "Vessel Loading & SGS / Intertek Q&Q",
-          desc: "Cargo is loaded aboard the chartered vessel under SGS / Intertek / Bureau Veritas supervision. Full shipping documents (Bill of Lading, Q&Q, Certificate of Origin, Vessel Q88, Ullage Report) are dispatched.",
-          docs: ["Clean On-Board Bill of Lading", "SGS / Intertek / BV Loading Q&Q", "Vessel Q88 & Certificate of Origin"]
-        },
-        {
-          step: "06",
-          short: "Discharge & MT103",
-          title: "Discharge Port Inspection & MT103",
-          desc: "Upon vessel arrival at destination port, Buyer conducts final CIQ / SGS / Intertek inspection. Payment is released immediately via SWIFT MT103 against shipping documents and title transfers to Buyer.",
-          docs: ["Discharge Port SGS / CIQ Report", "SWIFT MT103 Bank-to-Bank Payment", "Final Title Transfer & Rollover"]
-        }
-      ]
-    };
+    ];
 
     function renderProcedures() {
-      const steps = PROCEDURES_DATA[activeProcedureMode];
+      const steps = CIF_PROCEDURE_STEPS;
       const nav = document.getElementById("procedure-steps-nav");
+      nav.className = "grid grid-cols-2 sm:grid-cols-3 gap-3 mb-8";
+
       nav.innerHTML = steps.map((s, idx) => {
         const isActive = idx === activeProcedureStep;
         return `
@@ -1939,13 +1838,13 @@
                       : "bg-obsidianCard border-gold/20 hover:border-gold/50"
                   }">
             <div class="font-mono text-[10px] ${isActive ? "text-gold-light" : "text-gray-500"}">STEP ${s.step}</div>
-            <div class="font-mono text-xs font-semibold mt-1 ${isActive ? "text-white" : "text-gray-300"}">${s.short}</div>
+            <div class="font-mono text-xs font-semibold mt-1 leading-snug ${isActive ? "text-white" : "text-gray-300"}">${s.short}</div>
           </button>
         `;
       }).join("");
 
       const current = steps[activeProcedureStep];
-      document.getElementById("proc-step-badge").textContent = `STEP ${current.step} // ${activeProcedureMode} PROTOCOL`;
+      document.getElementById("proc-step-badge").textContent = `STEP ${current.step} // CIF PROTOCOL`;
       document.getElementById("proc-step-title").textContent = current.title;
       document.getElementById("proc-step-desc").textContent = current.desc;
       document.getElementById("proc-step-docs").innerHTML = current.docs.map(d => `
@@ -1956,105 +1855,175 @@
       `).join("");
     }
 
-    window.setProcedureMode = function(mode) {
-      activeProcedureMode = mode;
-      activeProcedureStep = 0;
-      const fobBtn = document.getElementById("proc-btn-fob");
-      const cifBtn = document.getElementById("proc-btn-cif");
-      if (mode === "FOB") {
-        fobBtn.className = "px-5 py-2.5 rounded-lg font-mono text-xs font-bold tracking-wider uppercase transition-all bg-gold text-obsidian";
-        cifBtn.className = "px-5 py-2.5 rounded-lg font-mono text-xs font-bold tracking-wider uppercase transition-all text-gray-300 hover:text-gold-light";
-      } else {
-        cifBtn.className = "px-5 py-2.5 rounded-lg font-mono text-xs font-bold tracking-wider uppercase transition-all bg-gold text-obsidian";
-        fobBtn.className = "px-5 py-2.5 rounded-lg font-mono text-xs font-bold tracking-wider uppercase transition-all text-gray-300 hover:text-gold-light";
-      }
-      renderProcedures();
-    };
-
     window.selectProcedureStep = function(index) {
       activeProcedureStep = index;
       renderProcedures();
     };
 
     // =========================================================================
-    // 9. LIVE GLOBAL TRADING DESK CLOCKS
+    // 9. DEAL ESTIMATOR & RFQ SLIDE-OVER DRAWER
     // =========================================================================
-    const DESK_CLOCKS = [
-      { city: "DUBAI", zone: "Asia/Dubai", label: "GST" },
-      { city: "ROTTERDAM", zone: "Europe/Amsterdam", label: "CET" },
-      { city: "SINGAPORE", zone: "Asia/Singapore", label: "SGT" },
-      { city: "HOUSTON", zone: "America/Chicago", label: "CST" },
-      { city: "INDIA HQ", zone: "Asia/Kolkata", label: "IST" }
-    ];
+    const rfqBackdrop = document.getElementById("rfq-drawer-backdrop");
+    const rfqDrawer = document.getElementById("rfq-drawer");
+    let currentDrawerCommodity = null;
 
-    function updateGlobalClocks() {
-      const container = document.getElementById("global-clocks-grid");
-      const now = new Date();
-      container.innerHTML = DESK_CLOCKS.map(desk => {
-        const timeStr = new Intl.DateTimeFormat("en-GB", {
-          timeZone: desk.zone,
-          hour: "2-digit",
-          minute: "2-digit",
-          second: "2-digit",
-          hour12: false
-        }).format(now);
-        const hourNum = parseInt(timeStr.split(":")[0], 10);
-        const isActive = hourNum >= 8 && hourNum < 20;
-        return `
-          <div class="px-3.5 py-2.5 rounded-xl bg-obsidianCard/90 border border-gold/20 flex items-center justify-between gap-2">
-            <div>
-              <div class="font-mono text-[10px] tracking-[0.18em] text-gold uppercase">${desk.city} <span class="text-gray-500">(${desk.label})</span></div>
-              <div class="font-mono text-base sm:text-lg font-bold text-white tracking-wider mt-0.5">${timeStr}</div>
-            </div>
-            <div class="flex flex-col items-end">
-              <span class="w-2 h-2 rounded-full ${isActive ? "bg-emerald-400 animate-pulse" : "bg-amber-400"}"></span>
-              <span class="font-mono text-[9px] uppercase mt-1 ${isActive ? "text-emerald-400" : "text-amber-300"}">${isActive ? "DESK LIVE" : "STANDBY"}</span>
-            </div>
-          </div>
-        `;
-      }).join("");
+    function populateDrawerSpecs(commodityId) {
+      const c = commoditiesState.find(item => item.id === commodityId) || commoditiesState[0];
+      if (!c) return;
+      currentDrawerCommodity = c;
+
+      document.getElementById("drawer-commodity-title").textContent = c.name;
+      const statusBadge = document.getElementById("drawer-status-badge");
+      statusBadge.textContent = c.status;
+      statusBadge.className = `font-mono text-[10px] px-2.5 py-0.5 rounded border ${getStatusBadgeClasses(c.status)}`;
+      document.getElementById("drawer-origin").textContent = c.origin;
+      document.getElementById("drawer-moq").textContent = c.moq;
+      document.getElementById("drawer-terms").textContent = c.incoterms;
+      document.getElementById("drawer-spec-notes").textContent = c.specs;
+
+      const selectEl = document.getElementById("rfq-commodity-select");
+      if (selectEl) selectEl.value = c.id;
+
+      // Sync volume slider to commodity range
+      const slider = document.getElementById("rfq-volume-slider");
+      slider.value = 25;
+      updateVolumeFromSlider();
     }
 
-    // =========================================================================
-    // 10. 3D METALLIC BUSINESS CARD TILT + VCARD DOWNLOAD
-    // =========================================================================
-    const card3d = document.getElementById("business-card-3d");
-    const cardGlare = document.getElementById("business-card-glare");
+    function updateVolumeFromSlider() {
+      const c = currentDrawerCommodity || commoditiesState[0];
+      if (!c) return;
+      const pct = Number(document.getElementById("rfq-volume-slider").value) / 100;
+      const minV = Number(c.minVol) || 10000;
+      const maxV = Number(c.maxVol) || 100000;
+      const val = Math.round((minV + (maxV - minV) * pct) / (minV >= 1000 ? 500 : 10)) * (minV >= 1000 ? 500 : 10);
+      const formatted = `${val.toLocaleString()} ${c.unit || "MT"}`;
+      document.getElementById("rfq-volume-display").textContent = formatted;
+      document.getElementById("rfq-volume-text").value = formatted;
+    }
 
-    card3d.addEventListener("mousemove", (e) => {
-      const rect = card3d.getBoundingClientRect();
-      const x = e.clientX - rect.left;
-      const y = e.clientY - rect.top;
-      const rotateY = ((x / rect.width) - 0.5) * 22;
-      const rotateX = ((y / rect.height) - 0.5) * -22;
-      card3d.style.transform = `rotateX(${rotateX}deg) rotateY(${rotateY}deg) scale(1.02)`;
-      cardGlare.style.opacity = "1";
-      cardGlare.style.background = `radial-gradient(circle at ${(x / rect.width) * 100}% ${(y / rect.height) * 100}%, rgba(245,215,142,0.42), rgba(212,175,55,0.1) 35%, transparent 65%)`;
+    document.getElementById("rfq-commodity-select").addEventListener("change", (e) => {
+      populateDrawerSpecs(e.target.value);
     });
 
-    card3d.addEventListener("mouseleave", () => {
-      card3d.style.transform = "rotateX(0deg) rotateY(0deg) scale(1)";
-      cardGlare.style.opacity = "0";
+    document.getElementById("rfq-volume-slider").addEventListener("input", updateVolumeFromSlider);
+
+    window.openRfqDrawer = function(commodityId) {
+      populateDrawerSpecs(commodityId || commoditiesState[0]?.id);
+      rfqBackdrop.classList.remove("hidden");
+      requestAnimationFrame(() => {
+        rfqBackdrop.classList.remove("opacity-0");
+        rfqDrawer.classList.remove("translate-x-full");
+      });
+    };
+
+    window.closeRfqDrawer = function() {
+      rfqBackdrop.classList.add("opacity-0");
+      rfqDrawer.classList.add("translate-x-full");
+      setTimeout(() => rfqBackdrop.classList.add("hidden"), 300);
+    };
+
+    rfqBackdrop.addEventListener("click", window.closeRfqDrawer);
+
+    window.resetRfqForm = function() {
+      document.getElementById("rfq-form").reset();
+      document.getElementById("rfq-form").classList.remove("hidden");
+      document.getElementById("rfq-confirmation").classList.add("hidden");
+      populateDrawerSpecs(currentDrawerCommodity?.id || commoditiesState[0]?.id);
+    };
+
+    document.getElementById("rfq-form").addEventListener("submit", async (e) => {
+      e.preventDefault();
+      const btn = document.getElementById("rfq-submit-btn");
+      btn.disabled = true;
+      btn.textContent = "TRANSMITTING TO TRADE DESK...";
+
+      const c = commoditiesState.find(item => item.id === document.getElementById("rfq-commodity-select").value) || commoditiesState[0];
+      const refId = `EMPR-${Date.now().toString().slice(-6)}`;
+      const payload = {
+        refId,
+        commodityId: c.id,
+        commodityName: c.name,
+        buyerName: document.getElementById("rfq-name").value.trim(),
+        company: document.getElementById("rfq-company").value.trim(),
+        contact: document.getElementById("rfq-contact").value.trim(),
+        volume: document.getElementById("rfq-volume-text").value.trim(),
+        port: document.getElementById("rfq-port").value,
+        incoterm: document.getElementById("rfq-incoterm").value,
+        instrument: document.getElementById("rfq-instrument").value,
+        createdAt: new Date().toISOString(),
+        timestamp: serverTimestamp()
+      };
+
+      try {
+        if (db) {
+          await addDoc(collection(db, "rfqs"), payload);
+        }
+        showToast(`Verified RFQ ${refId} logged with EMPR Desk.`, "success");
+      } catch (err) {
+        console.warn("Firestore RFQ fallback:", err);
+        showToast(`RFQ ${refId} prepared for direct WhatsApp dispatch.`, "gold");
+      } finally {
+        btn.disabled = false;
+        btn.textContent = "TRANSMIT VERIFIED RFQ TO TRADE DESK";
+      }
+
+      document.getElementById("rfq-ref-id").textContent = refId;
+      const waText = [
+        `*EMPR EXPORTS — VERIFIED RFQ (${refId})*`,
+        `Commodity: ${payload.commodityName}`,
+        `Volume: ${payload.volume}`,
+        `Port / Terms: ${payload.port} (${payload.incoterm})`,
+        `Instrument: ${payload.instrument}`,
+        `Buyer: ${payload.buyerName} (${payload.company})`,
+        `Contact: ${payload.contact}`
+      ].join("\n");
+      document.getElementById("rfq-whatsapp-forward").href = `https://wa.me/917978932107?text=${encodeURIComponent(waText)}`;
+
+      document.getElementById("rfq-form").classList.add("hidden");
+      document.getElementById("rfq-confirmation").classList.remove("hidden");
     });
+
+    // =========================================================================
+    // 10. 3D METALLIC BUSINESS CARD TILT & ONE-CLICK VCARD (.VCF) EXPORT
+    // =========================================================================
+    const bcCard = document.getElementById("business-card-3d");
+    const bcGlare = document.getElementById("business-card-glare");
+    if (bcCard && bcGlare) {
+      bcCard.addEventListener("mousemove", (e) => {
+        const rect = bcCard.getBoundingClientRect();
+        const x = (e.clientX - rect.left) / rect.width;
+        const y = (e.clientY - rect.top) / rect.height;
+        const rotateY = (x - 0.5) * 22;
+        const rotateX = (0.5 - y) * 18;
+        bcCard.style.transform = `rotateX(${rotateX}deg) rotateY(${rotateY}deg) scale3d(1.02, 1.02, 1.02)`;
+        bcGlare.style.opacity = "1";
+        bcGlare.style.background = `radial-gradient(circle at ${x * 100}% ${y * 100}%, rgba(245, 215, 142, 0.42), rgba(212, 175, 55, 0.08) 40%, transparent 70%)`;
+      });
+      bcCard.addEventListener("mouseleave", () => {
+        bcCard.style.transform = "rotateX(0deg) rotateY(0deg) scale3d(1, 1, 1)";
+        bcGlare.style.opacity = "0";
+      });
+    }
 
     window.downloadVCard = function() {
-      const vcard = [
+      const vcf = [
         "BEGIN:VCARD",
         "VERSION:3.0",
         "N:Samantaray;Abinash (Rion);;;Mr.",
         "FN:Mr. Abinash Samantaray (Rion)",
         "ORG:EMPR EXPORTS PRIVATE LIMITED",
         "TITLE:CEO & Managing Director",
-        "TEL;TYPE=CELL,VOICE:+917978932107",
-        "EMAIL;TYPE=WORK,INTERNET:info@emprexports.world",
+        "TEL;TYPE=WORK,VOICE:+917978932107",
+        "EMAIL;TYPE=PREF,INTERNET:info@emprexports.world",
         "EMAIL;TYPE=WORK,INTERNET:RefineryHQ@protonmail.com",
         "URL:https://www.emprexports.world",
         "ADR;TYPE=WORK:;;DLF Cyber City, Infocity;Bhubaneswar;Odisha;751024;India",
-        "NOTE:CIN: U46303OD2024PTC045525 | Global Energy & Commodity Trading | Trade of Trust",
+        "NOTE:EMPR Exports Private Limited — Trade of Trust | CIN: U46303OD2024PTC045525",
         "END:VCARD"
       ].join("\r\n");
 
-      const blob = new Blob([vcard], { type: "text/vcard;charset=utf-8" });
+      const blob = new Blob([vcf], { type: "text/vcard;charset=utf-8" });
       const url = URL.createObjectURL(blob);
       const a = document.createElement("a");
       a.href = url;
@@ -2063,11 +2032,11 @@
       a.click();
       document.body.removeChild(a);
       URL.revokeObjectURL(url);
-      showToast("Executive vCard (.VCF) downloaded.", "success");
+      showToast("Executive Contact (.VCF) downloaded.", "success");
     };
 
     // =========================================================================
-    // 11. ENCRYPTED MANDATE VAULT (FIREBASE-GATED)
+    // 11. ENCRYPTED ASSOCIATES VAULT (FIREBASE-GATED)
     // =========================================================================
     document.getElementById("vault-unlock-form").addEventListener("submit", (e) => {
       e.preventDefault();
@@ -2082,10 +2051,10 @@
         const pill = document.getElementById("vault-status-pill");
         pill.textContent = "UNLOCKED // CLEARANCE GRANTED";
         pill.className = "font-mono text-[10px] px-3 py-1 rounded-full bg-emerald-500/15 border border-emerald-500/40 text-emerald-300 uppercase tracking-widest self-start sm:self-center";
-        showToast("Mandate Vault Unlocked.", "success");
+        showToast("Associates Vault Unlocked.", "success");
       } else {
         errEl.classList.remove("hidden");
-        showToast("Invalid Mandate Passcode.", "error");
+        showToast("Invalid Associates Passcode.", "error");
       }
     });
 
@@ -2116,7 +2085,6 @@
           "",
           "KEY OFFICIALS:",
           "- Mr. Abinash Samantaray (Rion) | CEO & Managing Director | +91 79789 32107",
-          "- Mr. Rajesh Martha | Chief Financial Officer | +91 99389 44402",
           "- Mr. Tapaswi Sekhar Panda | Director (Acting)",
           "",
           "PRIMARY COMMODITIES:",
@@ -2135,21 +2103,16 @@
           "======================================================================",
           "EMPR EXPORTS PRIVATE LIMITED — STANDARD SCO / FCO EXECUTION PROTOCOL",
           "======================================================================",
-          "FOB (TTV / TTT / TTO / TTM) WORKFLOW:",
-          "01. Buyer submits ICPO + CIS + TSA/CPA.",
-          "02. Seller issues binding FCO upon compliance vetting.",
-          "03. Both parties execute Commercial Invoice / SPA & NCNDA.",
-          "04. Buyer provides verifiable TSR / financial readiness.",
-          "05. Seller issues Unconditional DTA & Fresh SGS Q&Q; Dip Test executed.",
-          "06. Buyer executes SWIFT MT103 settlement; Title transfers immediately.",
-          "",
-          "CIF (ROTTERDAM / FUJAIRAH / QINGDAO / JURONG / HOUSTON) WORKFLOW:",
-          "01. Buyer submits ICPO + CIS + Banking Coordinates.",
-          "02. Seller issues FCO & Draft SPA.",
-          "03. Countersigned SPA & Seller releases PPOP.",
-          "04. Buyer issues DLC MT700 or SBLC MT760; Seller posts 2% PB.",
-          "05. Vessel loads with SGS / Intertek / BV Q&Q & Shipping Docs.",
-          "06. Discharge port inspection & SWIFT MT103 settlement.",
+          "CIF (9-STEP PROTOCOL — GLOBAL PORTS) WORKFLOW:",
+          "01. LOI — Buyer submits official Letter of Intent with target volume, specs & port.",
+          "02. FCO — EMPR Exports issues Full Corporate Offer with pricing, terms & procedures.",
+          "03. ICPO — Buyer returns signed & sealed ICPO with CIS & Passport.",
+          "04. SPA — Both parties execute Sales & Purchase Agreement & lodge with banks.",
+          "05. PPOP — Seller issues Partial Proof of Product (Refinery Commitment, ATS, Availability).",
+          "06. INSTRUMENT — Buyer's bank issues SBLC MT760 or DLC MT700.",
+          "07. POP & INSPECTION — Seller provides Full POP & 2% PB; SGS / Intertek Q&Q conducted.",
+          "08. LOADING — Vessel loading, Charter Party Agreement, Bill of Lading & shipping docs.",
+          "09. PAYMENT AT LOADING OR DISCHARGE — Buyer releases MT103 / T/T & title transfers.",
           "",
           "Direct Desk: +91 79789 32107 | RefineryHQ@protonmail.com | www.emprexports.world",
           "======================================================================"
@@ -2172,105 +2135,106 @@
     // 12. PROTECTED FIREBASE ADMIN COMMAND PANEL
     // =========================================================================
     const adminModal = document.getElementById("admin-modal");
+    const openAdminBtn = document.getElementById("open-admin-btn");
 
-    document.getElementById("open-admin-btn").addEventListener("click", () => {
-      adminModal.classList.remove("hidden");
-      adminModal.classList.add("flex");
-    });
+    if (openAdminBtn && adminModal) {
+      openAdminBtn.addEventListener("click", () => {
+        adminModal.classList.remove("hidden");
+        adminModal.classList.add("flex");
+      });
+    }
 
     window.closeAdminModal = function() {
+      if (!adminModal) return;
       adminModal.classList.add("hidden");
       adminModal.classList.remove("flex");
     };
 
-    document.getElementById("admin-login-form").addEventListener("submit", async (e) => {
-      e.preventDefault();
-      const email = document.getElementById("admin-email").value.trim();
-      const pass = document.getElementById("admin-password").value;
-      const errEl = document.getElementById("admin-login-error");
-      errEl.classList.add("hidden");
+    if (adminModal) {
+      adminModal.addEventListener("click", (e) => {
+        if (e.target === adminModal) window.closeAdminModal();
+      });
+    }
 
-      try {
-        await signInWithEmailAndPassword(auth, email, pass);
-        showToast("Admin Command Panel Authenticated.", "success");
-      } catch (err) {
-        errEl.textContent = "Authentication failed: " + (err.code || err.message);
-        errEl.classList.remove("hidden");
-      }
-    });
+    const adminLoginForm = document.getElementById("admin-login-form");
+    const adminLoginErr = document.getElementById("admin-login-error");
+    const adminSignoutBtn = document.getElementById("admin-signout-btn");
 
-    document.getElementById("admin-signout-btn").addEventListener("click", async () => {
-      if (auth) await signOut(auth);
-      showToast("Signed out of Admin Desk.", "gold");
-    });
+    if (adminLoginForm) {
+      adminLoginForm.addEventListener("submit", async (e) => {
+        e.preventDefault();
+        if (!auth) {
+          showToast("Firebase Auth is not initialized.", "error");
+          return;
+        }
+        adminLoginErr.classList.add("hidden");
+        const email = document.getElementById("admin-email").value.trim();
+        const password = document.getElementById("admin-password").value;
+        try {
+          await signInWithEmailAndPassword(auth, email, password);
+          showToast("Authenticated to EMPR Admin Command Desk.", "success");
+        } catch (err) {
+          adminLoginErr.textContent = `AUTH ERROR: ${err.message || "Invalid credentials."}`;
+          adminLoginErr.classList.remove("hidden");
+        }
+      });
+    }
 
-    if (auth) {
-      onAuthStateChanged(auth, (user) => {
-        currentAdminUser = user;
-        const loginView = document.getElementById("admin-login-view");
-        const dashView = document.getElementById("admin-dashboard-view");
-        const signOutBtn = document.getElementById("admin-signout-btn");
-        const statusText = document.getElementById("admin-auth-status");
-
-        if (user) {
-          loginView.classList.add("hidden");
-          dashView.classList.remove("hidden");
-          signOutBtn.classList.remove("hidden");
-          statusText.textContent = `AUTHENTICATED // ${user.email}`;
-          renderAdminCommodities();
-          renderAdminRfqs();
-          document.getElementById("admin-ticker-input").value = siteSettingsState.tickerText || "";
-          document.getElementById("admin-vault-input").value = siteSettingsState.vaultCode || "EMPR2026";
-        } else {
-          loginView.classList.remove("hidden");
-          dashView.classList.add("hidden");
-          signOutBtn.classList.add("hidden");
-          statusText.textContent = "FIREBASE AUTHENTICATION REQUIRED";
+    if (adminSignoutBtn) {
+      adminSignoutBtn.addEventListener("click", async () => {
+        if (!auth) return;
+        try {
+          await signOut(auth);
+          showToast("Signed out of Admin Command Desk.", "gold");
+        } catch (err) {
+          showToast("Sign out failed.", "error");
         }
       });
     }
 
     window.switchAdminTab = function(tabName) {
-      document.querySelectorAll(".admin-panel").forEach(p => p.classList.add("hidden"));
-      document.getElementById(`admin-panel-${tabName}`).classList.remove("hidden");
       document.querySelectorAll(".admin-tab-btn").forEach(btn => {
-        const active = btn.dataset.adminTab === tabName;
-        btn.className = active
+        const isAct = btn.dataset.adminTab === tabName;
+        btn.className = isAct
           ? "admin-tab-btn px-4 py-2 rounded-lg font-mono text-xs uppercase bg-gold text-obsidian font-bold"
           : "admin-tab-btn px-4 py-2 rounded-lg font-mono text-xs uppercase bg-obsidianCard border border-gold/25 text-gray-300";
+      });
+      document.querySelectorAll(".admin-panel").forEach(panel => {
+        panel.classList.toggle("hidden", panel.id !== `admin-panel-${tabName}`);
       });
     };
 
     function renderAdminCommodities() {
-      const list = document.getElementById("admin-commodities-list");
-      list.innerHTML = commoditiesState.map(c => `
-        <div class="p-4 rounded-xl bg-obsidianCard border border-gold/20 grid grid-cols-1 lg:grid-cols-12 gap-3 items-center">
-          <div class="lg:col-span-3">
-            <div class="font-display text-sm font-bold text-white">${escapeHtml(c.name)}</div>
-            <div class="font-mono text-[10px] text-gray-400">${escapeHtml(c.category)}</div>
+      const container = document.getElementById("admin-commodities-list");
+      if (!container) return;
+      container.innerHTML = commoditiesState.map(c => `
+        <div class="p-4 rounded-xl bg-obsidianCard border border-gold/20 grid grid-cols-1 md:grid-cols-12 gap-3 items-end">
+          <div class="md:col-span-3">
+            <div class="font-mono text-[10px] text-gold uppercase">COMMODITY</div>
+            <div class="text-xs font-semibold text-white mt-1">${escapeHtml(c.name)}</div>
           </div>
-          <div class="lg:col-span-3">
-            <label class="block font-mono text-[9px] text-gold uppercase mb-1">Status</label>
-            <select id="adm-status-${c.id}" class="w-full px-2.5 py-2 rounded-lg bg-obsidian border border-gold/30 font-mono text-xs text-white">
+          <div class="md:col-span-3">
+            <label class="block font-mono text-[10px] text-gray-400 uppercase mb-1">Status</label>
+            <select id="adm-status-${escapeHtml(c.id)}" class="w-full px-2.5 py-2 rounded-lg bg-obsidian border border-gold/25 font-mono text-xs text-white">
               ${["SPOT AVAILABLE", "ALLOCATED", "LOADING", "MANDATE ONLY"].map(st =>
                 `<option value="${st}" ${c.status === st ? "selected" : ""}>${st}</option>`
               ).join("")}
             </select>
           </div>
-          <div class="lg:col-span-2">
-            <label class="block font-mono text-[9px] text-gold uppercase mb-1">MOQ</label>
-            <input id="adm-moq-${c.id}" type="text" value="${escapeHtml(c.moq)}"
-                   class="w-full px-2.5 py-2 rounded-lg bg-obsidian border border-gold/30 font-mono text-xs text-white" />
+          <div class="md:col-span-2">
+            <label class="block font-mono text-[10px] text-gray-400 uppercase mb-1">MOQ</label>
+            <input id="adm-moq-${escapeHtml(c.id)}" type="text" value="${escapeHtml(c.moq)}"
+                   class="w-full px-2.5 py-2 rounded-lg bg-obsidian border border-gold/25 font-mono text-xs text-gold-light" />
           </div>
-          <div class="lg:col-span-2">
-            <label class="block font-mono text-[9px] text-gold uppercase mb-1">Origin</label>
-            <input id="adm-origin-${c.id}" type="text" value="${escapeHtml(c.origin)}"
-                   class="w-full px-2.5 py-2 rounded-lg bg-obsidian border border-gold/30 font-mono text-xs text-white" />
+          <div class="md:col-span-2">
+            <label class="block font-mono text-[10px] text-gray-400 uppercase mb-1">Origin</label>
+            <input id="adm-origin-${escapeHtml(c.id)}" type="text" value="${escapeHtml(c.origin)}"
+                   class="w-full px-2.5 py-2 rounded-lg bg-obsidian border border-gold/25 font-mono text-xs text-gray-200" />
           </div>
-          <div class="lg:col-span-2 flex justify-end">
-            <button type="button" onclick="saveCommodityAdmin('${c.id}')"
-                    class="btn-gold w-full lg:w-auto px-4 py-2 rounded-lg text-[11px] uppercase">
-              SAVE
+          <div class="md:col-span-2">
+            <button type="button" onclick="saveCommodityAdmin('${escapeHtml(c.id)}')"
+                    class="btn-gold w-full py-2 rounded-lg font-mono text-[11px] uppercase">
+              Save
             </button>
           </div>
         </div>
@@ -2278,76 +2242,75 @@
     }
 
     window.saveCommodityAdmin = async function(id) {
-      const existing = commoditiesState.find(c => c.id === id);
-      if (!existing) return;
+      const target = commoditiesState.find(c => c.id === id);
+      if (!target) return;
       const updated = {
-        ...existing,
+        ...target,
         status: document.getElementById(`adm-status-${id}`).value,
         moq: document.getElementById(`adm-moq-${id}`).value.trim(),
         origin: document.getElementById(`adm-origin-${id}`).value.trim()
       };
       try {
-        await setDoc(doc(db, "commodities", id), updated, { merge: true });
+        if (db) {
+          await setDoc(doc(db, "commodities", id), updated, { merge: true });
+        }
+        const idx = commoditiesState.findIndex(c => c.id === id);
+        if (idx >= 0) commoditiesState[idx] = updated;
+        renderCommodities();
+        renderTicker();
         showToast(`${updated.shortTicker || updated.name} updated live.`, "success");
       } catch (err) {
-        console.error(err);
-        showToast("Error saving commodity: " + err.message, "error");
+        showToast(`Save failed: ${err.message}`, "error");
       }
     };
 
     function renderAdminRfqs() {
       const tbody = document.getElementById("admin-rfq-tbody");
-      document.getElementById("admin-rfq-count").textContent = rfqInquiriesState.length;
+      const countEl = document.getElementById("admin-rfq-count");
+      if (countEl) countEl.textContent = String(rfqInquiriesState.length);
+      if (!tbody) return;
 
       if (rfqInquiriesState.length === 0) {
-        tbody.innerHTML = `<tr><td colspan="5" class="p-6 text-center text-gray-500">No buyer RFQs logged in Firestore yet.</td></tr>`;
+        tbody.innerHTML = `<tr><td colspan="5" class="p-6 text-center text-gray-500">No incoming RFQs logged yet.</td></tr>`;
         return;
       }
 
-      tbody.innerHTML = rfqInquiriesState.map(r => {
-        const waReply = `https://wa.me/917978932107?text=${encodeURIComponent(
-          `Re: EMPR RFQ ${r.refId} (${r.commodityName} - ${r.volume}) for ${r.company}`
-        )}`;
-        const dateLabel = r.createdAt ? new Date(r.createdAt).toLocaleDateString() : "Recent";
-        return `
-          <tr class="hover:bg-white/[0.02]">
-            <td class="p-3">
-              <div class="text-gold-light font-semibold">${escapeHtml(r.refId || r.id.slice(0, 8))}</div>
-              <div class="text-[10px] text-gray-500">${dateLabel}</div>
-            </td>
-            <td class="p-3">
-              <div class="text-white">${escapeHtml(r.buyerName)}</div>
-              <div class="text-[10px] text-gray-400">${escapeHtml(r.company)} &bull; ${escapeHtml(r.contact)}</div>
-            </td>
-            <td class="p-3">
-              <div class="text-white">${escapeHtml(r.commodityName)}</div>
-              <div class="text-[10px] text-gold-light">${escapeHtml(r.volume)}</div>
-            </td>
-            <td class="p-3">
-              <div>${escapeHtml(r.port)} (${escapeHtml(r.incoterm)})</div>
-              <div class="text-[10px] text-gray-400">${escapeHtml(r.instrument)}</div>
-            </td>
-            <td class="p-3 text-right space-x-1.5 whitespace-nowrap">
-              <a href="${waReply}" target="_blank" rel="noopener noreferrer"
-                 class="inline-block px-2.5 py-1 rounded bg-emerald-500/20 border border-emerald-500/40 text-emerald-300 text-[10px] hover:bg-emerald-500/30">
-                WA REPLY
-              </a>
-              <button type="button" onclick="deleteRfqAdmin('${r.docId}')"
-                      class="px-2.5 py-1 rounded bg-red-500/15 border border-red-500/40 text-red-300 text-[10px] hover:bg-red-500/25">
-                ARCHIVE
-              </button>
-            </td>
-          </tr>
-        `;
-      }).join("");
+      tbody.innerHTML = rfqInquiriesState.map(r => `
+        <tr class="hover:bg-gold/5">
+          <td class="p-3 align-top">
+            <div class="text-gold-light font-semibold">${escapeHtml(r.refId || r.docId)}</div>
+            <div class="text-[10px] text-gray-500">${escapeHtml((r.createdAt || "").slice(0, 16).replace("T", " "))}</div>
+          </td>
+          <td class="p-3 align-top">
+            <div class="text-white">${escapeHtml(r.buyerName)}</div>
+            <div class="text-[10px] text-gray-400">${escapeHtml(r.company)}</div>
+            <div class="text-[10px] text-gold">${escapeHtml(r.contact)}</div>
+          </td>
+          <td class="p-3 align-top">
+            <div class="text-white">${escapeHtml(r.commodityName)}</div>
+            <div class="text-[10px] text-emerald-300">${escapeHtml(r.volume)}</div>
+          </td>
+          <td class="p-3 align-top">
+            <div>${escapeHtml(r.port)} (${escapeHtml(r.incoterm)})</div>
+            <div class="text-[10px] text-gray-400">${escapeHtml(r.instrument)}</div>
+          </td>
+          <td class="p-3 align-top text-right">
+            <button type="button" onclick="deleteRfq('${escapeHtml(r.docId)}')"
+                    class="px-2.5 py-1 rounded border border-red-500/40 bg-red-500/10 text-red-300 text-[10px] hover:bg-red-500/20">
+              ARCHIVE
+            </button>
+          </td>
+        </tr>
+      `).join("");
     }
 
-    window.deleteRfqAdmin = async function(docId) {
+    window.deleteRfq = async function(docId) {
+      if (!db || !docId) return;
       try {
         await deleteDoc(doc(db, "rfqs", docId));
         showToast("RFQ archived from Firestore.", "gold");
       } catch (err) {
-        showToast("Error archiving RFQ: " + err.message, "error");
+        showToast(`Archive failed: ${err.message}`, "error");
       }
     };
 
@@ -2355,476 +2318,546 @@
       const tickerText = document.getElementById("admin-ticker-input").value.trim();
       const vaultCode = document.getElementById("admin-vault-input").value.trim() || "EMPR2026";
       try {
-        await setDoc(doc(db, "site_settings", "main"), { tickerText, vaultCode }, { merge: true });
-        showToast("Ticker & Mandate Vault Code updated live.", "success");
+        if (db) {
+          await setDoc(doc(db, "settings", "site"), { tickerText, vaultCode }, { merge: true });
+        }
+        siteSettingsState = { tickerText, vaultCode };
+        renderTicker();
+        showToast("Ticker & Associates Vault settings saved live.", "success");
       } catch (err) {
-        showToast("Error updating settings: " + err.message, "error");
+        showToast(`Settings save failed: ${err.message}`, "error");
       }
     };
 
     window.seedDefaultDataToFirestore = async function() {
+      if (!db) {
+        showToast("Firestore is not connected.", "error");
+        return;
+      }
       const btn = document.getElementById("seed-firestore-btn");
-      btn.disabled = true;
-      btn.textContent = "SYNCING TO FIRESTORE...";
+      if (btn) {
+        btn.disabled = true;
+        btn.textContent = "SEEDING FIRESTORE...";
+      }
       try {
-        for (const item of DEFAULT_COMMODITIES) {
-          await setDoc(doc(db, "commodities", item.id), item, { merge: true });
-        }
-        await setDoc(doc(db, "site_settings", "main"), {
+        await Promise.all(
+          DEFAULT_COMMODITIES.map(item => setDoc(doc(db, "commodities", item.id), item, { merge: true }))
+        );
+        await setDoc(doc(db, "settings", "site"), {
           tickerText: "",
-          vaultCode: "EMPR2026"
+          vaultCode: siteSettingsState.vaultCode || "EMPR2026"
         }, { merge: true });
-        showToast("All 9 commodities & settings seeded to Firestore!", "success");
+        showToast("All 9 commodities & settings seeded to Firestore.", "success");
       } catch (err) {
-        showToast("Seed failed: " + err.message, "error");
+        showToast(`Seed failed: ${err.message}`, "error");
       } finally {
-        btn.disabled = false;
-        btn.textContent = "SEED DEFAULT DATA TO FIRESTORE";
+        if (btn) {
+          btn.disabled = false;
+          btn.textContent = "SEED DEFAULT DATA TO FIRESTORE";
+        }
       }
     };
 
-    // =========================================================================
-    // 13. FIRESTORE REAL-TIME SUBSCRIPTIONS (WITH GRACEFUL FALLBACK)
-    // =========================================================================
-    function initFirestoreSubscriptions() {
+    function initFirestoreSync() {
+      if (auth) {
+        onAuthStateChanged(auth, (user) => {
+          currentAdminUser = user;
+          const loginView = document.getElementById("admin-login-view");
+          const dashView = document.getElementById("admin-dashboard-view");
+          const statusEl = document.getElementById("admin-auth-status");
+          if (user) {
+            loginView.classList.add("hidden");
+            dashView.classList.remove("hidden");
+            adminSignoutBtn.classList.remove("hidden");
+            statusEl.textContent = `AUTHENTICATED // ${user.email}`;
+            renderAdminCommodities();
+            renderAdminRfqs();
+          } else {
+            loginView.classList.remove("hidden");
+            dashView.classList.add("hidden");
+            adminSignoutBtn.classList.add("hidden");
+            statusEl.textContent = "FIREBASE AUTHENTICATION REQUIRED";
+          }
+        });
+      }
+
       if (!db) return;
 
-      // 1. Live Commodities
-      onSnapshot(
-        collection(db, "commodities"),
-        (snapshot) => {
-          if (!snapshot.empty) {
-            const fetched = [];
-            snapshot.forEach(docSnap => fetched.push({ id: docSnap.id, ...docSnap.data() }));
-            // Preserve canonical order where possible
-            const orderMap = new Map(DEFAULT_COMMODITIES.map((d, i) => [d.id, i]));
-            fetched.sort((a, b) => (orderMap.get(a.id) ?? 99) - (orderMap.get(b.id) ?? 99));
-            commoditiesState = fetched;
-            renderCommodities();
-            renderTicker();
-            if (currentAdminUser) renderAdminCommodities();
-          }
-        },
-        (error) => {
-          console.warn("Firestore commodities listener fallback:", error.code);
-        }
-      );
-
-      // 2. Live Site Settings (Ticker & Vault Code)
-      onSnapshot(
-        doc(db, "site_settings", "main"),
-        (docSnap) => {
-          if (docSnap.exists()) {
-            const data = docSnap.data();
-            siteSettingsState.tickerText = data.tickerText || "";
-            siteSettingsState.vaultCode = data.vaultCode || "EMPR2026";
-            renderTicker();
-            if (currentAdminUser) {
-              document.getElementById("admin-ticker-input").value = siteSettingsState.tickerText;
-              document.getElementById("admin-vault-input").value = siteSettingsState.vaultCode;
-            }
-          }
-        },
-        (error) => {
-          console.warn("Firestore site_settings listener fallback:", error.code);
-        }
-      );
-
-      // 3. Live RFQ Inquiries
-      onSnapshot(
-        collection(db, "rfqs"),
-        (snapshot) => {
-          const list = [];
-          snapshot.forEach(docSnap => list.push({ docId: docSnap.id, ...docSnap.data() }));
-          list.sort((a, b) => (b.createdAt || "").localeCompare(a.createdAt || ""));
-          rfqInquiriesState = list;
-          if (currentAdminUser) renderAdminRfqs();
-        },
-        (error) => {
-          console.warn("Firestore rfqs listener fallback:", error.code);
-        }
-      );
-    }
-
-    // =========================================================================
-    // 14. PHOTOREALISTIC 3D EARTH GLOBE & TRADE CORRIDORS (THREE.JS)
-    // =========================================================================
-    const TRADE_HUBS = [
-      { id: "poti", name: "KAZAKHSTAN / POTI (GEORGIA)", short: "Poti / KZ", lat: 42.1462, lon: 41.6719, status: "FLAGSHIP", incoterms: "FOB POTI / SOHAR • CIF WORLDWIDE", cargo: "GRANULAR SULFUR (PRIMARY), EN590, JET A1, D6" },
-      { id: "dubai", name: "DUBAI / FUJAIRAH HUB (UAE)", short: "Dubai / Fujairah", lat: 25.1288, lon: 55.8500, status: "DESK LIVE", incoterms: "FOB (TTV/TTT) • CIF DMCC", cargo: "AFRICAN GOLD ASSAY, SULFUR, EN590, BITUMEN" },
-      { id: "africa", name: "ACCRA / JOHANNESBURG (AFRICA)", short: "Africa Gold", lat: -6.5000, lon: 18.5000, status: "GOLD CORRIDOR", incoterms: "CIF DUBAI DMCC / ZURICH / HK", cargo: "AU DORÉ BARS (96%+), 24K GOLD, COPPER CATHODES" },
-      { id: "rotterdam", name: "ROTTERDAM PORT (NL)", short: "Rotterdam", lat: 51.9244, lon: 4.4777, status: "ACTIVE", incoterms: "FOB (TTT/TTV) • CIF", cargo: "EN590 10PPM, JET A1, D6, SULFUR" },
-      { id: "bhubaneswar", name: "BHUBANESWAR HQ (INDIA)", short: "India HQ", lat: 20.2961, lon: 85.8245, status: "HQ LIVE", incoterms: "CORPORATE COMMAND CENTER", cargo: "ALL 09 SOVEREIGN COMMODITIES" },
-      { id: "jurong", name: "JURONG PORT (SINGAPORE)", short: "Jurong", lat: 1.3090, lon: 103.7190, status: "ACTIVE", incoterms: "CIF • TTO • FOB", cargo: "GRANULAR SULFUR, EN590, JET A1, METALS" },
-      { id: "qingdao", name: "QINGDAO PORT (CHINA)", short: "Qingdao", lat: 36.0671, lon: 120.3826, status: "ACTIVE", incoterms: "CIF ASWP", cargo: "GRANULAR SULFUR, COPPER, ALUMINUM A7" },
-      { id: "houston", name: "HOUSTON PORT (USA)", short: "Houston", lat: 29.7604, lon: -95.3698, status: "ACTIVE", incoterms: "FOB (TTV) • CIF", cargo: "JET A1, D6 VIRGIN FUEL OIL, EN590" }
-    ];
-
-    let globeTargetRotY = 0;
-    let globeTargetRotX = 0.25;
-    let globeGroupRef = null;
-
-    function latLonToVec3(lat, lon, radius) {
-      const phi = (90 - lat) * (Math.PI / 180);
-      const theta = (lon + 180) * (Math.PI / 180);
-      const x = -(radius * Math.sin(phi) * Math.cos(theta));
-      const z = radius * Math.sin(phi) * Math.sin(theta);
-      const y = radius * Math.cos(phi);
-      return new THREE.Vector3(x, y, z);
-    }
-
-    // High-detail procedural Earth canvas fallback if external CDN textures are blocked
-    function createProceduralEarthTexture() {
-      const c = document.createElement("canvas");
-      c.width = 1024;
-      c.height = 512;
-      const ctx = c.getContext("2d");
-
-      // Rich deep-ocean gradient
-      const oceanGrad = ctx.createLinearGradient(0, 0, 0, 512);
-      oceanGrad.addColorStop(0, "#0b192c");
-      oceanGrad.addColorStop(0.5, "#06101f");
-      oceanGrad.addColorStop(1, "#0b192c");
-      ctx.fillStyle = oceanGrad;
-      ctx.fillRect(0, 0, 1024, 512);
-
-      // Subtle bathymetry latitude/longitude sheen
-      ctx.strokeStyle = "rgba(212, 175, 55, 0.06)";
-      ctx.lineWidth = 1;
-      for (let x = 0; x < 1024; x += 64) {
-        ctx.beginPath(); ctx.moveTo(x, 0); ctx.lineTo(x, 512); ctx.stroke();
-      }
-      for (let y = 0; y < 512; y += 64) {
-        ctx.beginPath(); ctx.moveTo(0, y); ctx.lineTo(1024, y); ctx.stroke();
-      }
-
-      // Stylized realistic continental landmasses (equirectangular projection)
-      const continents = [
-        // North America
-        [[110,95],[240,85],[295,120],[275,180],[225,220],[185,235],[155,190],[120,155]],
-        // South America
-        [[255,255],[310,265],[345,320],[320,395],[285,440],[265,375],[245,305]],
-        // Europe
-        [[465,85],[555,75],[585,115],[555,155],[495,160],[460,130]],
-        // Africa
-        [[470,175],[565,170],[615,230],[595,315],[555,390],[510,365],[495,280],[455,225]],
-        // Asia & Middle East
-        [[565,80],[775,70],[860,115],[835,195],[775,235],[715,245],[665,205],[615,215],[575,175]],
-        // Australia
-        [[795,315],[885,310],[905,375],[850,400],[790,370]]
-      ];
-
-      continents.forEach(poly => {
-        ctx.beginPath();
-        poly.forEach(([x, y], i) => (i === 0 ? ctx.moveTo(x, y) : ctx.lineTo(x, y)));
-        ctx.closePath();
-        const landGrad = ctx.createLinearGradient(0, 80, 0, 420);
-        landGrad.addColorStop(0, "#1d2a24");
-        landGrad.addColorStop(0.5, "#243025");
-        landGrad.addColorStop(1, "#18221e");
-        ctx.fillStyle = landGrad;
-        ctx.fill();
-        ctx.strokeStyle = "rgba(212, 175, 55, 0.35)";
-        ctx.lineWidth = 1.5;
-        ctx.stroke();
+      // Live Commodities Listener
+      onSnapshot(collection(db, "commodities"), (snapshot) => {
+        if (snapshot.empty) return;
+        const orderMap = new Map(DEFAULT_COMMODITIES.map((c, idx) => [c.id, idx]));
+        const loaded = [];
+        snapshot.forEach(docSnap => {
+          const data = docSnap.data();
+          loaded.push({
+            ...data,
+            id: data.id || docSnap.id,
+            image: data.image || COMMODITY_IMAGES[data.id || docSnap.id] || `${docSnap.id}.jpg`
+          });
+        });
+        loaded.sort((a, b) => {
+          const ia = orderMap.has(a.id) ? orderMap.get(a.id) : 99;
+          const ib = orderMap.has(b.id) ? orderMap.get(b.id) : 99;
+          return ia - ib;
+        });
+        commoditiesState = loaded;
+        renderCommodities();
+        renderTicker();
+        if (currentAdminUser) renderAdminCommodities();
+      }, (err) => {
+        console.warn("Firestore commodities listener fallback:", err);
       });
 
-      const tex = new THREE.CanvasTexture(c);
-      tex.needsUpdate = true;
-      return tex;
+      // Live Site Settings Listener
+      onSnapshot(doc(db, "settings", "site"), (docSnap) => {
+        if (!docSnap.exists()) return;
+        const data = docSnap.data();
+        siteSettingsState = {
+          tickerText: data.tickerText || "",
+          vaultCode: data.vaultCode || "EMPR2026"
+        };
+        const tickerIn = document.getElementById("admin-ticker-input");
+        const vaultIn = document.getElementById("admin-vault-input");
+        if (tickerIn) tickerIn.value = siteSettingsState.tickerText;
+        if (vaultIn) vaultIn.value = siteSettingsState.vaultCode;
+        renderTicker();
+      }, (err) => {
+        console.warn("Firestore settings listener fallback:", err);
+      });
+
+      // Live RFQs Listener
+      onSnapshot(collection(db, "rfqs"), (snapshot) => {
+        const list = [];
+        snapshot.forEach(docSnap => {
+          list.push({ docId: docSnap.id, ...docSnap.data() });
+        });
+        list.sort((a, b) => String(b.createdAt || "").localeCompare(String(a.createdAt || "")));
+        rfqInquiriesState = list;
+        renderAdminRfqs();
+      }, (err) => {
+        console.warn("Firestore RFQs listener fallback:", err);
+      });
     }
 
-    function createProceduralCloudTexture() {
-      const c = document.createElement("canvas");
-      c.width = 512;
-      c.height = 256;
-      const ctx = c.getContext("2d");
-      ctx.clearRect(0, 0, 512, 256);
-      for (let i = 0; i < 140; i++) {
-        const x = Math.random() * 512;
-        const y = Math.random() * 256;
-        const r = 10 + Math.random() * 34;
-        const grad = ctx.createRadialGradient(x, y, 0, x, y, r);
-        grad.addColorStop(0, "rgba(255, 255, 255, 0.14)");
-        grad.addColorStop(1, "rgba(255, 255, 255, 0)");
-        ctx.fillStyle = grad;
-        ctx.beginPath();
-        ctx.arc(x, y, r, 0, Math.PI * 2);
-        ctx.fill();
+    // =========================================================================
+    // 13. LIQUID OBSIDIAN & GOLD REACTIVE BACKGROUND CANVAS
+    // =========================================================================
+    function initBackgroundCanvas() {
+      const canvas = document.getElementById("bg-canvas");
+      if (!canvas) return;
+      const ctx = canvas.getContext("2d");
+      let w = 0, h = 0;
+      const pointer = { x: 0.5, y: 0.35, tx: 0.5, ty: 0.35 };
+
+      function resize() {
+        w = canvas.width = window.innerWidth;
+        h = canvas.height = window.innerHeight;
       }
-      const tex = new THREE.CanvasTexture(c);
-      tex.needsUpdate = true;
-      return tex;
+      resize();
+      window.addEventListener("resize", resize);
+      window.addEventListener("mousemove", (e) => {
+        pointer.tx = e.clientX / Math.max(w, 1);
+        pointer.ty = e.clientY / Math.max(h, 1);
+      });
+
+      let t = 0;
+      function draw() {
+        t += 0.004;
+        pointer.x += (pointer.tx - pointer.x) * 0.04;
+        pointer.y += (pointer.ty - pointer.y) * 0.04;
+
+        ctx.clearRect(0, 0, w, h);
+
+        // Primary cursor-reactive gold aura
+        const g1 = ctx.createRadialGradient(
+          w * pointer.x, h * pointer.y, 10,
+          w * pointer.x, h * pointer.y, Math.max(w, h) * 0.45
+        );
+        g1.addColorStop(0, "rgba(212, 175, 55, 0.11)");
+        g1.addColorStop(0.45, "rgba(153, 101, 21, 0.04)");
+        g1.addColorStop(1, "rgba(5, 5, 7, 0)");
+        ctx.fillStyle = g1;
+        ctx.fillRect(0, 0, w, h);
+
+        // Secondary ambient drifting obsidian-gold refraction
+        const ox = w * (0.75 + Math.sin(t) * 0.12);
+        const oy = h * (0.28 + Math.cos(t * 0.8) * 0.12);
+        const g2 = ctx.createRadialGradient(ox, oy, 10, ox, oy, Math.max(w, h) * 0.38);
+        g2.addColorStop(0, "rgba(245, 215, 142, 0.07)");
+        g2.addColorStop(1, "rgba(5, 5, 7, 0)");
+        ctx.fillStyle = g2;
+        ctx.fillRect(0, 0, w, h);
+
+        requestAnimationFrame(draw);
+      }
+      draw();
     }
 
-    function initThreeGlobe() {
+    // =========================================================================
+    // 14. PHOTOREALISTIC 3D EARTH TRADE CORRIDOR GLOBE (THREE.JS r128)
+    // =========================================================================
+    function initEarthGlobe() {
       const container = document.getElementById("globe-container");
       if (!container || typeof THREE === "undefined") return;
 
+      const HUBS = [
+        {
+          id: "poti",
+          label: "Poti / KZ",
+          name: "KAZAKHSTAN / POTI (GEORGIA)",
+          lat: 42.15, lon: 41.67,
+          status: "FLAGSHIP",
+          incoterms: "INCOTERMS: FOB POTI / SOHAR • CIF WORLDWIDE",
+          focus: "CARGO: GRANULAR SULFUR (PRIMARY), EN590, JET A1, D6"
+        },
+        {
+          id: "africa",
+          label: "Africa Gold",
+          name: "ACCRA / JOHANNESBURG (AFRICA CORRIDOR)",
+          lat: 5.60, lon: -0.19,
+          status: "MANDATE",
+          incoterms: "INCOTERMS: CIF DUBAI (DMCC) / ZURICH / HONG KONG",
+          focus: "CARGO: AFRICAN GOLD BULLION, AU DORÉ BARS, COPPER CATHODES"
+        },
+        {
+          id: "dubai",
+          label: "Dubai / Fujairah",
+          name: "DUBAI & FUJAIRAH (UAE HUB)",
+          lat: 25.20, lon: 55.27,
+          status: "ACTIVE DESK",
+          incoterms: "INCOTERMS: FOB FUJAIRAH • CIF DMCC / ASWP",
+          focus: "CARGO: EN590 10PPM, JET A1, BITUMEN, GOLD BULLION"
+        },
+        {
+          id: "rotterdam",
+          label: "Rotterdam",
+          name: "ROTTERDAM (NETHERLANDS)",
+          lat: 51.92, lon: 4.48,
+          status: "SPOT ACTIVE",
+          incoterms: "INCOTERMS: FOB TTV/TTT • CIF ROTTERDAM",
+          focus: "CARGO: DIESEL EN590 (10PPM), JET FUEL A1, D6 VIRGIN OIL"
+        },
+        {
+          id: "singapore",
+          label: "Jurong (SG)",
+          name: "SINGAPORE / JURONG PORT",
+          lat: 1.35, lon: 103.82,
+          status: "ACTIVE",
+          incoterms: "INCOTERMS: CIF JURONG • FOB / TTO",
+          focus: "CARGO: GRANULAR SULFUR, EN590, UREA N46, ALUMINUM A7"
+        },
+        {
+          id: "qingdao",
+          label: "Qingdao",
+          name: "QINGDAO (CHINA)",
+          lat: 36.07, lon: 120.38,
+          status: "ALLOCATED",
+          incoterms: "INCOTERMS: CIF QINGDAO • DLC MT700 / SBLC",
+          focus: "CARGO: GRANULAR SULFUR, BITUMEN, COPPER, ALUMINUM A7"
+        },
+        {
+          id: "houston",
+          label: "Houston",
+          name: "HOUSTON (USA)",
+          lat: 29.76, lon: -95.37,
+          status: "ACTIVE",
+          incoterms: "INCOTERMS: FOB HOUSTON • CIF AMERICAS",
+          focus: "CARGO: JET FUEL A1, D6 VIRGIN FUEL OIL, EN590"
+        },
+        {
+          id: "india",
+          label: "India HQ",
+          name: "BHUBANESWAR (INDIA COMMAND HQ)",
+          lat: 20.30, lon: 85.82,
+          status: "HQ DESK",
+          incoterms: "ENTITY: EMPR EXPORTS PVT. LTD. (CIN: U46303OD2024PTC045525)",
+          focus: "ROLE: GLOBAL TRADE GOVERNANCE, COMPLIANCE & REFINERY MANDATES"
+        }
+      ];
+
+      // Convert lat/lon to 3D sphere vector
+      function latLonToVec3(lat, lon, radius) {
+        const phi = (90 - lat) * (Math.PI / 180);
+        const theta = (lon + 180) * (Math.PI / 180);
+        return new THREE.Vector3(
+          -radius * Math.sin(phi) * Math.cos(theta),
+          radius * Math.cos(phi),
+          radius * Math.sin(phi) * Math.sin(theta)
+        );
+      }
+
+      // Procedural high-contrast Earth fallback canvas texture
+      function createFallbackEarthTexture() {
+        const c = document.createElement("canvas");
+        c.width = 1024;
+        c.height = 512;
+        const g = c.getContext("2d");
+        const grad = g.createLinearGradient(0, 0, 0, 512);
+        grad.addColorStop(0, "#0a1628");
+        grad.addColorStop(0.5, "#0d223d");
+        grad.addColorStop(1, "#091424");
+        g.fillStyle = grad;
+        g.fillRect(0, 0, 1024, 512);
+        // Subtle lat/lon graticules
+        g.strokeStyle = "rgba(212, 175, 55, 0.12)";
+        g.lineWidth = 1;
+        for (let x = 0; x <= 1024; x += 64) {
+          g.beginPath(); g.moveTo(x, 0); g.lineTo(x, 512); g.stroke();
+        }
+        for (let y = 0; y <= 512; y += 64) {
+          g.beginPath(); g.moveTo(0, y); g.lineTo(1024, y); g.stroke();
+        }
+        return new THREE.CanvasTexture(c);
+      }
+
       const scene = new THREE.Scene();
-      const camera = new THREE.PerspectiveCamera(42, container.clientWidth / container.clientHeight, 0.1, 1000);
-      camera.position.z = 5.35;
+      const width = container.clientWidth || 500;
+      const height = container.clientHeight || 360;
+      const camera = new THREE.PerspectiveCamera(42, width / height, 0.1, 1000);
+      camera.position.z = 3.15;
 
       const renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
       renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
-      renderer.setSize(container.clientWidth, container.clientHeight);
+      renderer.setSize(width, height);
+      container.innerHTML = "";
       container.appendChild(renderer.domElement);
 
-      // Subtle Deep-Space Starfield
+      // Lighting (Neutral daylight for crisp satellite map clarity; golden rim light removed)
+      scene.add(new THREE.AmbientLight(0xeef4ff, 0.88));
+      const sunLight = new THREE.DirectionalLight(0xffffff, 1.25);
+      sunLight.position.set(5, 3, 5);
+      scene.add(sunLight);
+      const fillLight = new THREE.DirectionalLight(0xbfd8ff, 0.35);
+      fillLight.position.set(-5, -2, -4);
+      scene.add(fillLight);
+
+      // Starfield
       const starGeo = new THREE.BufferGeometry();
-      const starCount = 420;
-      const starPositions = new Float32Array(starCount * 3);
-      for (let i = 0; i < starCount; i++) {
+      const starVerts = [];
+      for (let i = 0; i < 650; i++) {
         const r = 12 + Math.random() * 18;
         const theta = Math.random() * Math.PI * 2;
         const phi = Math.acos(2 * Math.random() - 1);
-        starPositions[i * 3] = r * Math.sin(phi) * Math.cos(theta);
-        starPositions[i * 3 + 1] = r * Math.sin(phi) * Math.sin(theta);
-        starPositions[i * 3 + 2] = r * Math.cos(phi);
+        starVerts.push(r * Math.sin(phi) * Math.cos(theta), r * Math.cos(phi), r * Math.sin(phi) * Math.sin(theta));
       }
-      starGeo.setAttribute("position", new THREE.BufferAttribute(starPositions, 3));
-      const starMat = new THREE.PointsMaterial({
-        color: 0xf5d78e,
-        size: 0.06,
-        transparent: true,
-        opacity: 0.65
-      });
-      const stars = new THREE.Points(starGeo, starMat);
+      starGeo.setAttribute("position", new THREE.Float32BufferAttribute(starVerts, 3));
+      const stars = new THREE.Points(starGeo, new THREE.PointsMaterial({ color: 0xf5d78e, size: 0.05, transparent: true, opacity: 0.55 }));
       scene.add(stars);
 
       const globeGroup = new THREE.Group();
-      globeGroupRef = globeGroup;
       scene.add(globeGroup);
 
-      const RADIUS = 1.95;
+      const RADIUS = 1.08;
+      const maxAnisotropy = renderer.capabilities.getMaxAnisotropy();
+      const texLoader = new THREE.TextureLoader();
+      texLoader.setCrossOrigin("anonymous");
 
-      // Photorealistic Earth Material with Procedural Fallback + Live Satellite Texture Upgrade
-      const earthGeo = new THREE.SphereGeometry(RADIUS, 64, 64);
       const earthMat = new THREE.MeshPhongMaterial({
-        map: createProceduralEarthTexture(),
-        color: 0xd8e0ea,
-        specular: new THREE.Color(0x3a4a5e),
-        shininess: 18,
-        bumpScale: 0.045
+        map: createFallbackEarthTexture(),
+        specular: new THREE.Color(0x3b6ea5),
+        shininess: 26
       });
-      const earthMesh = new THREE.Mesh(earthGeo, earthMat);
+
+      // Load high-detail satellite Earth maps (albedo + terrain relief + ocean specular mask)
+      texLoader.load(
+        "https://unpkg.com/three-globe/example/img/earth-blue-marble.jpg",
+        (tex) => {
+          tex.anisotropy = maxAnisotropy;
+          earthMat.map = tex;
+          earthMat.needsUpdate = true;
+        }
+      );
+      texLoader.load(
+        "https://unpkg.com/three-globe/example/img/earth-topology.png",
+        (bump) => {
+          bump.anisotropy = maxAnisotropy;
+          earthMat.bumpMap = bump;
+          earthMat.bumpScale = 0.05;
+          earthMat.needsUpdate = true;
+        }
+      );
+      texLoader.load(
+        "https://unpkg.com/three-globe/example/img/earth-water.png",
+        (spec) => {
+          spec.anisotropy = maxAnisotropy;
+          earthMat.specularMap = spec;
+          earthMat.needsUpdate = true;
+        }
+      );
+
+      const earthMesh = new THREE.Mesh(new THREE.SphereGeometry(RADIUS, 96, 96), earthMat);
       globeGroup.add(earthMesh);
 
-      // Load Real Satellite Earth Textures (CORS-enabled CDN)
-      const textureLoader = new THREE.TextureLoader();
-      textureLoader.setCrossOrigin("anonymous");
-
-      textureLoader.load(
-        "https://unpkg.com/three-globe@2.31.1/example/img/earth-blue-marble.jpg",
-        (albedoTex) => {
-          earthMat.map = albedoTex;
-          earthMat.needsUpdate = true;
-        },
-        undefined,
-        () => {
-          // Keeps high-detail procedural Earth fallback automatically
-        }
-      );
-
-      textureLoader.load(
-        "https://unpkg.com/three-globe@2.31.1/example/img/earth-topology.png",
-        (bumpTex) => {
-          earthMat.bumpMap = bumpTex;
-          earthMat.bumpScale = 0.055;
-          earthMat.needsUpdate = true;
-        }
-      );
-
-      textureLoader.load(
-        "https://unpkg.com/three-globe@2.31.1/example/img/earth-water.png",
-        (specTex) => {
-          earthMat.specularMap = specTex;
-          earthMat.specular = new THREE.Color(0x557799);
-          earthMat.shininess = 24;
-          earthMat.needsUpdate = true;
-        }
-      );
-
-      // Subtle Rotating Cloud Layer
-      const cloudGeo = new THREE.SphereGeometry(RADIUS * 1.014, 48, 48);
+      // Subtle Rotating Cloud Layer (kept light so surface detail stays sharp)
       const cloudMat = new THREE.MeshPhongMaterial({
-        map: createProceduralCloudTexture(),
         transparent: true,
-        opacity: 0.42,
+        opacity: 0.14,
         depthWrite: false
       });
-      const cloudMesh = new THREE.Mesh(cloudGeo, cloudMat);
+      texLoader.load(
+        "https://unpkg.com/three-globe/example/img/earth-clouds.png",
+        (cloudTex) => {
+          cloudTex.anisotropy = maxAnisotropy;
+          cloudMat.map = cloudTex;
+          cloudMat.needsUpdate = true;
+        }
+      );
+      const cloudMesh = new THREE.Mesh(new THREE.SphereGeometry(RADIUS * 1.01, 64, 64), cloudMat);
       globeGroup.add(cloudMesh);
 
-      // Glowing Golden Atmospheric Rim / Fresnel Shader Halo
-      const atmoGeo = new THREE.SphereGeometry(RADIUS * 1.11, 64, 64);
-      const atmoMat = new THREE.ShaderMaterial({
-        vertexShader: `
-          varying vec3 vNormal;
-          void main() {
-            vNormal = normalize(normalMatrix * normal);
-            gl_Position = projectionMatrix * modelViewMatrix * vec4(position, 1.0);
-          }
-        `,
-        fragmentShader: `
-          varying vec3 vNormal;
-          void main() {
-            float intensity = pow(0.68 - dot(vNormal, vec3(0.0, 0.0, 1.0)), 3.2);
-            gl_FragColor = vec4(0.92, 0.75, 0.32, 1.0) * intensity * 0.95;
-          }
-        `,
-        blending: THREE.AdditiveBlending,
-        side: THREE.BackSide,
-        transparent: true
-      });
-      const atmosphereMesh = new THREE.Mesh(atmoGeo, atmoMat);
-      scene.add(atmosphereMesh);
+      // (Golden Atmospheric Fresnel Rim removed — hub markers & corridor arcs remain active below)
 
-      // Cinematic Lighting for Real Earth
-      scene.add(new THREE.AmbientLight(0x9fb3c8, 0.65));
-      const sunLight = new THREE.DirectionalLight(0xfff4d6, 1.45);
-      sunLight.position.set(5.5, 3.2, 5.2);
-      scene.add(sunLight);
-      const rimLight = new THREE.DirectionalLight(0xd4af37, 0.45);
-      rimLight.position.set(-5, -2, -4);
-      scene.add(rimLight);
-
-      // Plot Accurate 3D Lat/Lon Hub Markers
-      const hubPositions = {};
-      TRADE_HUBS.forEach(hub => {
-        const pos = latLonToVec3(hub.lat, hub.lon, RADIUS * 1.02);
-        hubPositions[hub.id] = pos;
-
-        const isPriorityHub = hub.id === "poti" || hub.id === "africa";
-        const nodeGeo = new THREE.SphereGeometry(isPriorityHub ? 0.058 : 0.046, 16, 16);
-        const nodeMat = new THREE.MeshBasicMaterial({ color: isPriorityHub ? 0xffdf73 : 0xf5d78e });
-        const nodeMesh = new THREE.Mesh(nodeGeo, nodeMat);
-        nodeMesh.position.copy(pos);
-        globeGroup.add(nodeMesh);
-
-        // Golden telemetry ring around hub
-        const ringGeo = new THREE.RingGeometry(0.072, 0.102, 24);
-        const ringMat = new THREE.MeshBasicMaterial({
-          color: 0xd4af37,
-          side: THREE.DoubleSide,
-          transparent: true,
-          opacity: 0.85
-        });
-        const ringMesh = new THREE.Mesh(ringGeo, ringMat);
-        ringMesh.position.copy(pos.clone().multiplyScalar(1.006));
-        ringMesh.lookAt(pos.clone().multiplyScalar(2));
-        globeGroup.add(ringMesh);
+      // Hub Markers & Animated Trade Corridor Arcs
+      const hubVecs = {};
+      HUBS.forEach(h => {
+        const pos = latLonToVec3(h.lat, h.lon, RADIUS * 1.018);
+        hubVecs[h.id] = pos;
+        const marker = new THREE.Mesh(
+          new THREE.SphereGeometry(h.id === "poti" || h.id === "africa" ? 0.028 : 0.021, 16, 16),
+          new THREE.MeshBasicMaterial({ color: h.id === "poti" ? 0xf5d78e : 0xd4af37 })
+        );
+        marker.position.copy(pos);
+        globeGroup.add(marker);
       });
 
-      // Glowing Animated Golden Maritime & Aviation Trade Arcs
-      const routes = [
-        ["poti", "rotterdam"],
+      const ROUTES = [
         ["poti", "dubai"],
+        ["poti", "rotterdam"],
+        ["poti", "singapore"],
         ["poti", "qingdao"],
         ["africa", "dubai"],
         ["africa", "rotterdam"],
-        ["dubai", "bhubaneswar"],
-        ["dubai", "jurong"],
-        ["jurong", "qingdao"],
-        ["rotterdam", "houston"],
-        ["bhubaneswar", "jurong"]
+        ["dubai", "india"],
+        ["dubai", "houston"],
+        ["dubai", "singapore"]
       ];
 
-      const pulseParticles = [];
-
-      routes.forEach(([fromId, toId]) => {
-        const start = hubPositions[fromId];
-        const end = hubPositions[toId];
+      const routePulses = [];
+      ROUTES.forEach(([fromId, toId], idx) => {
+        const start = hubVecs[fromId];
+        const end = hubVecs[toId];
         if (!start || !end) return;
-
         const mid = start.clone().add(end).multiplyScalar(0.5);
         const dist = start.distanceTo(end);
         mid.normalize().multiplyScalar(RADIUS + dist * 0.34);
 
         const curve = new THREE.QuadraticBezierCurve3(start, mid, end);
-        const points = curve.getPoints(52);
-        const arcGeo = new THREE.BufferGeometry().setFromPoints(points);
-        const arcMat = new THREE.LineBasicMaterial({
-          color: 0xf5d78e,
-          transparent: true,
-          opacity: 0.72
-        });
-        globeGroup.add(new THREE.Line(arcGeo, arcMat));
+        const pts = curve.getPoints(48);
+        const lineGeo = new THREE.BufferGeometry().setFromPoints(pts);
+        const lineMat = new THREE.LineBasicMaterial({ color: 0xd4af37, transparent: true, opacity: 0.55 });
+        globeGroup.add(new THREE.Line(lineGeo, lineMat));
 
-        // Moving golden cargo pulse along arc
-        const pGeo = new THREE.SphereGeometry(0.032, 10, 10);
-        const pMat = new THREE.MeshBasicMaterial({ color: 0xfff3c4 });
-        const pMesh = new THREE.Mesh(pGeo, pMat);
-        globeGroup.add(pMesh);
-        pulseParticles.push({ mesh: pMesh, curve, t: Math.random(), speed: 0.0032 + Math.random() * 0.002 });
+        const pulse = new THREE.Mesh(
+          new THREE.SphereGeometry(0.014, 10, 10),
+          new THREE.MeshBasicMaterial({ color: 0xfff3c4 })
+        );
+        globeGroup.add(pulse);
+        routePulses.push({ curve, mesh: pulse, t: (idx * 0.14) % 1 });
       });
 
-      // Mouse & Touch Drag Interaction
-      let isDragging = false;
-      let prevX = 0;
-      let prevY = 0;
+      // Render Hub Selector Pills
+      const pillsEl = document.getElementById("hub-pills");
+      let targetRotY = -2.25;
+      let targetRotX = 0.38;
+      let manualTargetActive = false;
 
-      const onDown = (x, y) => { isDragging = true; prevX = x; prevY = y; };
+      function selectHub(hub) {
+        document.getElementById("hub-name").textContent = hub.name;
+        document.getElementById("hub-status").textContent = hub.status;
+        document.getElementById("hub-incoterms").textContent = hub.incoterms;
+        document.getElementById("hub-focus").textContent = hub.focus;
+
+        // Rotate globe smoothly toward selected hub
+        targetRotY = -(hub.lon * Math.PI) / 180 - Math.PI / 2;
+        targetRotX = Math.max(-0.8, Math.min(0.8, (hub.lat * Math.PI) / 180));
+        manualTargetActive = true;
+
+        if (pillsEl) {
+          pillsEl.querySelectorAll("button").forEach(b => {
+            const isAct = b.dataset.hubId === hub.id;
+            b.className = isAct
+              ? "px-2.5 py-1 rounded-lg font-mono text-[10px] uppercase bg-gold text-obsidian font-bold transition-all"
+              : "px-2.5 py-1 rounded-lg font-mono text-[10px] uppercase bg-obsidianCard border border-gold/25 text-gray-300 hover:border-gold/60 transition-all";
+          });
+        }
+      }
+
+      if (pillsEl) {
+        pillsEl.innerHTML = HUBS.map((h, i) => `
+          <button type="button" data-hub-id="${h.id}" data-sound="click"
+                  class="${i === 0 ? "px-2.5 py-1 rounded-lg font-mono text-[10px] uppercase bg-gold text-obsidian font-bold" : "px-2.5 py-1 rounded-lg font-mono text-[10px] uppercase bg-obsidianCard border border-gold/25 text-gray-300 hover:border-gold/60"} transition-all">
+            ${h.label}
+          </button>
+        `).join("");
+        pillsEl.querySelectorAll("button").forEach(btn => {
+          btn.addEventListener("click", () => {
+            const found = HUBS.find(h => h.id === btn.dataset.hubId);
+            if (found) selectHub(found);
+          });
+        });
+      }
+
+      // Initial focus on Poti / Kazakhstan / Dubai corridor
+      globeGroup.rotation.y = targetRotY;
+      globeGroup.rotation.x = targetRotX;
+
+      // Drag Controls (Mouse & Touch)
+      let isDragging = false;
+      let prevX = 0, prevY = 0;
+
+      const onDown = (x, y) => { isDragging = true; manualTargetActive = false; prevX = x; prevY = y; };
       const onMove = (x, y) => {
         if (!isDragging) return;
         const dx = x - prevX;
         const dy = y - prevY;
-        globeTargetRotY += dx * 0.007;
-        globeTargetRotX = Math.max(-1.0, Math.min(1.0, globeTargetRotX + dy * 0.007));
+        globeGroup.rotation.y += dx * 0.006;
+        globeGroup.rotation.x = Math.max(-1.05, Math.min(1.05, globeGroup.rotation.x + dy * 0.005));
         prevX = x;
         prevY = y;
       };
       const onUp = () => { isDragging = false; };
 
-      renderer.domElement.addEventListener("mousedown", e => onDown(e.clientX, e.clientY));
-      window.addEventListener("mousemove", e => onMove(e.clientX, e.clientY));
+      renderer.domElement.addEventListener("mousedown", (e) => onDown(e.clientX, e.clientY));
+      window.addEventListener("mousemove", (e) => onMove(e.clientX, e.clientY));
       window.addEventListener("mouseup", onUp);
 
-      renderer.domElement.addEventListener("touchstart", e => {
-        if (e.touches[0]) onDown(e.touches[0].clientX, e.touches[0].clientY);
+      renderer.domElement.addEventListener("touchstart", (e) => {
+        if (e.touches.length === 1) onDown(e.touches[0].clientX, e.touches[0].clientY);
       }, { passive: true });
-      renderer.domElement.addEventListener("touchmove", e => {
-        if (e.touches[0]) onMove(e.touches[0].clientX, e.touches[0].clientY);
+      renderer.domElement.addEventListener("touchmove", (e) => {
+        if (e.touches.length === 1) onMove(e.touches[0].clientX, e.touches[0].clientY);
       }, { passive: true });
-      window.addEventListener("touchend", onUp);
+      renderer.domElement.addEventListener("touchend", onUp);
 
-      // Resize Handling
       window.addEventListener("resize", () => {
-        if (!container) return;
-        camera.aspect = container.clientWidth / container.clientHeight;
+        const nw = container.clientWidth;
+        const nh = container.clientHeight;
+        if (!nw || !nh) return;
+        camera.aspect = nw / nh;
         camera.updateProjectionMatrix();
-        renderer.setSize(container.clientWidth, container.clientHeight);
+        renderer.setSize(nw, nh);
       });
 
-      // Render Hub Pills
-      const pillsContainer = document.getElementById("hub-pills");
-      pillsContainer.innerHTML = TRADE_HUBS.map((hub, idx) => `
-        <button type="button" onclick="focusTradeHub('${hub.id}')" data-hub-pill="${hub.id}" data-sound="click"
-                class="px-2.5 py-1 rounded-lg font-mono text-[10px] uppercase tracking-wider border transition-all ${
-                  idx === 0
-                    ? "bg-gold text-obsidian border-gold font-bold"
-                    : "bg-obsidianCard text-gray-300 border-gold/25 hover:border-gold/60"
-                }">
-          ${hub.short}
-        </button>
-      `).join("");
-
-      // Focus flagship Poti / Kazakhstan hub initially
-      focusTradeHub("poti");
-
-      // Animation Loop
       function animate() {
         requestAnimationFrame(animate);
-        if (!isDragging) {
-          globeTargetRotY += 0.0016;
-        }
-        globeGroup.rotation.y += (globeTargetRotY - globeGroup.rotation.y) * 0.08;
-        globeGroup.rotation.x += (globeTargetRotX - globeGroup.rotation.x) * 0.08;
-        cloudMesh.rotation.y += 0.00055;
-        stars.rotation.y -= 0.00018;
+        cloudMesh.rotation.y += 0.00045;
+        stars.rotation.y -= 0.00015;
 
-        pulseParticles.forEach(p => {
-          p.t = (p.t + p.speed) % 1;
+        if (!isDragging) {
+          if (manualTargetActive) {
+            globeGroup.rotation.y += (targetRotY - globeGroup.rotation.y) * 0.06;
+            globeGroup.rotation.x += (targetRotX - globeGroup.rotation.x) * 0.06;
+            if (Math.abs(targetRotY - globeGroup.rotation.y) < 0.008 && Math.abs(targetRotX - globeGroup.rotation.x) < 0.008) {
+              manualTargetActive = false;
+            }
+          } else {
+            globeGroup.rotation.y += 0.0018;
+          }
+        }
+
+        routePulses.forEach(p => {
+          p.t = (p.t + 0.0045) % 1;
           p.mesh.position.copy(p.curve.getPoint(p.t));
         });
 
@@ -2833,192 +2866,85 @@
       animate();
     }
 
-    window.focusTradeHub = function(hubId) {
-      const hub = TRADE_HUBS.find(h => h.id === hubId);
-      if (!hub) return;
-
-      document.getElementById("hub-name").textContent = hub.name;
-      document.getElementById("hub-status").textContent = hub.status;
-      document.getElementById("hub-incoterms").textContent = `INCOTERMS: ${hub.incoterms}`;
-      document.getElementById("hub-focus").textContent = `CARGO: ${hub.cargo}`;
-
-      // Rotate globe toward hub longitude/latitude
-      globeTargetRotY = -((hub.lon + 90) * (Math.PI / 180));
-      globeTargetRotX = Math.max(-0.7, Math.min(0.7, hub.lat * (Math.PI / 180) * 0.6));
-
-      document.querySelectorAll("[data-hub-pill]").forEach(btn => {
-        const active = btn.dataset.hubPill === hubId;
-        btn.className = active
-          ? "px-2.5 py-1 rounded-lg font-mono text-[10px] uppercase tracking-wider border transition-all bg-gold text-obsidian font-bold"
-          : "px-2.5 py-1 rounded-lg font-mono text-[10px] uppercase tracking-wider border transition-all bg-obsidianCard text-gray-300 border-gold/25 hover:border-gold/60";
-      });
-    };
-
     // =========================================================================
-    // 15. LIQUID OBSIDIAN & GOLD REACTIVE CANVAS BACKGROUND
+    // 15. UI MICRO-INTERACTIONS (REVEAL, SCRAMBLE, MAGNETIC, MOBILE MENU)
     // =========================================================================
-    function initBgCanvas() {
-      const canvas = document.getElementById("bg-canvas");
-      const ctx = canvas.getContext("2d");
-      let width, height, particles = [];
-      const mouse = { x: -999, y: -999 };
-
-      function resize() {
-        width = canvas.width = window.innerWidth;
-        height = canvas.height = window.innerHeight;
-        const count = Math.min(60, Math.floor((width * height) / 26000));
-        particles = Array.from({ length: count }, () => ({
-          x: Math.random() * width,
-          y: Math.random() * height,
-          vx: (Math.random() - 0.5) * 0.35,
-          vy: (Math.random() - 0.5) * 0.35,
-          r: Math.random() * 1.8 + 0.6
-        }));
-      }
-
-      window.addEventListener("resize", resize);
-      window.addEventListener("mousemove", e => {
-        mouse.x = e.clientX;
-        mouse.y = e.clientY;
-      });
-      resize();
-
-      function draw() {
-        ctx.clearRect(0, 0, width, height);
-
-        // Subtle cursor golden ambient halo
-        if (mouse.x > 0 && mouse.y > 0) {
-          const grad = ctx.createRadialGradient(mouse.x, mouse.y, 0, mouse.x, mouse.y, 260);
-          grad.addColorStop(0, "rgba(212, 175, 55, 0.08)");
-          grad.addColorStop(1, "rgba(5, 5, 7, 0)");
-          ctx.fillStyle = grad;
-          ctx.fillRect(0, 0, width, height);
-        }
-
-        particles.forEach((p, i) => {
-          p.x += p.vx;
-          p.y += p.vy;
-          if (p.x < 0 || p.x > width) p.vx *= -1;
-          if (p.y < 0 || p.y > height) p.vy *= -1;
-
-          ctx.beginPath();
-          ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
-          ctx.fillStyle = "rgba(245, 215, 142, 0.42)";
-          ctx.fill();
-
-          // Connect nearby particles to cursor
-          const dxM = p.x - mouse.x;
-          const dyM = p.y - mouse.y;
-          const distM = Math.hypot(dxM, dyM);
-          if (distM < 170) {
-            ctx.beginPath();
-            ctx.moveTo(p.x, p.y);
-            ctx.lineTo(mouse.x, mouse.y);
-            ctx.strokeStyle = `rgba(212, 175, 55, ${(1 - distM / 170) * 0.22})`;
-            ctx.lineWidth = 0.8;
-            ctx.stroke();
-          }
-
-          // Connect nearby particles to each other
-          for (let j = i + 1; j < particles.length; j++) {
-            const p2 = particles[j];
-            const d = Math.hypot(p.x - p2.x, p.y - p2.y);
-            if (d < 120) {
-              ctx.beginPath();
-              ctx.moveTo(p.x, p.y);
-              ctx.lineTo(p2.x, p2.y);
-              ctx.strokeStyle = `rgba(212, 175, 55, ${(1 - d / 120) * 0.09})`;
-              ctx.lineWidth = 0.6;
-              ctx.stroke();
-            }
-          }
-        });
-
-        requestAnimationFrame(draw);
-      }
-      draw();
-    }
-
-    // =========================================================================
-    // 16. MICRO-INTERACTIONS: SCRAMBLE TEXT, MAGNETIC BUTTONS, SCROLL REVEAL
-    // =========================================================================
-    const SCRAMBLE_CHARS = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789#$%&*";
-
-    function runScramble(el) {
-      const target = el.dataset.text || el.textContent.trim();
-      let iteration = 0;
-      const interval = setInterval(() => {
-        el.textContent = target
-          .split("")
-          .map((char, idx) => {
-            if (char === " " || char === "&") return char;
-            if (idx < iteration) return target[idx];
-            return SCRAMBLE_CHARS[Math.floor(Math.random() * SCRAMBLE_CHARS.length)];
-          })
-          .join("");
-        iteration += 0.65;
-        if (iteration >= target.length) {
+    function scrambleElement(el) {
+      const target = el.dataset.text || el.textContent;
+      const chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789#/";
+      let iter = 0;
+      const timer = setInterval(() => {
+        el.textContent = target.split("").map((ch, idx) => {
+          if (ch === " ") return " ";
+          if (idx < iter) return target[idx];
+          return chars[Math.floor(Math.random() * chars.length)];
+        }).join("");
+        iter += 0.65;
+        if (iter >= target.length) {
           el.textContent = target;
-          clearInterval(interval);
+          clearInterval(timer);
         }
       }, 24);
     }
 
-    function initScrollAndMicroInteractions() {
-      // Reveal & Scramble on scroll
+    function initUiAndEffects() {
+      const yearEl = document.getElementById("footer-year");
+      if (yearEl) yearEl.textContent = String(new Date().getFullYear());
+
+      // Mobile menu toggle
+      const mobileBtn = document.getElementById("mobile-menu-btn");
+      const mobileMenu = document.getElementById("mobile-menu");
+      if (mobileBtn && mobileMenu) {
+        mobileBtn.addEventListener("click", () => mobileMenu.classList.toggle("hidden"));
+        document.querySelectorAll(".mobile-nav-link").forEach(link => {
+          link.addEventListener("click", () => mobileMenu.classList.add("hidden"));
+        });
+      }
+
+      // Scroll reveal + scramble headings
       const observer = new IntersectionObserver((entries) => {
         entries.forEach(entry => {
           if (entry.isIntersecting) {
-            if (entry.target.classList.contains("reveal")) {
-              entry.target.classList.add("visible");
-            }
-            if (entry.target.classList.contains("scramble-text") && !entry.target.dataset.scrambled) {
-              entry.target.dataset.scrambled = "1";
-              runScramble(entry.target);
-            }
+            entry.target.classList.add("visible");
+            entry.target.querySelectorAll(".scramble-text").forEach(h => {
+              if (!h.dataset.scrambled) {
+                h.dataset.scrambled = "1";
+                scrambleElement(h);
+              }
+            });
+            observer.unobserve(entry.target);
           }
         });
-      }, { threshold: 0.15 });
+      }, { threshold: 0.12 });
 
-      document.querySelectorAll(".reveal, .scramble-text").forEach(el => observer.observe(el));
+      document.querySelectorAll(".reveal").forEach(el => observer.observe(el));
 
-      // Magnetic Pull on Primary Buttons
+      // Subtle magnetic button pull
       document.querySelectorAll(".magnetic-btn").forEach(btn => {
         btn.addEventListener("mousemove", (e) => {
-          const rect = btn.getBoundingClientRect();
-          const x = (e.clientX - rect.left - rect.width / 2) * 0.18;
-          const y = (e.clientY - rect.top - rect.height / 2) * 0.18;
-          btn.style.transform = `translate(${x}px, ${y}px)`;
+          const r = btn.getBoundingClientRect();
+          const dx = (e.clientX - r.left - r.width / 2) * 0.14;
+          const dy = (e.clientY - r.top - r.height / 2) * 0.14;
+          btn.style.transform = `translate(${dx}px, ${dy}px)`;
         });
         btn.addEventListener("mouseleave", () => {
           btn.style.transform = "translate(0px, 0px)";
         });
       });
-
-      // Mobile menu toggle
-      const mobileBtn = document.getElementById("mobile-menu-btn");
-      const mobileMenu = document.getElementById("mobile-menu");
-      mobileBtn.addEventListener("click", () => mobileMenu.classList.toggle("hidden"));
-      document.querySelectorAll(".mobile-nav-link").forEach(link => {
-        link.addEventListener("click", () => mobileMenu.classList.add("hidden"));
-      });
     }
 
     // =========================================================================
-    // 17. BOOTSTRAP ON WINDOW LOAD
+    // 16. BOOT TERMINAL
     // =========================================================================
-    window.addEventListener("load", () => {
-      document.getElementById("footer-year").textContent = new Date().getFullYear();
-      renderTicker();
-      renderCommodities();
-      renderProcedures();
-      updateGlobalClocks();
-      setInterval(updateGlobalClocks, 1000);
-      initBgCanvas();
-      initThreeGlobe();
-      initScrollAndMicroInteractions();
-      initFirestoreSubscriptions();
-    });
+    updateGlobalClocks();
+    setInterval(updateGlobalClocks, 1000);
+    renderTicker();
+    renderCommodities();
+    renderProcedures();
+    initBackgroundCanvas();
+    initEarthGlobe();
+    initUiAndEffects();
+    initFirestoreSync();
   </script>
 </body>
 </html>
